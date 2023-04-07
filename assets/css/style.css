@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Maitree', serif;
+    text-align: center;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
 }
@@ -20,12 +21,40 @@ h3 {
 .middle-div,
 .countdown-timer-div,
 .dealer-div,
+.draw-pile,
+.dealt-cards,
+.dealer-sum,
 .start-button-div,
 .player-div,
+.split-hand,
+.player-sum,
 .actions-div,
 .poker-chips-div,
 .right-div,
 .leaderboard-div
  {
     border: 1px solid blue;
+}
+
+/* Game area (middle-div) */
+
+.dealer-div,
+.player-div {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr 1fr;
+}
+
+.dealt-cards>img {
+    border: 3px solid black;
+    border-radius: 5%;
+    margin: 5px;
+    /* height and width given maintain original 255px x 380px ratio */
+    width: 220px;
+    height: 304px;
+}
+
+.poker-chips-div>img {
+    margin: 5px;
+    width: 150px;
+    height: 150px;
 }
