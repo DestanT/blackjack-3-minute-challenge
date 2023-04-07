@@ -1,4 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Maitree:wght@300&family=Mukta+Vaani&family=Righteous&display=swap');
+
 body {
+    font-family: 'Maitree', serif;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+h1 {
+    font-family: 'Righteous', cursive;
+}
+
+h3 {
+    font-family: 'Mukta Vaani', sans-serif;
+}
+
+.left-div,
+.header-div,
+.info-div,
+.middle-div,
+.countdown-timer-div,
+.dealer-div,
+.start-button-div,
+.player-div,
+.actions-div,
+.poker-chips-div,
+.right-div,
+.leaderboard-div
+ {
+    border: 1px solid blue;
 }
