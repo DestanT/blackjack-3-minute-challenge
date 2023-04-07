@@ -1,6 +1,27 @@
 // search for and ADJUST/DELETE all 'NOTE' comments!
 
 /**
+ * Makes and shuffles the deck, ready for play
+ */
+function shuffleDeck() {
+
+    let suit = ['clubs', 'diamonds', 'hearts', 'spades'];
+    let rank = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'king', 'queen', 'ace'];
+    let deck = [];
+
+    for (let s = 0; s < suit.length; s++) {
+        for (let r = 0; r < rank.length; r++) {
+            deck.push(suit[s] + '-' + rank[r]);
+        }
+    }
+    
+    let random = Math.floor(Math.random() * 53); // UNFINISHED: Continue with randomising!
+
+}
+
+// shuffleDeck();
+
+/**
  * Activates a 5 minute timer
  */
 function startCountdownTimer() {
