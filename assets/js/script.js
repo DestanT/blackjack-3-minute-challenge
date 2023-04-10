@@ -6,20 +6,25 @@
 function shuffleDeck() {
 
     let suit = ['clubs', 'diamonds', 'hearts', 'spades'];
-    let rank = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'king', 'queen', 'ace'];
-    let deck = [];
+    let rank = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
+    let freshDeck = [];
 
+    // loops through and combines 'suit' and 'rank' arrays; makes an ordered deck of cards.
     for (let s = 0; s < suit.length; s++) {
         for (let r = 0; r < rank.length; r++) {
-            deck.push(suit[s] + '-' + rank[r]);
+            freshDeck.push(suit[s] + '-' + rank[r]);
         }
     }
-    
-    let random = Math.floor(Math.random() * 53); // UNFINISHED: Continue with randomising!
 
+    var shuffledReadyDeck = [];
+    // shuffles the ordered deck of cards and pushes it to a new array.
+    for (let i = freshDeck.length; i > 0; i--) {
+
+        let randomNumber = Math.floor(Math.random() * i);
+        let randomCard = freshDeck.splice(randomNumber, 1);
+        shuffledReadyDeck.push(randomCard);
+    }
 }
-
-// shuffleDeck();
 
 /**
  * Activates a 5 minute timer
@@ -49,7 +54,6 @@ function startCountdownTimer() {
             clearInterval(myInterval);
             console.log('finished'); // NOTE: exchange for code to do endGame functions and leaderboard calculations
             return;
-
         }
     }
 }
