@@ -1,5 +1,34 @@
 // search for and ADJUST/DELETE all 'NOTE' comments!
 
+// The idea for this piece of code came from the 'Love Maths' project!
+document.addEventListener('DOMContentLoaded', function () {
+    let buttons = document.getElementsByTagName('button');
+
+    for (let button of buttons) {
+        button.addEventListener('click', function () {
+            if (this.innerHTML === 'Start!') {
+                runGame();
+                this.innerHTML = 'Submit Score';
+            } else if (this.innerHTML === 'Submit Score') { // NOTE: ADD more 'else if' statements for all buttons on screen!
+                let earlySubmit = confirm('Are you sure you wish to terminate game early and submit your score?');
+                if (earlySubmit === true) {
+                    submitScore();
+                } else {
+                    console.log('Cancelled');
+                }
+            }
+        })
+    }
+})
+
+function runGame() {
+    console.log('Game Running!');
+}
+
+function submitScore() {
+    console.log('Submitting Score');
+}
+
 /**
  * Makes and shuffles the deck, ready for play
  */
