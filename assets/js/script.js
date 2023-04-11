@@ -29,24 +29,41 @@ function runGame() {
     shuffleDeck();
 
     // Initial card deals; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
+    drawCardDealer(); // NOTE: make first card hidden!
+    drawCardPlayer();
+    drawCardDealer();
+    drawCardPlayer();
     
-    for (let startingHand = 0; startingHand < 2; startingHand++) {
-        
-            let drawCard = gameDeck.pop();
-            let cardImage = document.createElement('img');
-            cardImage.src = 'assets/images/' + drawCard + '.png';
-            cardImage.alt = `${drawCard}`;
-            
-            document.getElementById('player-cards').append(cardImage);
-
-            drawCard; 
-            cardImage;
-            
-            document.getElementById('dealer-cards').append(cardImage);
-    }  
-
     console.log('Game Running!');
     console.log(gameDeck.length);
+}
+
+/**
+ * Deals a card to the dealer
+ */
+function drawCardDealer() {
+
+    let drawCard = gameDeck.pop();
+
+    let cardImage = document.createElement('img');
+    cardImage.src = 'assets/images/' + drawCard + '.png';
+    cardImage.alt = `${drawCard}`;
+
+    document.getElementById('dealer-cards').append(cardImage);
+}
+
+/**
+ * Deals a card to the player
+ */
+function drawCardPlayer() {
+
+    let drawCard = gameDeck.pop();
+
+    let cardImage = document.createElement('img');
+    cardImage.src = 'assets/images/' + drawCard + '.png';
+    cardImage.alt = `${drawCard}`;
+
+    document.getElementById('player-cards').append(cardImage);
 }
 
 function submitScore() {
