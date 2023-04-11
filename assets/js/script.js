@@ -1,5 +1,8 @@
 // search for and ADJUST/DELETE all 'NOTE' comments!
 
+// Global Variables
+var gameDeck;
+
 // The idea for this piece of code came from the 'Love Maths' project!
 document.addEventListener('DOMContentLoaded', function () {
     let buttons = document.getElementsByTagName('button');
@@ -22,7 +25,28 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 function runGame() {
+    startCountdownTimer();
+    shuffleDeck();
+
+    // Initial card deals; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
+    
+    for (let startingHand = 0; startingHand < 2; startingHand++) {
+        
+            let drawCard = gameDeck.pop();
+            let cardImage = document.createElement('img');
+            cardImage.src = 'assets/images/' + drawCard + '.png';
+            cardImage.alt = `${drawCard}`;
+            
+            document.getElementById('player-cards').append(cardImage);
+
+            drawCard; 
+            cardImage;
+            
+            document.getElementById('dealer-cards').append(cardImage);
+    }  
+
     console.log('Game Running!');
+    console.log(gameDeck.length);
 }
 
 function submitScore() {
@@ -53,6 +77,9 @@ function shuffleDeck() {
         let randomCard = freshDeck.splice(randomNumber, 1);
         shuffledReadyDeck.push(randomCard);
     }
+
+    // updates global gameDeck variable with the shuffled and ready to play deck.
+    gameDeck = shuffledReadyDeck;
 }
 
 /**
