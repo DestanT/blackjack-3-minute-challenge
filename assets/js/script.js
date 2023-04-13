@@ -34,9 +34,11 @@ function runGame() {
     drawCardPlayer();
     drawCardDealer();
     drawCardPlayer();
-    
+
+    getImageAltData('dealer-cards');
+    getImageAltData('player-cards');
+
     console.log('Game Running!');
-    console.log(gameDeck.length);
 }
 
 /**
@@ -54,7 +56,7 @@ function drawCardDealer() {
 }
 
 /**
- * Deals a card to the player
+ * Deals a card to the player, attaches alt attribute to the HTML <img> element according to it's .png name.
  */
 function drawCardPlayer() {
 
@@ -67,7 +69,29 @@ function drawCardPlayer() {
     document.getElementById('player-cards').append(cardImage);
 }
 
+/**
+ * <img> alt data is stored in an array for later sum calculations.
+ */
+function getImageAltData(div) {
+    let handOfCards = document.getElementById(`${div}`);
+    let cards = handOfCards.getElementsByTagName('img');
+
+    let arrayOfCardValue = [];
+    for (let i = 0; i < cards.length; i++) {
+        let altData = cards[i].alt;
+        arrayOfCardValue.push(altData);
+    }
+    console.log(arrayOfCardValue.length);
+}
+
+// NOTE: BROKEN
 function cardValue(card) {
+
+    let hand = document.getElementById('dealer-cards').children.alt;
+
+    for (let card in hand) {
+
+    }
 
     card.split('-');
 
