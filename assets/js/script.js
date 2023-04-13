@@ -73,7 +73,7 @@ function drawCardPlayer() {
  * <img> alt data is stored in an array for later sum calculations.
  */
 function getImageAltData(div) {
-    let handOfCards = document.getElementById(`${div}`);
+    let handOfCards = document.getElementById(div);
     let cards = handOfCards.getElementsByTagName('img');
 
     let arrayOfCardValue = [];
@@ -81,7 +81,7 @@ function getImageAltData(div) {
         let altData = cards[i].alt;
         arrayOfCardValue.push(altData);
     }
-    console.log(arrayOfCardValue.length);
+    console.log(arrayOfCardValue);
 }
 
 // NOTE: BROKEN
