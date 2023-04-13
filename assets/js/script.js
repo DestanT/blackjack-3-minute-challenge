@@ -34,7 +34,6 @@ function runGame() {
     drawCardPlayer();
     drawCardDealer();
     drawCardPlayer();
-    dealerSum();
     
     console.log('Game Running!');
     console.log(gameDeck.length);
@@ -68,20 +67,17 @@ function drawCardPlayer() {
     document.getElementById('player-cards').append(cardImage);
 }
 
-function dealerSum() {
+function cardValue(card) {
 
-    let hand = document.getElementById('dealer-cards');
-    let cards = hand.getElementsByTagName('img');
-    
-    for (let i = 0; i < cards.length; i++) {
-        let card = cards.alt;
-        card.split('-');
-        var allValues = [];
-        var value = parseInt(card[1]);
-        allValues.push(value);
+    card.split('-');
+
+    if (card[1] === 'ace') {
+        return 11;
+    } else if (card[1] === 'jack' || 'queen' || 'king') {
+        return 10;
+    } else {
+        return parseInt(card[1]);
     }
-
-    console.log(allValues);
 }
 
 function submitScore() {
