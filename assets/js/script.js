@@ -70,30 +70,29 @@ function drawCardPlayer() {
 }
 
 /**
- * <img> alt data is stored in an array for later sum calculations.
+ * Input target ID of div; <img> alt data from target is stored in an array for later sum calculations.
  */
 function getImageAltData(div) {
     let handOfCards = document.getElementById(div);
     let cards = handOfCards.getElementsByTagName('img');
 
-    let arrayOfCardValue = []; // NOTE: remove and place in main runGame function - will plug into cardValue
+    let arrayOfHand = []; // NOTE: remove and place in main runGame function - will plug into cardValue
     for (let i = 0; i < cards.length; i++) {
         let altData = cards[i].alt;
-        arrayOfCardValue.push(altData);
+        arrayOfHand.push(altData);
     }
-    console.log(arrayOfCardValue);
+    console.log(arrayOfHand);
 }
 
-let test1 = ['diamonds-ace', 'hearts-ace', 'diamonds-king', 'hearts-queen', 'spades-jack', 'clubs-3']; // should be 55
-let test2 = ['clubs-3'];
-let test3 = ['diamonds-king'];
+/**
+ * Input arrayOfHand; calculates total sum of hand card values.
+ */
+function handSum(array) {
 
-function cardValue(array) {
     let value = 0; // NOTE: remove and place in main runGame function
     for (let i = 0; i < array.length; i++) {
 
         let cardValueString = array[i].split('-');
-        console.log(cardValueString);
 
         if (cardValueString[1] === 'ace') {
             value += 11;
@@ -106,30 +105,7 @@ function cardValue(array) {
             value += parseInt(cardValueString[1]);
         }
     }
-    console.log(value);
 }
-
-cardValue(test1);
-
-// NOTE: BROKEN
-// function cardValue(card) {
-
-//     let hand = document.getElementById('dealer-cards').children.alt;
-
-//     for (let card in hand) {
-
-//     }
-
-//     card.split('-');
-
-//     if (card[1] === 'ace') {
-//         return 11;
-//     } else if (card[1] === 'jack' || 'queen' || 'king') {
-//         return 10;
-//     } else {
-//         return parseInt(card[1]);
-//     }
-// }
 
 function submitScore() {
 
