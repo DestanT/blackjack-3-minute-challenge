@@ -32,10 +32,10 @@ function runGame() {
     let arrayOfHand = [];
     let value = 0;
     // Initial starting hand; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
-    drawCardDealer(); // NOTE: make first card hidden!
-    drawCardPlayer();
-    drawCardDealer();
-    drawCardPlayer();
+    dealCard('dealer-cards'); // NOTE: make first card hidden!
+    dealCard('player-cards');
+    dealCard('dealer-cards');
+    dealCard('player-cards');
 
     let dealerHand = getImageAltData('dealer-cards');
     let playerHand = getImageAltData('player-cards');
@@ -54,7 +54,7 @@ function runGame() {
 /**
  * Deals a card to the dealer
  */
-function drawCardDealer() {
+function dealCard(div) {
 
     let drawCard = gameDeck.pop();
 
@@ -62,21 +62,7 @@ function drawCardDealer() {
     cardImage.src = 'assets/images/' + drawCard + '.png';
     cardImage.alt = `${drawCard}`;
 
-    document.getElementById('dealer-cards').append(cardImage);
-}
-
-/**
- * Deals a card to the player, attaches alt attribute to the HTML <img> element according to it's .png name.
- */
-function drawCardPlayer() {
-
-    let drawCard = gameDeck.pop();
-
-    let cardImage = document.createElement('img');
-    cardImage.src = 'assets/images/' + drawCard + '.png';
-    cardImage.alt = `${drawCard}`;
-
-    document.getElementById('player-cards').append(cardImage);
+    document.getElementById(div).append(cardImage);
 }
 
 /**
@@ -86,12 +72,12 @@ function getImageAltData(div) {
     let handOfCards = document.getElementById(div);
     let cards = handOfCards.getElementsByTagName('img');
 
-    let arrayOfHand = []; // NOTE: remove and place in main runGame function - will plug into cardValue
+    let arrayOfHand = [];
     for (let i = 0; i < cards.length; i++) {
         let altData = cards[i].alt;
         arrayOfHand.push(altData);
     }
-    console.log(arrayOfHand);
+
     return arrayOfHand;
 }
 
@@ -100,7 +86,7 @@ function getImageAltData(div) {
  */
 function handSum(array) {
 
-    let value = 0; // NOTE: remove and place in main runGame function
+    let value = 0;
     for (let i = 0; i < array.length; i++) {
 
         let cardValueString = array[i].split('-');
