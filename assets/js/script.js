@@ -52,7 +52,7 @@ function runGame() {
 }
 
 /**
- * Deals a card to the dealer
+ * Deals a card to the div specified - use either 'player-cards' or 'dealer-cards'
  */
 function dealCard(div) {
 
