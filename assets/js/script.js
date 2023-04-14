@@ -76,7 +76,7 @@ function getImageAltData(div) {
     let handOfCards = document.getElementById(div);
     let cards = handOfCards.getElementsByTagName('img');
 
-    let arrayOfCardValue = [];
+    let arrayOfCardValue = []; // NOTE: remove and place in main runGame function - will plug into cardValue
     for (let i = 0; i < cards.length; i++) {
         let altData = cards[i].alt;
         arrayOfCardValue.push(altData);
@@ -84,25 +84,52 @@ function getImageAltData(div) {
     console.log(arrayOfCardValue);
 }
 
-// NOTE: BROKEN
-function cardValue(card) {
+let test1 = ['diamonds-ace', 'hearts-ace', 'diamonds-king', 'hearts-queen', 'spades-jack', 'clubs-3']; // should be 55
+let test2 = ['clubs-3'];
+let test3 = ['diamonds-king'];
 
-    let hand = document.getElementById('dealer-cards').children.alt;
+function cardValue(array) {
+    let value = 0; // NOTE: remove and place in main runGame function
+    for (let i = 0; i < array.length; i++) {
 
-    for (let card in hand) {
+        let cardValueString = array[i].split('-');
+        console.log(cardValueString);
 
+        if (cardValueString[1] === 'ace') {
+            value += 11;
+            // https://stackoverflow.com/questions/2363840/how-to-use-or-condition-in-a-javascript-if-statement
+            // "Note that if you use string comparisons in the conditions, you need to perform a comparison for each condition..
+            // ..otherwise if you only do it in the first one, then it will always return true" - this helped tremendously!
+        } else if (cardValueString[1] === 'jack' || cardValueString[1] === 'queen' || cardValueString[1] === 'king') {
+            value += 10;
+        } else {
+            value += parseInt(cardValueString[1]);
+        }
     }
-
-    card.split('-');
-
-    if (card[1] === 'ace') {
-        return 11;
-    } else if (card[1] === 'jack' || 'queen' || 'king') {
-        return 10;
-    } else {
-        return parseInt(card[1]);
-    }
+    console.log(value);
 }
+
+cardValue(test1);
+
+// NOTE: BROKEN
+// function cardValue(card) {
+
+//     let hand = document.getElementById('dealer-cards').children.alt;
+
+//     for (let card in hand) {
+
+//     }
+
+//     card.split('-');
+
+//     if (card[1] === 'ace') {
+//         return 11;
+//     } else if (card[1] === 'jack' || 'queen' || 'king') {
+//         return 10;
+//     } else {
+//         return parseInt(card[1]);
+//     }
+// }
 
 function submitScore() {
 
