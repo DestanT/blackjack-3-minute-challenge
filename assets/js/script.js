@@ -29,14 +29,24 @@ function runGame() {
     startCountdownTimer();
     shuffleDeck();
 
+    let arrayOfHand = [];
+    let value = 0;
     // Initial starting hand; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
     drawCardDealer(); // NOTE: make first card hidden!
     drawCardPlayer();
     drawCardDealer();
     drawCardPlayer();
 
-    getImageAltData('dealer-cards');
-    getImageAltData('player-cards');
+    let dealerHand = getImageAltData('dealer-cards');
+    let playerHand = getImageAltData('player-cards');
+
+    let dealerSum = handSum(dealerHand);
+    let playerSum = handSum(playerHand);
+
+    console.log(dealerHand);
+    console.log(playerHand);
+    console.log(dealerSum);
+    console.log(playerSum);
 
     console.log('Game Running!');
 }
@@ -82,6 +92,7 @@ function getImageAltData(div) {
         arrayOfHand.push(altData);
     }
     console.log(arrayOfHand);
+    return arrayOfHand;
 }
 
 /**
@@ -105,6 +116,7 @@ function handSum(array) {
             value += parseInt(cardValueString[1]);
         }
     }
+    return value;
 }
 
 function submitScore() {
