@@ -37,6 +37,8 @@ function runGame() {
     dealCard('dealer-cards');
     dealCard('player-cards');
 
+    turnCardOver();
+
     let dealerHand = getImageAltData('dealer-cards');
     let playerHand = getImageAltData('player-cards');
 
@@ -63,6 +65,25 @@ function dealCard(div) {
     cardImage.alt = `${drawCard}`;
 
     document.getElementById(div).append(cardImage);
+}
+
+// WORK IN PROGRESS
+function turnCardOver() {
+
+    let firstCard = document.getElementById('dealer-cards').children[0];
+    let altText = firstCard.alt
+    
+    storeFirstCard = altText;
+    
+    if (altText === 'back-of-card') {
+        let flipCard = document.createElement('img');
+        flipCard.src = 'assets/images/' + storeFirstCard + '.png';
+        firstCard.replaceChild(flipCard, firstCard.childNodes[0]);
+    } else {
+        let flipCard = document.createElement('img');
+        flipCard.src = 'assets/images/back-of-card.png';
+        firstCard.replaceChild(flipCard, firstCard.childNodes[0]);
+    }
 }
 
 /**
