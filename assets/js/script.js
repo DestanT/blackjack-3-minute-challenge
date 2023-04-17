@@ -99,6 +99,7 @@ function turnCardOver() {
 
 /**
  * Input target ID of div; <img> alt data from target is stored in an array for later sum calculations.
+ * @returns an array of all cards held in hand (via their altText in HTML).
  */
 function getImageAltData(div) {
     let handOfCards = document.getElementById(div);
@@ -109,12 +110,13 @@ function getImageAltData(div) {
         let altData = cards[i].alt;
         arrayOfHand.push(altData);
     }
-
+    
     return arrayOfHand;
 }
 
 /**
  * Input arrayOfHand; calculates total sum of hand card values.
+ * @returns a total sum of values.
  */
 function handSum(array) {
 
