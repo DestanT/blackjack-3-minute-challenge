@@ -34,17 +34,18 @@ function runGame() {
     startCountdownTimer();
     shuffleDeck();
     
-    let storeFirstCard = []; // Stores the alt text from the turnCardOver() function
-    let arrayOfHand = []; // NOTE: Check the need for this
-    let value = 0; // NOTE: Check the need for this
     // Initial starting hand; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
-    dealCard('dealer-cards'); // NOTE: make first card hidden!
+    turnCardOver(dealCard('dealer-cards'));
     dealCard('player-cards');
     dealCard('dealer-cards');
     dealCard('player-cards');
-    
-    turnCardOver();
 
+    let dealerSum = handSum(getImageAltData('dealer-cards'));
+    let playerSum = handSum(getImageAltData('player-cards'));
+
+    console.log(dealerSum);
+    console.log(playerSum);
+    
     console.log('Game Running!');
 }
 
@@ -62,26 +63,37 @@ function dealCard(div) {
     document.getElementById(div).append(cardImage);
 }
 
-// WORK IN PROGRESS
+/**
+ * Turns card over to its back, when re-used turns card over to its front.
+ * @returns the altText value for the flipped over card; the function re-uses this value when called again to turn over the same card.
+ */
 function turnCardOver() {
 
     let firstCard = document.getElementById('dealer-cards').children[0];
     let altText = firstCard.alt
-    console.log(altText);
 
     if (altText === 'back-of-card') {
+
         firstCard.remove();
+
         let flippedCard = document.createElement('img');
         flippedCard.src = 'assets/images/' + storeFirstCard + '.png';
         flippedCard.alt = storeFirstCard;
+
         document.getElementById('dealer-cards').prepend(flippedCard);
+
     } else {
-        storeFirstCard = altText;
+
         firstCard.remove();
+
         let flippedCard = document.createElement('img');
         flippedCard.src = 'assets/images/back-of-card.png';
         flippedCard.alt = 'back-of-card';
+
         document.getElementById('dealer-cards').prepend(flippedCard);
+
+        storeFirstCard = altText;
+        return storeFirstCard;
     }
 }
 
