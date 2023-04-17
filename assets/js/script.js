@@ -12,13 +12,16 @@ document.addEventListener('DOMContentLoaded', function () {
             if (this.innerHTML === 'Start!') {
                 runGame();
                 this.innerHTML = 'Submit Score';
-            } else if (this.innerHTML === 'Submit Score') { // NOTE: ADD more 'else if' statements for all buttons on screen!
-                let earlySubmit = confirm('Are you sure you wish to terminate game early and submit your score?');
-                if (earlySubmit === true) {
-                    submitScore();
-                } else {
-                    console.log('Cancelled');
-                }
+                this.addEventListener('click', function () {
+                    let earlySubmit = confirm('Are you sure you wish to terminate game early and submit your score?');
+                    if (earlySubmit === true) {
+                        submitScore();
+                    } else {
+                        console.log('Cancelled');
+                    }
+                })
+            } else {
+                console.log('unmapped button')
             }
         })
     }
@@ -36,8 +39,6 @@ function runGame() {
     dealCard('player-cards');
     dealCard('dealer-cards');
     dealCard('player-cards');
-
-    turnCardOver();
 
     let dealerHand = getImageAltData('dealer-cards');
     let playerHand = getImageAltData('player-cards');
@@ -72,9 +73,9 @@ function turnCardOver() {
 
     let firstCard = document.getElementById('dealer-cards').children[0];
     let altText = firstCard.alt
-    
+
     storeFirstCard = altText;
-    
+
     if (altText === 'back-of-card') {
         let flipCard = document.createElement('img');
         flipCard.src = 'assets/images/' + storeFirstCard + '.png';
