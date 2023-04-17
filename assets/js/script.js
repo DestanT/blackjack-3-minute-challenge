@@ -128,12 +128,15 @@ function getImageAltData(div) {
 function handSum(array) {
 
     let value = 0;
+    let numberOfAces = 0;
+
     for (let i = 0; i < array.length; i++) {
 
         let cardValueString = array[i].split('-');
 
         if (cardValueString[1] === 'ace') {
             value += 11;
+            numberOfAces += 1;
 
         // https://stackoverflow.com/questions/2363840/how-to-use-or-condition-in-a-javascript-if-statement
         // quote: "Note that if you use string comparisons in the conditions, you need to perform a comparison for each condition..
@@ -149,7 +152,7 @@ function handSum(array) {
             value += parseInt(cardValueString[1]);
         }
     }
-    return value;
+    return [value, numberOfAces];
 }
 
 /**
@@ -162,13 +165,13 @@ function updateSumHtml(who) {
 
         let showSum = document.getElementById('player-sum');
         let totalSum = handSum(getImageAltData('player-cards'));
-        showSum.innerHTML = totalSum;
+        showSum.innerHTML = totalSum[0];
 
     } else if (who === 'dealer') {
 
         let showSum = document.getElementById('dealer-sum');
         let totalSum = handSum(getImageAltData('dealer-cards'));
-        showSum.innerHTML = totalSum;
+        showSum.innerHTML = totalSum[0];
 
     } else {
 
@@ -181,7 +184,7 @@ function updateSumHtml(who) {
  */
 function hit() {
 
-    let playerSum = handSum(getImageAltData('player-cards'));
+    let playerSum = handSum(getImageAltData('player-cards'))[0];
 
     if (playerSum < 21) {
         dealCard('player-cards');
