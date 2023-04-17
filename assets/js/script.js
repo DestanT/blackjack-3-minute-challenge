@@ -85,6 +85,8 @@ function turnCardOver() {
 
         document.getElementById('dealer-cards').prepend(flippedCard);
 
+        updateSumHtml('dealer');
+
     } else {
 
         firstCard.remove();
