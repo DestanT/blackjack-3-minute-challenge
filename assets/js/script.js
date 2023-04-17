@@ -24,8 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
             } else if (this.innerHTML === 'Hit') {
                 hit();
+            } else if (this.innerHTML === 'Stand') {
+                dealersTurn();
             } else {
-                console.log('unmapped button');
+                throw 'Unmapped button';
             }
         })
     }
@@ -202,6 +204,36 @@ function hit() {
     } else {
         
         alert('Your hand is bust, you cannot hit!');
+    }
+}
+
+function dealersTurn() {
+
+    turnCardOver();
+
+    let dealerSum = handValues(getImageAltData('dealer-cards')).value;
+    let playerSum = handValues(getImageAltData('player-cards')).value;
+    
+    while (dealerSum < 17) {
+
+        dealCard('dealer-cards');
+
+        dealerSum = handValues(getImageAltData('dealer-cards')).value;
+        updateSumHtml('dealer');
+    }
+
+    if (playerSum > 21) {
+        console.log('Dealer wins!');
+    } else if (dealerSum > playerSum && !(dealerSum > 21)) {
+        console.log('Dealer wins!');
+    } else if (dealerSum > 21 && !(playerSum > 21)) {
+        console.log('Player wins!');
+    } else if (dealerSum < playerSum) {
+        console.log('Player wins!');
+    } else if (dealerSum === playerSum) {
+        console.log("It's a Draw");
+    } else {
+        throw 'undefined score system';
     }
 }
 
