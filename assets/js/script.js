@@ -138,13 +138,13 @@ function handValues(array) {
             value += 11;
             numberOfAces += 1;
 
-        // https://stackoverflow.com/questions/2363840/how-to-use-or-condition-in-a-javascript-if-statement
-        // quote: "Note that if you use string comparisons in the conditions, you need to perform a comparison for each condition..
-        // ..otherwise if you only do it in the first one, then it will always return true" - this helped tremendously!
+            // https://stackoverflow.com/questions/2363840/how-to-use-or-condition-in-a-javascript-if-statement
+            // quote: "Note that if you use string comparisons in the conditions, you need to perform a comparison for each condition..
+            // ..otherwise if you only do it in the first one, then it will always return true" - this helped tremendously!
         } else if (cardValueString[1] === 'jack' || cardValueString[1] === 'queen' || cardValueString[1] === 'king') {
             value += 10;
 
-        // 'assets/images/back-of-card.png' - cardValueString[1] is 'of' - if not included results showed NaN.
+            // 'assets/images/back-of-card.png' - cardValueString[1] is 'of' - if not included results showed NaN.
         } else if (cardValueString[1] === 'of') {
             value += 0;
 
@@ -186,11 +186,18 @@ function hit() {
 
     let playerSum = handValues(getImageAltData('player-cards'))[0];
 
-    if (playerSum < 21) {
+    if (playerSum <= 20) {
+
         dealCard('player-cards');
         handValues(getImageAltData('player-cards'));
         updateSumHtml('player');
+
+    } else if (playerSum === 21) {
+
+        alert('You have 21, the best score you can get! Press "Stand" to continue!')
+
     } else {
+        
         alert('Your hand is bust, you cannot hit!');
     }
 }
