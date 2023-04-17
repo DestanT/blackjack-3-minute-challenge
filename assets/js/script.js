@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.addEventListener('click', function () {
                     let earlySubmit = confirm('Are you sure you wish to terminate game early and submit your score?');
                     if (earlySubmit === true) {
-                        submitScore();
+                        // submitScore();
+                        turnCardOver();
+                        console.log('turn card');
                     } else {
                         console.log('Cancelled');
                     }
@@ -31,25 +33,17 @@ function runGame() {
 
     startCountdownTimer();
     shuffleDeck();
-
-    let arrayOfHand = [];
-    let value = 0;
+    
+    let storeFirstCard = []; // Stores the alt text from the turnCardOver() function
+    let arrayOfHand = []; // NOTE: Check the need for this
+    let value = 0; // NOTE: Check the need for this
     // Initial starting hand; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
     dealCard('dealer-cards'); // NOTE: make first card hidden!
     dealCard('player-cards');
     dealCard('dealer-cards');
     dealCard('player-cards');
-
-    let dealerHand = getImageAltData('dealer-cards');
-    let playerHand = getImageAltData('player-cards');
-
-    let dealerSum = handSum(dealerHand);
-    let playerSum = handSum(playerHand);
-
-    console.log(dealerHand);
-    console.log(playerHand);
-    console.log(dealerSum);
-    console.log(playerSum);
+    
+    turnCardOver();
 
     console.log('Game Running!');
 }
@@ -73,17 +67,21 @@ function turnCardOver() {
 
     let firstCard = document.getElementById('dealer-cards').children[0];
     let altText = firstCard.alt
-
-    storeFirstCard = altText;
+    console.log(altText);
 
     if (altText === 'back-of-card') {
-        let flipCard = document.createElement('img');
-        flipCard.src = 'assets/images/' + storeFirstCard + '.png';
-        firstCard.replaceChild(flipCard, firstCard.childNodes[0]);
+        firstCard.remove();
+        let flippedCard = document.createElement('img');
+        flippedCard.src = 'assets/images/' + storeFirstCard + '.png';
+        flippedCard.alt = storeFirstCard;
+        document.getElementById('dealer-cards').prepend(flippedCard);
     } else {
-        let flipCard = document.createElement('img');
-        flipCard.src = 'assets/images/back-of-card.png';
-        firstCard.replaceChild(flipCard, firstCard.childNodes[0]);
+        storeFirstCard = altText;
+        firstCard.remove();
+        let flippedCard = document.createElement('img');
+        flippedCard.src = 'assets/images/back-of-card.png';
+        flippedCard.alt = 'back-of-card';
+        document.getElementById('dealer-cards').prepend(flippedCard);
     }
 }
 
