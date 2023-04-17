@@ -22,8 +22,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         console.log('Cancelled');
                     }
                 })
+            } else if (this.innerHTML === 'Hit') {
+                hit();
             } else {
-                console.log('unmapped button')
+                console.log('unmapped button');
             }
         })
     }
@@ -171,6 +173,22 @@ function updateSumHtml(who) {
     } else {
 
         throw `${who} not defined. Aborting function!`;
+    }
+}
+
+/**
+ * Deals a card to the player if they're handSum value is < 21. Otherwise alerts them of they're 'bust' hand.
+ */
+function hit() {
+
+    let playerSum = handSum(getImageAltData('player-cards'));
+
+    if (playerSum < 21) {
+        dealCard('player-cards');
+        handSum(getImageAltData('player-cards'));
+        updateSumHtml('player');
+    } else {
+        alert('Your hand is bust, you cannot hit!');
     }
 }
 
