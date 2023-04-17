@@ -152,6 +152,15 @@ function handValues(array) {
         } else {
             value += parseInt(cardValueString[1]);
         }
+
+        // Checks number of aces and depending on the score; decides whether an ace should be valued at 11 or 1.
+        if (value > 21 && numberOfAces > 0) {
+            value -= 10;
+            numberOfAces -= 1;
+
+        } else {
+            continue;
+        }
     }
     return {
         value: value,
@@ -201,7 +210,7 @@ function hit() {
         alert('You have 21, the best score you can get! Press "Stand" to continue!')
 
     } else {
-        
+
         alert('Your hand is bust, you cannot hit!');
     }
 }
@@ -212,7 +221,7 @@ function dealersTurn() {
 
     let dealerSum = handValues(getImageAltData('dealer-cards')).value;
     let playerSum = handValues(getImageAltData('player-cards')).value;
-    
+
     while (dealerSum < 17) {
 
         dealCard('dealer-cards');
