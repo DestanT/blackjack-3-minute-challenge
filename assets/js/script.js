@@ -33,7 +33,7 @@ function runGame() {
 
     startCountdownTimer();
     shuffleDeck();
-    
+
     // Initial starting hand; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
     turnCardOver(dealCard('dealer-cards'));
     dealCard('player-cards');
@@ -43,9 +43,11 @@ function runGame() {
     let dealerSum = handSum(getImageAltData('dealer-cards'));
     let playerSum = handSum(getImageAltData('player-cards'));
 
+    updateSumHtml('player');
+
     console.log(dealerSum);
     console.log(playerSum);
-    
+
     console.log('Game Running!');
 }
 
@@ -110,7 +112,7 @@ function getImageAltData(div) {
         let altData = cards[i].alt;
         arrayOfHand.push(altData);
     }
-    
+
     return arrayOfHand;
 }
 
@@ -137,6 +139,30 @@ function handSum(array) {
         }
     }
     return value;
+}
+
+/**
+ * Updates the total sum in either the dealer's hand or the player's hand in the HTML (depending on what parameters were chosen).
+ * @param {*} who - either 'dealer' or 'player'
+ */
+function updateSumHtml(who) {
+
+    if (who === 'player') {
+
+        let showSum = document.getElementById('player-sum');
+        let totalSum = handSum(getImageAltData('player-cards'));
+        showSum.innerHTML = totalSum;
+
+    } else if (who === 'dealer') {
+
+        let showSum = document.getElementById('dealer-sum');
+        let totalSum = handSum(getImageAltData('dealer-cards'));
+        showSum.innerHTML = totalSum;
+
+    } else {
+
+        throw `${who} not defined. Aborting function!`;
+    }
 }
 
 function submitScore() {
