@@ -42,8 +42,8 @@ function runGame() {
     dealCard('dealer-cards');
     dealCard('player-cards');
 
-    let dealerSum = handSum(getImageAltData('dealer-cards'));
-    let playerSum = handSum(getImageAltData('player-cards'));
+    let dealerSum = handValues(getImageAltData('dealer-cards'));
+    let playerSum = handValues(getImageAltData('player-cards'));
 
     updateSumHtml('player');
     updateSumHtml('dealer');
@@ -122,10 +122,10 @@ function getImageAltData(div) {
 }
 
 /**
- * Input arrayOfHand; calculates total sum of hand card values.
- * @returns a total sum of values.
+ * Input arrayOfHand; calculates total sum of hand card values and number of aces held.
+ * @returns an array - [total sum, number of aces]
  */
-function handSum(array) {
+function handValues(array) {
 
     let value = 0;
     let numberOfAces = 0;
@@ -164,13 +164,13 @@ function updateSumHtml(who) {
     if (who === 'player') {
 
         let showSum = document.getElementById('player-sum');
-        let totalSum = handSum(getImageAltData('player-cards'));
+        let totalSum = handValues(getImageAltData('player-cards'));
         showSum.innerHTML = totalSum[0];
 
     } else if (who === 'dealer') {
 
         let showSum = document.getElementById('dealer-sum');
-        let totalSum = handSum(getImageAltData('dealer-cards'));
+        let totalSum = handValues(getImageAltData('dealer-cards'));
         showSum.innerHTML = totalSum[0];
 
     } else {
@@ -180,15 +180,15 @@ function updateSumHtml(who) {
 }
 
 /**
- * Deals a card to the player if they're handSum value is < 21. Otherwise alerts them of they're 'bust' hand.
+ * Deals a card to the player if they're handValues value is < 21. Otherwise alerts them of they're 'bust' hand.
  */
 function hit() {
 
-    let playerSum = handSum(getImageAltData('player-cards'))[0];
+    let playerSum = handValues(getImageAltData('player-cards'))[0];
 
     if (playerSum < 21) {
         dealCard('player-cards');
-        handSum(getImageAltData('player-cards'));
+        handValues(getImageAltData('player-cards'));
         updateSumHtml('player');
     } else {
         alert('Your hand is bust, you cannot hit!');
