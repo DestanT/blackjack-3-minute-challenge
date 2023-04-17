@@ -42,14 +42,14 @@ function runGame() {
     dealCard('dealer-cards');
     dealCard('player-cards');
 
-    let dealerSum = handValues(getImageAltData('dealer-cards'));
-    let playerSum = handValues(getImageAltData('player-cards'));
+    let dealerHand = handValues(getImageAltData('dealer-cards'));
+    let playerHand = handValues(getImageAltData('player-cards'));
 
     updateSumHtml('player');
     updateSumHtml('dealer');
 
-    console.log(dealerSum);
-    console.log(playerSum);
+    console.log(dealerHand.value);
+    console.log(playerHand.value);
 
     console.log('Game Running!');
 }
@@ -123,7 +123,7 @@ function getImageAltData(div) {
 
 /**
  * Input arrayOfHand; calculates total sum of hand card values and number of aces held.
- * @returns an array - [total sum, number of aces]
+ * @returns an object - {value: , aces: }
  */
 function handValues(array) {
 
@@ -152,7 +152,10 @@ function handValues(array) {
             value += parseInt(cardValueString[1]);
         }
     }
-    return [value, numberOfAces];
+    return {
+        value: value,
+        aces: numberOfAces
+    };
 }
 
 /**
@@ -165,13 +168,13 @@ function updateSumHtml(who) {
 
         let showSum = document.getElementById('player-sum');
         let totalSum = handValues(getImageAltData('player-cards'));
-        showSum.innerHTML = totalSum[0];
+        showSum.innerHTML = totalSum.value;
 
     } else if (who === 'dealer') {
 
         let showSum = document.getElementById('dealer-sum');
         let totalSum = handValues(getImageAltData('dealer-cards'));
-        showSum.innerHTML = totalSum[0];
+        showSum.innerHTML = totalSum.value;
 
     } else {
 
@@ -184,12 +187,12 @@ function updateSumHtml(who) {
  */
 function hit() {
 
-    let playerSum = handValues(getImageAltData('player-cards'))[0];
+    let playerSum = handValues(getImageAltData('player-cards')).value;
 
     if (playerSum <= 20) {
 
         dealCard('player-cards');
-        handValues(getImageAltData('player-cards'));
+        handValues(getImageAltData('player-cards')).value;
         updateSumHtml('player');
 
     } else if (playerSum === 21) {
