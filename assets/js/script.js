@@ -15,8 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.addEventListener('click', function () {
                     let earlySubmit = confirm('Are you sure you wish to terminate game early and submit your score?');
                     if (earlySubmit === true) {
-                        // submitScore();
-                        turnCardOver();
+                        dealersTurn();
                         console.log('turn card');
                     } else {
                         console.log('Cancelled');
