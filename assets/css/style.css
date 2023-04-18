@@ -319,3 +319,72 @@ h3 {
         left: 320px;
     }
 }
+
+/* Large phones */
+@media screen and (max-width: 480px) {
+    
+    /* Game area (middle-div) */
+    /* Divs */
+    .countdown-timer-div {
+        font-size: 20px;
+    }
+
+    .dealer-div,
+    .player-div {
+        height: 149px;
+        /* 133px (card height) + 6px (border) + 10px (margin) */
+    }
+
+    /* Images */
+    .draw-pile img,
+    .split-hand>img {
+        /* height and width given maintain original 255px x 380px ratio */
+        width: 63.75px;
+        height: 95px;
+    }
+
+    .split-hand>img {
+        top: 20px;
+    }
+
+    .dealt-cards>img {
+        /* height and width given maintain original 255px x 380px ratio */
+        width: 89.25px;
+        height: 133px;
+    }
+
+    .poker-chips-div>img {
+        width: 90px;
+        height: 90px;
+    }
+
+    /* Cards stacking horizontally - script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    .card-image1 {
+        left: 10px;
+    }
+
+    .card-image2 {
+        left: 60px;
+    }
+
+    .card-image3 {
+        left: 110px;
+    }
+
+    .card-image4 {
+        left: 160px;
+    }
+
+    .card-image5 {
+        left: 210px;
+    }
+
+    /* Buttons */
+    .start-button-div>button {
+        font-size: 15px;
+    }
+
+    .actions-div>button {
+        font-size: 15px;
+    }
+}
