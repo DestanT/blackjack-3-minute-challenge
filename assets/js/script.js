@@ -83,9 +83,9 @@ function dealCard(div) {
     console.log(numberOfImages);
     console.log(images[0]);
 
-    if (numberOfImages >= 3) {
+    if (numberOfImages >= 4) {
         for (let i = 0; i < numberOfImages; i++) {
-            images[i].setAttribute('class', `card.image${i}`);
+            images[i].setAttribute('class', `card-image${i+1}`);
             console.log(images[i]);
         }
     }
