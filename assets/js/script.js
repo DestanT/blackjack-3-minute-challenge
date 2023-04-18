@@ -66,14 +66,29 @@ function dealCard(div) {
 
     let soundDealSingle = document.getElementById('deal-single');
     soundDealSingle.play();
-
+    
     let drawCard = gameDeck.pop();
-
+    
     let cardImage = document.createElement('img');
     cardImage.src = 'assets/images/' + drawCard + '.png';
     cardImage.alt = `${drawCard}`;
-
+    
     document.getElementById(div).append(cardImage);
+
+    // Counts the amount of images in hand of ('div') and if it is more than 4; stacks the cards for easier viewing.
+    let htmlDiv = document.getElementById(div);
+    let images = htmlDiv.getElementsByTagName('img');
+    numberOfImages = images.length;
+    
+    console.log(numberOfImages);
+    console.log(images[0]);
+
+    if (numberOfImages >= 3) {
+        for (let i = 0; i < numberOfImages; i++) {
+            images[i].setAttribute('class', `card.image${i}`);
+            console.log(images[i]);
+        }
+    }
 }
 
 /**

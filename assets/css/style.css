@@ -84,25 +84,25 @@ h3 {
 .card-image2 {
     position: absolute;
     top: 0;
-    left: 150px;
+    left: 175px;
 }
 
 .card-image3 {
     position: absolute;
     top: 0;
-    left: 250px;
+    left: 300px;
 }
 
 .card-image4 {
     position: absolute;
     top: 0;
-    left: 350px;
+    left: 425px;
 }
 
 .card-image5 {
     position: absolute;
     top: 0;
-    left: 450px;
+    left: 550px;
 }
 
 .poker-chips-div>img {
