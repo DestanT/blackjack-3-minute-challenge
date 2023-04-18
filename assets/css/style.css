@@ -37,6 +37,11 @@ h3 {
 }
 
 /* Game area (middle-div) */
+/* Divs */
+.countdown-timer-div {
+    font-size: 30px;
+    font-weight: bold;
+}
 
 .dealer-div,
 .player-div {
@@ -49,6 +54,7 @@ h3 {
     position: relative;
 }
 
+/* Images */
 .draw-pile>img,
 .split-hand>img {
     border: 2px solid black;
@@ -74,7 +80,13 @@ h3 {
     height: 304px;
 }
 
-/* Cards stacking horizontally - script.js attaches classes when card stacking becomes necessary */
+.poker-chips-div>img {
+    margin: 5px;
+    width: 150px;
+    height: 150px;
+}
+
+/* Cards stacking horizontally - script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
 .card-image1 {
     position: absolute;
     top: 0;
@@ -105,8 +117,12 @@ h3 {
     left: 575px;
 }
 
-.poker-chips-div>img {
-    margin: 5px;
-    width: 150px;
-    height: 150px;
+/* Buttons */
+
+.start-button-div>button {
+    font-size: 25px;
+}
+
+.actions-div>button {
+    font-size: 25px;
 }
