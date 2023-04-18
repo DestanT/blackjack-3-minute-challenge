@@ -31,8 +31,7 @@ h3 {
 .actions-div,
 .poker-chips-div,
 .right-div,
-.leaderboard-div
- {
+.leaderboard-div {
     border: 1px solid blue;
 }
 
@@ -47,7 +46,8 @@ h3 {
 .player-div {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    height: 282px; /* 266px (card height) + 6px (border) + 10px (margin) */
+    height: 282px;
+    /* 266px (card height) + 6px (border) + 10px (margin) */
 }
 
 .draw-pile {
@@ -137,4 +137,57 @@ h3 {
 .actions-div>button {
     font-size: 25px;
     margin: 10px;
+}
+
+/* Media Queries */
+/* Laptops and other large devices */
+@media screen and (max-width: 1440px) {
+
+    /* Game area (middle-div) */
+    /* Divs */
+    .dealer-div,
+    .player-div {
+        height: 244px;
+        /* 228px (card height) + 6px (border) + 10px (margin) */
+    }
+
+    /* Images */
+    .draw-pile img,
+    .split-hand>img {
+        /* height and width given maintain original 255px x 380px ratio */
+        width: 102px;
+        height: 152px;
+    }
+
+    .dealt-cards>img {
+        /* height and width given maintain original 255px x 380px ratio */
+        width: 153px;
+        height: 228px;
+    }
+
+    .poker-chips-div>img {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Cards stacking horizontally - script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    .card-image1 {
+        left: 70px;
+    }
+
+    .card-image2 {
+        left: 150px;
+    }
+
+    .card-image3 {
+        left: 230px;
+    }
+
+    .card-image4 {
+        left: 310px;
+    }
+
+    .card-image5 {
+        left: 390px;
+    }
 }
