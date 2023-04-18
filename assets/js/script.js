@@ -1,4 +1,8 @@
 // search for and ADJUST/DELETE all 'NOTE' comments!
+// add sound:
+// - bust-hand
+// - poker-chip-single
+// - poker-chip-winnings
 
 // Global Variables
 var gameDeck;
@@ -60,6 +64,9 @@ function runGame() {
  */
 function dealCard(div) {
 
+    let soundDealSingle = document.getElementById('deal-single');
+    soundDealSingle.play();
+
     let drawCard = gameDeck.pop();
 
     let cardImage = document.createElement('img');
@@ -74,6 +81,9 @@ function dealCard(div) {
  * @returns the altText value for the flipped over card; the function re-uses this value when called again to turn over the same card.
  */
 function turnCardOver() {
+
+    let soundFlipCard = document.getElementById('flip-card');
+    soundFlipCard.play();
 
     let firstCard = document.getElementById('dealer-cards').children[0];
     let altText = firstCard.alt
@@ -230,14 +240,21 @@ function dealersTurn() {
         updateSumHtml('dealer');
     }
 
+    let soundWinHand = document.getElementById('win-hand');
+    let soundLoseHand = document.getElementById('lose-hand');
+
     if (playerSum > 21) {
         console.log('Dealer wins!');
+        soundLoseHand.play();
     } else if (dealerSum > playerSum && !(dealerSum > 21)) {
         console.log('Dealer wins!');
+        soundLoseHand.play();
     } else if (dealerSum > 21 && !(playerSum > 21)) {
         console.log('Player wins!');
+        soundWinHand.play();
     } else if (dealerSum < playerSum) {
         console.log('Player wins!');
+        soundWinHand.play();
     } else if (dealerSum === playerSum) {
         console.log("It's a Draw");
     } else {
@@ -254,6 +271,9 @@ function submitScore() {
  * Makes and shuffles the deck, ready for play
  */
 function shuffleDeck() {
+
+    let soundShuffleDeck = document.getElementById('shuffle-deck');
+    soundShuffleDeck.play();
 
     let suit = ['clubs', 'diamonds', 'hearts', 'spades'];
     let rank = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
