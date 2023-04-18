@@ -144,7 +144,7 @@ h3 {
 }
 
 /* Media Queries */
-/* Laptops and other large devices */
+/* Laptops and Other Large Devices */
 @media screen and (max-width: 1440px) {
 
     /* Game area (middle-div) */
@@ -196,7 +196,7 @@ h3 {
     }
 }
 
-/* Small laptops and large tablets */
+/* Small Laptops and Large Tablets */
 @media screen and (max-width: 1024px) {
 
     /* Left div */
@@ -320,7 +320,7 @@ h3 {
     }
 }
 
-/* Large phones */
+/* Large Phones */
 @media screen and (max-width: 480px) {
     
     /* Game area (middle-div) */
@@ -386,5 +386,77 @@ h3 {
 
     .actions-div>button {
         font-size: 15px;
+    }
+}
+
+/* Medium-Large Mobile Phones */
+@media screen and (max-width: 425px) {
+
+    body {
+        font-size: small;
+    }
+
+    .draw-pile {
+        font-size: 12px;
+    }
+
+    .dealer-sum,
+    .player-sum {
+        font-size: 13px;
+    }
+
+    .dealer-div,
+    .player-div {
+        height: 130px;
+        /* 114px (card height) + 6px (border) + 10px (margin) */
+    }
+
+    /* Images */
+    .draw-pile img,
+    .split-hand>img {
+        /* height and width given maintain original 255px x 380px ratio */
+        width: 56.1px;
+        height: 83.6px;
+    }
+
+    .dealt-cards>img {
+        /* height and width given maintain original 255px x 380px ratio */
+        width: 76.5px;
+        height: 114px;
+    }
+
+    .poker-chips-div>img {
+        width: 75px;
+        height: 75px;
+    }
+
+    /* Cards stacking horizontally - script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    .card-image1 {
+        left: 5px;
+    }
+
+    .card-image2 {
+        left: 50px;
+    }
+
+    .card-image3 {
+        left: 95px;
+    }
+
+    .card-image4 {
+        left: 140px;
+    }
+
+    .card-image5 {
+        left: 185px;
+    }
+
+    /* Buttons */
+    .start-button-div>button {
+        font-size: 13px;
+    }
+
+    .actions-div>button {
+        font-size: 13px;
     }
 }
