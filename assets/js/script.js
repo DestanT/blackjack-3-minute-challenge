@@ -14,6 +14,7 @@
 // continue play after first hand finishes - incorporate timer!
 
 // stack cards on top of eachother in mobile and tablet view - CSS
+// CSS - for media query 768 and below - leaderboard and game rules is hidden - display in elsewhere!
 
 // Global Variables
 var gameDeck;

@@ -7,6 +7,11 @@ body {
     grid-template-columns: 1fr 4fr 1fr;
 }
 
+/* Only displays on 768px and smaller screen sizes */
+.blackjack-title {
+    display: none;
+}
+
 h1 {
     font-family: 'Righteous', cursive;
 }
@@ -229,6 +234,10 @@ h3 {
         height: 133px;
     }
 
+    .split-hand>img {
+        top: 30px;
+    }
+
     .dealt-cards>img {
         /* height and width given maintain original 255px x 380px ratio */
         width: 127.5px;
@@ -268,5 +277,45 @@ h3 {
 
     .actions-div>button {
         font-size: 20px;
+    }
+}
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+
+    body {
+        display: block;
+        font-size: medium;
+    }
+
+    .blackjack-title {
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .left-div,
+    .right-div {
+        display: none;
+    }
+
+    /* Cards stacking horizontally - script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    .card-image1 {
+        left: 40px;
+    }
+
+    .card-image2 {
+        left: 110px;
+    }
+
+    .card-image3 {
+        left: 180px;
+    }
+
+    .card-image4 {
+        left: 250px;
+    }
+
+    .card-image5 {
+        left: 320px;
     }
 }
