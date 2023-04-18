@@ -4,6 +4,17 @@
 // - poker-chip-single
 // - poker-chip-winnings
 
+// add effects:
+// - cards moving from draw deck to player + dealer
+// - chips moving to bet stack and back
+
+// add split function
+// hide all buttons until 'start' is pressed
+// remaining cards in deck - shuffle function at certain cards left
+// continue play after first hand finishes - incorporate timer!
+
+// stack cards on top of eachother in mobile and tablet view - CSS
+
 // Global Variables
 var gameDeck;
 
@@ -293,14 +304,14 @@ function shuffleDeck() {
     let suit = ['clubs', 'diamonds', 'hearts', 'spades'];
     let rank = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
     let freshDeck = [];
-
+    
     // loops through and combines 'suit' and 'rank' arrays; makes an ordered deck of cards.
     for (let s = 0; s < suit.length; s++) {
         for (let r = 0; r < rank.length; r++) {
             freshDeck.push(suit[s] + '-' + rank[r]);
         }
     }
-
+    
     var shuffledReadyDeck = [];
     // shuffles the ordered deck of cards and pushes it to a new array.
     for (let i = freshDeck.length; i > 0; i--) {
