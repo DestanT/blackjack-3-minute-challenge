@@ -47,7 +47,7 @@ h3 {
 .player-div {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    height: 330px;
+    height: 282px; /* 266px (card height) + 6px (border) + 10px (margin) */
 }
 
 .draw-pile {
@@ -66,19 +66,18 @@ h3 {
 }
 
 /* Images */
-.draw-pile>img,
+.draw-pile img,
 .split-hand>img {
     border: 2px solid black;
     border-radius: 5%;
-    margin: 5px;
     /* height and width given maintain original 255px x 380px ratio */
-    width: 137.5px;
+    width: 127.5px;
     height: 190px;
 }
 
 .split-hand>img {
     position: relative;
-    top: 50px;
+    top: 40px;
     transform: rotate(15deg);
 }
 
@@ -87,14 +86,14 @@ h3 {
     border-radius: 5%;
     margin: 5px;
     /* height and width given maintain original 255px x 380px ratio */
-    width: 220px;
-    height: 304px;
+    width: 178.5px;
+    height: 266px;
 }
 
 .poker-chips-div>img {
     margin: 5px;
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
 }
 
 /* Cards stacking horizontally - script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
@@ -132,8 +131,10 @@ h3 {
 
 .start-button-div>button {
     font-size: 25px;
+    margin: 10px;
 }
 
 .actions-div>button {
     font-size: 25px;
+    margin: 10px;
 }
