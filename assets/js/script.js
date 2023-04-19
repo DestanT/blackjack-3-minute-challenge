@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     hitButton.classList.add('hidden');
 
     let splitButton = document.getElementById('split');
-    splitButton.addEventListener('pointerdown', dealersTurn); // NOTE: PLACEHOLDER - Change!
+    splitButton.addEventListener('pointerdown', splitHand);
     splitButton.classList.add('hidden');
 
     let standButton = document.getElementById('stand');
@@ -75,10 +75,11 @@ function runGame() {
     dealCard('player');
 
     // Checks if first two cards in players hand have identical values. If true; allows player to split hand.
-    if (checkSplit(getImageAltData('player-cards'))) {
+    if (checkCanSplit(getImageAltData('player-cards'))) {
         toggleButtonVisibility('split');
     }
 
+    console.log(didSplit);
     console.log('Game Running!');
 }
 
@@ -217,7 +218,7 @@ function handValues(array) {
  * @param {getImageAltData('player-cards')} array 
  * @returns true or false
  */
-function checkSplit(array) {
+function checkCanSplit(array) {
 
     let hand = [];
 
@@ -232,6 +233,22 @@ function checkSplit(array) {
     } else {
         return false;
     }
+}
+
+function splitHand() {
+
+    soundFlipCard.play();
+
+    let firstCard = document.getElementById('player-cards').children[0];
+    let altText = firstCard.alt
+
+    firstCard.remove();
+
+    let cardImage = document.createElement('img');
+    cardImage.src = 'assets/images/' + altText + '.png';
+    cardImage.alt = `${altText}`;
+    
+    document.getElementsByClassName('split-hand')[0].append(cardImage);
 }
 
 /**
