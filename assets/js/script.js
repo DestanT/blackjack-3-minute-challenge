@@ -36,19 +36,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let hitButton = document.getElementById('hit');
     hitButton.addEventListener('pointerdown', hit);
+    hitButton.classList.add('hidden');
 
     let splitButton = document.getElementById('split');
     splitButton.addEventListener('pointerdown', dealersTurn); // NOTE: PLACEHOLDER - Change!
+    splitButton.classList.add('hidden');
 
     let standButton = document.getElementById('stand');
     standButton.addEventListener('pointerdown', dealersTurn);
+    standButton.classList.add('hidden');
 })
+
+function toggleButtonVisibility(id) {
+
+    let button = document.getElementById(id);
+
+    if (button.classList.contains('hidden')) {
+        button.classList.remove('hidden');
+    } else {
+        button.classList.add('hidden');
+    }
+}
 
 function runGame() {
 
     makeFreshDeck();
     shuffleDeck(gameDeck);
+
     startCountdownTimer();
+
+    toggleButtonVisibility('hit');
+    toggleButtonVisibility('stand');
 
     // Initial starting hand; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
     turnCardOver(dealCard('dealer'));

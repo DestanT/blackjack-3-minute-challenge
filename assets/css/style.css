@@ -133,6 +133,10 @@ h3 {
 }
 
 /* Buttons */
+.hidden {
+    visibility: hidden;
+}
+
 .start-button-div>button {
     font-size: 25px;
     margin: 10px;
