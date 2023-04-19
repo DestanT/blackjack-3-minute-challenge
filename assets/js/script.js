@@ -79,15 +79,6 @@ function runGame() {
         toggleButtonVisibility('split');
     }
 
-    let dealerHand = handValues(getImageAltData('dealer-cards'));
-    let playerHand = handValues(getImageAltData('player-cards'));
-
-    updateSumHtml('player');
-    updateSumHtml('dealer');
-
-    console.log(dealerHand.value);
-    console.log(playerHand.value);
-
     console.log('Game Running!');
 }
 
@@ -106,6 +97,7 @@ function dealCard(DealerOrPlayer) {
     cardImage.alt = `${drawCard}`;
 
     document.getElementById(`${DealerOrPlayer}-cards`).append(cardImage);
+    updateSumHtml(`${DealerOrPlayer}`);
 
     // Counts the amount of images in hand of ('div') and if it is more than 4; stacks the cards for easier viewing.
     let htmlDiv = document.getElementById(`${DealerOrPlayer}-cards`);
