@@ -19,8 +19,14 @@
 // Global Variables
 var gameDeck;
 
-// The idea for this piece of code came from the 'Love Maths' project!
+// Sound Effects:
+const soundDealSingle = document.getElementById('deal-single');
+const soundFlipCard = document.getElementById('flip-card');
+const soundWinHand = document.getElementById('win-hand');
+const soundLoseHand = document.getElementById('lose-hand');
+const soundShuffleDeck = document.getElementById('shuffle-deck');
 
+// The idea for this piece of code came from the 'Love Maths' project!
 document.addEventListener('DOMContentLoaded', function() {
 
     addEventHandlers();
@@ -70,7 +76,6 @@ function runGame() {
  */
 function dealCard(div) {
 
-    let soundDealSingle = document.getElementById('deal-single');
     soundDealSingle.play();
     
     let drawCard = gameDeck.pop();
@@ -103,7 +108,6 @@ function dealCard(div) {
  */
 function turnCardOver() {
 
-    let soundFlipCard = document.getElementById('flip-card');
     soundFlipCard.play();
 
     let firstCard = document.getElementById('dealer-cards').children[0];
@@ -261,9 +265,6 @@ function dealersTurn() {
         updateSumHtml('dealer');
     }
 
-    let soundWinHand = document.getElementById('win-hand');
-    let soundLoseHand = document.getElementById('lose-hand');
-
     if (playerSum > 21) {
         console.log('Dealer wins!');
         soundLoseHand.play();
@@ -293,7 +294,6 @@ function submitScore() {
  */
 function shuffleDeck() {
 
-    let soundShuffleDeck = document.getElementById('shuffle-deck');
     soundShuffleDeck.play();
 
     let suit = ['clubs', 'diamonds', 'hearts', 'spades'];
