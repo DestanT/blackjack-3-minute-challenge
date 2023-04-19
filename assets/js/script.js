@@ -16,6 +16,9 @@
 // stack cards on top of eachother in mobile and tablet view - CSS
 // CSS - for media query 768 and below - leaderboard and game rules is hidden - display in elsewhere!
 
+// known issue:
+// - when start game click before anything else is touched on screen; sound effects dont work - maybe mute them to begin with?
+
 // Global Variables
 var gameDeck;
 
@@ -26,27 +29,20 @@ const soundWinHand = document.getElementById('win-hand');
 const soundLoseHand = document.getElementById('lose-hand');
 const soundShuffleDeck = document.getElementById('shuffle-deck');
 
-// The idea for this piece of code came from the 'Love Maths' project!
-document.addEventListener('DOMContentLoaded', function() {
-
-    addEventHandlers();
-    // toggleDisplayButtons();
-})
-
-function addEventHandlers() {
+document.addEventListener('DOMContentLoaded', function () {
 
     let startButton = document.getElementById('start');
     startButton.addEventListener('pointerdown', runGame);
-
+    
     let hitButton = document.getElementById('hit');
     hitButton.addEventListener('pointerdown', hit);
     
     let splitButton = document.getElementById('split');
-    splitButton.addEventListener('pointerdown', );
+    splitButton.addEventListener('pointerdown', dealersTurn); // NOTE: PLACEHOLDER - Change!
     
     let standButton = document.getElementById('stand');
     standButton.addEventListener('pointerdown', dealersTurn);
-}
+})
 
 function runGame() {
 
@@ -77,20 +73,20 @@ function runGame() {
 function dealCard(div) {
 
     soundDealSingle.play();
-    
+
     let drawCard = gameDeck.pop();
-    
+
     let cardImage = document.createElement('img');
     cardImage.src = 'assets/images/' + drawCard + '.png';
     cardImage.alt = `${drawCard}`;
-    
+
     document.getElementById(div).append(cardImage);
 
     // Counts the amount of images in hand of ('div') and if it is more than 4; stacks the cards for easier viewing.
     let htmlDiv = document.getElementById(div);
     let images = htmlDiv.getElementsByTagName('img');
     numberOfImages = images.length;
-    
+
     console.log(numberOfImages);
     console.log(images[0]);
 
@@ -299,14 +295,14 @@ function shuffleDeck() {
     let suit = ['clubs', 'diamonds', 'hearts', 'spades'];
     let rank = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
     let freshDeck = [];
-    
+
     // loops through and combines 'suit' and 'rank' arrays; makes an ordered deck of cards.
     for (let s = 0; s < suit.length; s++) {
         for (let r = 0; r < rank.length; r++) {
             freshDeck.push(suit[s] + '-' + rank[r]);
         }
     }
-    
+
     var shuffledReadyDeck = [];
     // shuffles the ordered deck of cards and pushes it to a new array.
     for (let i = freshDeck.length; i > 0; i--) {
