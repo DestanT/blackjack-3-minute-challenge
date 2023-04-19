@@ -33,13 +33,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let startButton = document.getElementById('start');
     startButton.addEventListener('pointerdown', runGame);
-    
+
     let hitButton = document.getElementById('hit');
     hitButton.addEventListener('pointerdown', hit);
-    
+
     let splitButton = document.getElementById('split');
     splitButton.addEventListener('pointerdown', dealersTurn); // NOTE: PLACEHOLDER - Change!
-    
+
     let standButton = document.getElementById('stand');
     standButton.addEventListener('pointerdown', dealersTurn);
 })
@@ -203,24 +203,11 @@ function handValues(array) {
  * Updates the total sum in either the dealer's hand or the player's hand in the HTML (depending on what parameters were chosen).
  * @param {*} who - either 'dealer' or 'player'
  */
-function updateSumHtml(who) {
+function updateSumHtml(DealerOrPlayer) {
 
-    if (who === 'player') {
-
-        let showSum = document.getElementById('player-sum');
-        let totalSum = handValues(getImageAltData('player-cards'));
-        showSum.innerHTML = totalSum.value;
-
-    } else if (who === 'dealer') {
-
-        let showSum = document.getElementById('dealer-sum');
-        let totalSum = handValues(getImageAltData('dealer-cards'));
-        showSum.innerHTML = totalSum.value;
-
-    } else {
-
-        throw `${who} not defined. Aborting function!`;
-    }
+    let showSum = document.getElementById(`${DealerOrPlayer}-sum`);
+    let totalSum = handValues(getImageAltData(`${DealerOrPlayer}-cards`));
+    showSum.innerHTML = totalSum.value;
 }
 
 /**
