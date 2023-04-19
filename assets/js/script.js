@@ -51,10 +51,10 @@ function runGame() {
     startCountdownTimer();
 
     // Initial starting hand; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
-    turnCardOver(dealCard('dealer-cards'));
-    dealCard('player-cards');
-    dealCard('dealer-cards');
-    dealCard('player-cards');
+    turnCardOver(dealCard('dealer'));
+    dealCard('player');
+    dealCard('dealer');
+    dealCard('player');
 
     let dealerHand = handValues(getImageAltData('dealer-cards'));
     let playerHand = handValues(getImageAltData('player-cards'));
@@ -69,9 +69,10 @@ function runGame() {
 }
 
 /**
- * Deals a card to the div specified - use either 'player-cards' or 'dealer-cards'
+ * Deals a card to the hand specified - use either 'dealer' or 'player'.
+ * Also checks to see how many cards each hand is holding; stacks cards in html when > 4.
  */
-function dealCard(div) {
+function dealCard(DealerOrPlayer) {
 
     soundDealSingle.play();
 
@@ -81,20 +82,16 @@ function dealCard(div) {
     cardImage.src = 'assets/images/' + drawCard + '.png';
     cardImage.alt = `${drawCard}`;
 
-    document.getElementById(div).append(cardImage);
+    document.getElementById(`${DealerOrPlayer}-cards`).append(cardImage);
 
     // Counts the amount of images in hand of ('div') and if it is more than 4; stacks the cards for easier viewing.
-    let htmlDiv = document.getElementById(div);
+    let htmlDiv = document.getElementById(`${DealerOrPlayer}-cards`);
     let images = htmlDiv.getElementsByTagName('img');
     numberOfImages = images.length;
-
-    console.log(numberOfImages);
-    console.log(images[0]);
 
     if (numberOfImages >= 4) {
         for (let i = 0; i < numberOfImages; i++) {
             images[i].setAttribute('class', `card-image${i+1}`);
-            console.log(images[i]);
         }
     }
 }
@@ -220,7 +217,7 @@ function hit() {
 
     if (playerSum <= 20) {
 
-        dealCard('player-cards');
+        dealCard('player');
         handValues(getImageAltData('player-cards')).value;
         updateSumHtml('player');
 
@@ -243,7 +240,7 @@ function dealersTurn() {
 
     while (dealerSum < 17) {
 
-        dealCard('dealer-cards');
+        dealCard('dealer');
 
         dealerSum = handValues(getImageAltData('dealer-cards')).value;
         updateSumHtml('dealer');
