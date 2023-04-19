@@ -20,33 +20,27 @@
 var gameDeck;
 
 // The idea for this piece of code came from the 'Love Maths' project!
-document.addEventListener('DOMContentLoaded', function () {
-    let buttons = document.getElementsByTagName('button');
 
-    for (let button of buttons) {
-        button.addEventListener('click', function () {
-            if (this.innerHTML === 'Start!') {
-                runGame();
-                this.innerHTML = 'Submit Score';
-                this.addEventListener('click', function () {
-                    let earlySubmit = confirm('Are you sure you wish to terminate game early and submit your score?');
-                    if (earlySubmit === true) {
-                        dealersTurn();
-                        console.log('turn card');
-                    } else {
-                        console.log('Cancelled');
-                    }
-                })
-            } else if (this.innerHTML === 'Hit') {
-                hit();
-            } else if (this.innerHTML === 'Stand') {
-                dealersTurn();
-            } else {
-                throw 'Unmapped button';
-            }
-        })
-    }
+document.addEventListener('DOMContentLoaded', function() {
+
+    addEventHandlers();
+    // toggleDisplayButtons();
 })
+
+function addEventHandlers() {
+
+    let startButton = document.getElementById('start');
+    startButton.addEventListener('pointerdown', runGame);
+
+    let hitButton = document.getElementById('hit');
+    hitButton.addEventListener('pointerdown', hit);
+    
+    let splitButton = document.getElementById('split');
+    splitButton.addEventListener('pointerdown', );
+    
+    let standButton = document.getElementById('stand');
+    standButton.addEventListener('pointerdown', dealersTurn);
+}
 
 function runGame() {
 
