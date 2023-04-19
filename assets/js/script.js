@@ -20,7 +20,7 @@
 // - when start game click before anything else is touched on screen; sound effects dont work - maybe mute them to begin with?
 
 // Global Variables
-var gameDeck;
+let gameDeck = [];
 
 // Sound Effects:
 const soundDealSingle = document.getElementById('deal-single');
@@ -46,8 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function runGame() {
 
+    makeFreshDeck();
+    shuffleDeck(gameDeck);
     startCountdownTimer();
-    shuffleDeck();
 
     // Initial starting hand; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
     turnCardOver(dealCard('dealer-cards'));
@@ -273,35 +274,42 @@ function submitScore() {
 }
 
 /**
- * Makes and shuffles the deck, ready for play
+ * Makes a fresh deck.
  */
-function shuffleDeck() {
-
-    soundShuffleDeck.play();
+function makeFreshDeck() {
 
     let suit = ['clubs', 'diamonds', 'hearts', 'spades'];
     let rank = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
-    let freshDeck = [];
 
     // loops through and combines 'suit' and 'rank' arrays; makes an ordered deck of cards.
     for (let s = 0; s < suit.length; s++) {
         for (let r = 0; r < rank.length; r++) {
-            freshDeck.push(suit[s] + '-' + rank[r]);
+            gameDeck.push(suit[s] + '-' + rank[r]);
         }
     }
+}
 
-    var shuffledReadyDeck = [];
+/**
+ * Shuffles a deck of cards by randomly drawing from it and placing it in a temporary variable. Once all cards are drawn the temporary deck copies itself onto the main deck.
+ * @param {array} deck 
+ */
+function shuffleDeck(deck) {
+
+    soundShuffleDeck.play();
+
+    let tempDeck = [];
     // shuffles the ordered deck of cards and pushes it to a new array.
-    for (let i = freshDeck.length; i > 0; i--) {
+    for (let i = deck.length; i > 0; i--) {
 
         let randomNumber = Math.floor(Math.random() * i);
-        let randomCard = freshDeck.splice(randomNumber, 1);
-        shuffledReadyDeck.push(randomCard);
+        let randomCard = deck.splice(randomNumber, 1);
+        tempDeck.push(randomCard);
     }
 
     // updates global gameDeck variable with the shuffled and ready to play deck.
-    gameDeck = shuffledReadyDeck;
+    gameDeck = tempDeck;
 }
+
 
 /**
  * Activates a 5 minute timer
