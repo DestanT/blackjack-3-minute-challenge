@@ -74,6 +74,11 @@ function runGame() {
     dealCard('dealer');
     dealCard('player');
 
+    // Checks if first two cards in players hand have identical values. If true; allows player to split hand.
+    if (checkSplit(getImageAltData('player-cards'))) {
+        toggleButtonVisibility('split');
+    }
+
     let dealerHand = handValues(getImageAltData('dealer-cards'));
     let playerHand = handValues(getImageAltData('player-cards'));
 
@@ -213,6 +218,28 @@ function handValues(array) {
         value: value,
         aces: numberOfAces
     };
+}
+
+/**
+ * Checks the first 2 items of an array and compares their values. If values match; return true.
+ * @param {getImageAltData('player-cards')} array 
+ * @returns true or false
+ */
+function checkSplit(array) {
+
+    let hand = [];
+
+    for (let i = 0; i < 2; i++) {
+
+        let cardData = array[i].split('-');
+        hand.push(cardData[1]);
+    }
+    
+    if (hand[0] === hand[1]) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /**
