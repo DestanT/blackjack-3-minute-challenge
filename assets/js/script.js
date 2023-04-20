@@ -98,7 +98,7 @@ function dealCard(DealerOrPlayer) {
     cardImage.alt = `${drawCard}`;
 
     document.getElementById(`${DealerOrPlayer}-cards`).append(cardImage);
-    updateSumHtml(`${DealerOrPlayer}`);
+    updateHtml(`${DealerOrPlayer}`);
 
     // Counts the amount of images in hand of ('div') and if it is more than 4; stacks the cards for easier viewing.
     let htmlDiv = document.getElementById(`${DealerOrPlayer}-cards`);
@@ -133,7 +133,7 @@ function turnCardOver() {
 
         document.getElementById('dealer-cards').prepend(flippedCard);
 
-        updateSumHtml('dealer');
+        updateHtml('dealer');
 
     } else {
 
@@ -256,7 +256,11 @@ function splitHand() {
  * Updates the total sum in either the dealer's hand or the player's hand in the HTML (depending on what parameters were chosen).
  * @param {*} who - either 'dealer' or 'player'
  */
-function updateSumHtml(DealerOrPlayer) {
+function updateHtml(DealerOrPlayer) {
+
+    let remainingCardsSpan = document.getElementById('draw-deck-remaining');
+    let remainingCards = gameDeck.length;
+    remainingCardsSpan.innerHTML = remainingCards;
 
     let showSum = document.getElementById(`${DealerOrPlayer}-sum`);
     let totalSum = handValues(getImageAltData(`${DealerOrPlayer}-cards`));
@@ -274,7 +278,7 @@ function hit() {
 
         dealCard('player');
         handValues(getImageAltData('player-cards')).value;
-        updateSumHtml('player');
+        updateHtml('player');
 
     } else if (playerSum === 21) {
 
@@ -297,7 +301,7 @@ function dealersTurn() {
         dealCard('dealer');
 
         dealerSum = handValues(getImageAltData('dealer-cards')).value;
-        updateSumHtml('dealer');
+        updateHtml('dealer');
     }
 
     decideWinner();
