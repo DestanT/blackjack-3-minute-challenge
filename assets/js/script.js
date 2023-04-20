@@ -30,6 +30,7 @@ const soundWinHand = document.getElementById('win-hand');
 const soundLoseHand = document.getElementById('lose-hand');
 const soundShuffleDeck = document.getElementById('shuffle-deck');
 
+// Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
 
     let startButton = document.getElementById('start');
@@ -52,6 +53,10 @@ document.addEventListener('DOMContentLoaded', function () {
     standButton.classList.add('hidden');
 })
 
+/**
+ * Toggles button visibility by adding/removing CSS class.
+ * @param {button} id 
+ */
 function toggleButtonVisibility(id) {
 
     let button = document.getElementById(id);
@@ -63,6 +68,9 @@ function toggleButtonVisibility(id) {
     }
 }
 
+/**
+ * Start game function.
+ */
 function runGame() {
 
     makeFreshDeck();
@@ -75,6 +83,75 @@ function runGame() {
     dealNewHand();
 
     console.log('Game Running!');
+}
+
+/**
+ * Makes a fresh deck. Pushes array to global gameDeck variable.
+ */
+function makeFreshDeck() {
+
+    let suit = ['clubs', 'diamonds', 'hearts', 'spades'];
+    let rank = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
+
+    // loops through and combines 'suit' and 'rank' arrays; makes an ordered deck of cards.
+    for (let s = 0; s < suit.length; s++) {
+        for (let r = 0; r < rank.length; r++) {
+            gameDeck.push(suit[s] + '-' + rank[r]);
+        }
+    }
+}
+
+/**
+ * Shuffles a deck of cards by randomly drawing from it and placing it in a temporary variable.
+ * Once all cards are drawn the temporary deck copies itself onto global variable; gameDeck.
+ * @param {array} deck 
+ */
+function shuffleDeck(deck) {
+
+    soundShuffleDeck.play();
+
+    let tempDeck = [];
+    for (let i = deck.length; i > 0; i--) {
+
+        let randomNumber = Math.floor(Math.random() * i);
+        let randomCard = deck.splice(randomNumber, 1);
+        tempDeck.push(randomCard);
+    }
+    gameDeck = tempDeck;
+}
+
+/**
+ * Starts a 5 minute timer
+ */
+function startCountdownTimer() {
+
+    let timer = 300;
+    let myInterval = setInterval(countdownTimer, 1000);
+
+    function countdownTimer() {
+
+        if (timer >= 0) {
+
+            const countdownTimer = document.getElementById('countdown-timer');
+
+            let minutes = Math.floor(timer / 60);
+            let seconds = timer % 60;
+
+            // redundant in a 5 minute timer, could have just added a '0' to innerHTML;
+            // incase I decide to increase timer.
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            countdownTimer.innerHTML = `${minutes} : ${seconds}`;
+            timer--;
+
+        } else {
+
+            clearInterval(myInterval);
+            console.log('finished'); // NOTE: exchange for code to do endGame functions and leaderboard calculations
+            return;
+        }
+    }
 }
 
 /**
@@ -94,7 +171,8 @@ function dealCard(DealerOrPlayer) {
     document.getElementById(`${DealerOrPlayer}-cards`).append(cardImage);
     updateHtml(`${DealerOrPlayer}`);
 
-    // Counts the amount of images in hand of ('div') and if it is more than 4; stacks the cards for easier viewing.
+    // Counts the amount of images in hand of ('div') and if it is more than 4;
+    // stacks the cards (via CSS) for easier viewing.
     let htmlDiv = document.getElementById(`${DealerOrPlayer}-cards`);
     let images = htmlDiv.getElementsByTagName('img');
     numberOfImages = images.length;
@@ -108,7 +186,8 @@ function dealCard(DealerOrPlayer) {
 
 /**
  * Turns card over to its back, when re-used turns card over to its front.
- * @returns the altText value for the flipped over card; the function re-uses this value when called again to turn over the same card.
+ * @returns the altText value for the flipped over card; the function;
+ * re-uses this value when called again to turn over the same card.
  */
 function turnCardOver() {
 
@@ -145,6 +224,117 @@ function turnCardOver() {
 }
 
 /**
+ * Deals 2 cards to the dealer and the player.
+ * Dealer's first card is facedown.
+ */
+function dealNewHand() {
+
+    turnCardOver(dealCard('dealer'));
+    dealCard('player');
+    dealCard('dealer');
+    dealCard('player');
+
+    // Checks if first two cards in players hand have identical values. 
+    // If true; allows player to split hand.
+    if (checkCanSplit(getImageAltData('player-cards'))) {
+        toggleButtonVisibility('split');
+    }
+
+    toggleButtonVisibility('hit'); // On
+    toggleButtonVisibility('stand'); // On
+}
+
+/**
+ * Checks the first 2 items of an array and compares their values.
+ * If values match; return true.
+ * @param {getImageAltData('player-cards')} array 
+ * @returns true or false
+ */
+function checkCanSplit(array) {
+
+    let hand = [];
+
+    for (let i = 0; i < 2; i++) {
+
+        let cardData = array[i].split('-');
+        hand.push(cardData[1]);
+    }
+
+    if (hand[0] === hand[1]) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Sets one of the identical cards from the player aside.
+ * This card is played in the next round.
+ */
+function splitHand() {
+
+    soundFlipCard.play();
+
+    let firstCard = document.getElementById('player-cards').children[0];
+    let altText = firstCard.alt
+
+    firstCard.remove();
+
+    let cardImage = document.createElement('img');
+    cardImage.src = 'assets/images/' + altText + '.png';
+    cardImage.alt = `${altText}`;
+
+    document.getElementsByClassName('split-hand')[0].append(cardImage);
+    toggleButtonVisibility('split');
+}
+
+/**
+ * Deals a card to the player if they're handValues value is < 21.
+ * Otherwise alerts player of 'bust' hand.
+ */
+function hit() {
+
+    let playerSum = handValues(getImageAltData('player-cards')).value;
+
+    if (playerSum <= 20) {
+
+        dealCard('player');
+        handValues(getImageAltData('player-cards')).value;
+        updateHtml('player');
+
+    } else if (playerSum === 21) {
+
+        alert('You have 21, the best score you can get! Press "Stand" to continue!')
+
+    } else {
+
+        alert('Your hand is bust, you cannot hit!');
+    }
+}
+
+/**
+ * Dealer takes its turn.
+ * Will continue taking cards until at least 17 handValue is reached.
+ */
+function dealersTurn() {
+
+    toggleButtonVisibility('hit');
+    toggleButtonVisibility('stand');
+    turnCardOver();
+
+    let dealerSum = handValues(getImageAltData('dealer-cards')).value;
+
+    while (dealerSum < 17) {
+
+        dealCard('dealer');
+
+        dealerSum = handValues(getImageAltData('dealer-cards')).value;
+        updateHtml('dealer');
+    }
+    decideWinner();
+}
+
+/**
  * Input target ID of div; <img> alt data from target is stored in an array for later sum calculations.
  * @returns an array of all cards held in hand (via their altText in HTML).
  */
@@ -157,7 +347,6 @@ function getImageAltData(div) {
         let altData = cards[i].alt;
         arrayOfHand.push(altData);
     }
-
     return arrayOfHand;
 }
 
@@ -208,45 +397,6 @@ function handValues(array) {
 }
 
 /**
- * Checks the first 2 items of an array and compares their values. If values match; return true.
- * @param {getImageAltData('player-cards')} array 
- * @returns true or false
- */
-function checkCanSplit(array) {
-
-    let hand = [];
-
-    for (let i = 0; i < 2; i++) {
-
-        let cardData = array[i].split('-');
-        hand.push(cardData[1]);
-    }
-
-    if (hand[0] === hand[1]) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function splitHand() {
-
-    soundFlipCard.play();
-
-    let firstCard = document.getElementById('player-cards').children[0];
-    let altText = firstCard.alt
-
-    firstCard.remove();
-
-    let cardImage = document.createElement('img');
-    cardImage.src = 'assets/images/' + altText + '.png';
-    cardImage.alt = `${altText}`;
-
-    document.getElementsByClassName('split-hand')[0].append(cardImage);
-    toggleButtonVisibility('split');
-}
-
-/**
  * Updates the total sum in either the dealer's hand or the player's hand in the HTML (depending on what parameters were chosen).
  * @param {*} who - either 'dealer' or 'player'
  */
@@ -259,48 +409,6 @@ function updateHtml(DealerOrPlayer) {
     let showSum = document.getElementById(`${DealerOrPlayer}-sum`);
     let totalSum = handValues(getImageAltData(`${DealerOrPlayer}-cards`));
     showSum.innerHTML = totalSum.value;
-}
-
-/**
- * Deals a card to the player if they're handValues value is < 21. Otherwise alerts them of they're 'bust' hand.
- */
-function hit() {
-
-    let playerSum = handValues(getImageAltData('player-cards')).value;
-
-    if (playerSum <= 20) {
-
-        dealCard('player');
-        handValues(getImageAltData('player-cards')).value;
-        updateHtml('player');
-
-    } else if (playerSum === 21) {
-
-        alert('You have 21, the best score you can get! Press "Stand" to continue!')
-
-    } else {
-
-        alert('Your hand is bust, you cannot hit!');
-    }
-}
-
-function dealersTurn() {
-
-    toggleButtonVisibility('hit');
-    toggleButtonVisibility('stand');
-    turnCardOver();
-
-    let dealerSum = handValues(getImageAltData('dealer-cards')).value;
-
-    while (dealerSum < 17) {
-
-        dealCard('dealer');
-
-        dealerSum = handValues(getImageAltData('dealer-cards')).value;
-        updateHtml('dealer');
-    }
-
-    decideWinner();
 }
 
 /**
@@ -342,6 +450,7 @@ function decideWinner() {
         toggleButtonVisibility('win-loss-text');
     }, 1000);
 
+    // Allows for some breathing time before player is expected to deal new hand.
     setTimeout(function () {
         clearTable();
     }, 1500);
@@ -360,100 +469,10 @@ function clearTable() {
             allCards[c - 1].remove(); // -1 takes into account array [0]
         }
     }
-
     toggleButtonVisibility('deal-new-hand');
-}
-
-/**
- * Deals 2 cards to the dealer and the player. Dealer's first card is facedown.
- */
-function dealNewHand() {
-
-    turnCardOver(dealCard('dealer'));
-    dealCard('player');
-    dealCard('dealer');
-    dealCard('player');
-
-    // Checks if first two cards in players hand have identical values. If true; allows player to split hand.
-    if (checkCanSplit(getImageAltData('player-cards'))) {
-        toggleButtonVisibility('split');
-    }
-
-    toggleButtonVisibility('hit'); // On
-    toggleButtonVisibility('stand'); // On
 }
 
 function submitScore() {
 
     console.log('Submitting Score');
-}
-
-/**
- * Makes a fresh deck.
- */
-function makeFreshDeck() {
-
-    let suit = ['clubs', 'diamonds', 'hearts', 'spades'];
-    let rank = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
-
-    // loops through and combines 'suit' and 'rank' arrays; makes an ordered deck of cards.
-    for (let s = 0; s < suit.length; s++) {
-        for (let r = 0; r < rank.length; r++) {
-            gameDeck.push(suit[s] + '-' + rank[r]);
-        }
-    }
-}
-
-/**
- * Shuffles a deck of cards by randomly drawing from it and placing it in a temporary variable. Once all cards are drawn the temporary deck copies itself onto the main deck.
- * @param {array} deck 
- */
-function shuffleDeck(deck) {
-
-    soundShuffleDeck.play();
-
-    let tempDeck = [];
-    // shuffles the ordered deck of cards and pushes it to a new array.
-    for (let i = deck.length; i > 0; i--) {
-
-        let randomNumber = Math.floor(Math.random() * i);
-        let randomCard = deck.splice(randomNumber, 1);
-        tempDeck.push(randomCard);
-    }
-
-    // updates global gameDeck variable with the shuffled and ready to play deck.
-    gameDeck = tempDeck;
-}
-
-
-/**
- * Activates a 5 minute timer
- */
-function startCountdownTimer() {
-
-    let timer = 300;
-    let myInterval = setInterval(countdownTimer, 1000);
-
-    function countdownTimer() {
-
-        if (timer >= 0) {
-
-            const countdownTimer = document.getElementById('countdown-timer');
-
-            let minutes = Math.floor(timer / 60);
-            let seconds = timer % 60;
-
-            minutes = minutes < 10 ? '0' + minutes : minutes; // redundant in a 5 minute timer, could have just added a '0' to innerHTML; incase I decide to increase timer.
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-
-            countdownTimer.innerHTML = `${minutes} : ${seconds}`;
-            timer--;
-
-        } else {
-
-            clearInterval(myInterval);
-            console.log('finished'); // NOTE: exchange for code to do endGame functions and leaderboard calculations
-            return;
-        }
-    }
 }
