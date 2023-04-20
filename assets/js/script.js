@@ -79,7 +79,6 @@ function runGame() {
         toggleButtonVisibility('split');
     }
 
-    console.log(didSplit);
     console.log('Game Running!');
 }
 
@@ -249,6 +248,7 @@ function splitHand() {
     cardImage.alt = `${altText}`;
     
     document.getElementsByClassName('split-hand')[0].append(cardImage);
+    toggleButtonVisibility('split');
 }
 
 /**
