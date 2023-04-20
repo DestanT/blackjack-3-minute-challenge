@@ -35,6 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let startButton = document.getElementById('start');
     startButton.addEventListener('pointerdown', runGame);
 
+    let dealNewHandButton = document.getElementById('deal-new-hand');
+    dealNewHandButton.addEventListener('pointerdown', dealNewHand);
+    dealNewHandButton.classList.add('hidden');
+
     let hitButton = document.getElementById('hit');
     hitButton.addEventListener('pointerdown', hit);
     hitButton.classList.add('hidden');
@@ -67,19 +71,8 @@ function runGame() {
     startCountdownTimer();
 
     toggleButtonVisibility('start') // hides
-    toggleButtonVisibility('hit'); // makes visible
-    toggleButtonVisibility('stand'); // makes visible
 
-    // Initial starting hand; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
-    turnCardOver(dealCard('dealer'));
-    dealCard('player');
-    dealCard('dealer');
-    dealCard('player');
-
-    // Checks if first two cards in players hand have identical values. If true; allows player to split hand.
-    if (checkCanSplit(getImageAltData('player-cards'))) {
-        toggleButtonVisibility('split');
-    }
+    dealNewHand();
 
     console.log('Game Running!');
 }
@@ -228,7 +221,7 @@ function checkCanSplit(array) {
         let cardData = array[i].split('-');
         hand.push(cardData[1]);
     }
-    
+
     if (hand[0] === hand[1]) {
         return true;
     } else {
@@ -248,7 +241,7 @@ function splitHand() {
     let cardImage = document.createElement('img');
     cardImage.src = 'assets/images/' + altText + '.png';
     cardImage.alt = `${altText}`;
-    
+
     document.getElementsByClassName('split-hand')[0].append(cardImage);
     toggleButtonVisibility('split');
 }
@@ -345,11 +338,11 @@ function decideWinner() {
 
     // Displays win/loss text for 1000ms/1s
     toggleButtonVisibility('win-loss-text');
-    setTimeout(function() {
+    setTimeout(function () {
         toggleButtonVisibility('win-loss-text');
     }, 1000);
 
-    setTimeout(function() {
+    setTimeout(function () {
         clearTable();
     }, 1500);
 }
@@ -362,13 +355,32 @@ function clearTable() {
     const bothHands = document.getElementsByClassName('dealt-cards');
 
     for (let h = (bothHands.length); h > 0; h--) {
-        const allCards = bothHands[h-1].children; // -1 takes into account array [0]
+        const allCards = bothHands[h - 1].children; // -1 takes into account array [0]
         for (let c = (allCards.length); c > 0; c--) {
-            allCards[c-1].remove(); // -1 takes into account array [0]
+            allCards[c - 1].remove(); // -1 takes into account array [0]
         }
     }
 
-    toggleButtonVisibility('start');
+    toggleButtonVisibility('deal-new-hand');
+}
+
+/**
+ * Deals 2 cards to the dealer and the player. Dealer's first card is facedown.
+ */
+function dealNewHand() {
+
+    turnCardOver(dealCard('dealer'));
+    dealCard('player');
+    dealCard('dealer');
+    dealCard('player');
+
+    // Checks if first two cards in players hand have identical values. If true; allows player to split hand.
+    if (checkCanSplit(getImageAltData('player-cards'))) {
+        toggleButtonVisibility('split');
+    }
+
+    toggleButtonVisibility('hit'); // On
+    toggleButtonVisibility('stand'); // On
 }
 
 function submitScore() {
