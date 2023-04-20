@@ -290,7 +290,6 @@ function dealersTurn() {
     turnCardOver();
 
     let dealerSum = handValues(getImageAltData('dealer-cards')).value;
-    let playerSum = handValues(getImageAltData('player-cards')).value;
 
     while (dealerSum < 17) {
 
@@ -299,6 +298,14 @@ function dealersTurn() {
         dealerSum = handValues(getImageAltData('dealer-cards')).value;
         updateSumHtml('dealer');
     }
+
+    decideWinner();
+}
+
+function decideWinner() {
+
+    let dealerSum = handValues(getImageAltData('dealer-cards')).value;
+    let playerSum = handValues(getImageAltData('player-cards')).value;
 
     if (playerSum > 21) {
         console.log('Dealer wins!');
