@@ -55,11 +55,26 @@ h3 {
     /* 266px (card height) + 6px (border) + 10px (margin) */
 }
 
-.draw-pile {
-    font-size: 25px;
-    font-weight: bold;
+#win-loss-text {
+    animation: blink 1s;
 }
 
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 100%;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+#win-loss-text,
+.draw-pile,
 .dealer-sum,
 .player-sum {
     font-size: 25px;
@@ -134,7 +149,7 @@ h3 {
 
 /* Buttons */
 .hidden {
-    visibility: hidden;
+    display: none;
 }
 
 .start-button-div>button {
@@ -221,10 +236,8 @@ h3 {
         /* 190px (card height) + 6px (border) + 10px (margin) */
     }
 
-    .draw-pile {
-        font-size: 15px;
-    }
-
+    #win-loss-text,
+    .draw-pile,
     .dealer-sum,
     .player-sum {
         font-size: 15px;
@@ -326,7 +339,7 @@ h3 {
 
 /* Large Phones */
 @media screen and (max-width: 480px) {
-    
+
     /* Game area (middle-div) */
     /* Divs */
     .countdown-timer-div {
@@ -404,6 +417,7 @@ h3 {
         font-size: 12px;
     }
 
+    #win-loss-text,
     .dealer-sum,
     .player-sum {
         font-size: 13px;
@@ -476,10 +490,8 @@ h3 {
         font-size: 13px;
     }
 
-    .draw-pile {
-        font-size: 11px;
-    }
-
+    #win-loss-text,
+    .draw-pile,
     .dealer-sum,
     .player-sum {
         font-size: 11px;
