@@ -292,6 +292,8 @@ function hit() {
 
 function dealersTurn() {
 
+    toggleButtonVisibility('hit');
+    toggleButtonVisibility('stand');
     turnCardOver();
 
     let dealerSum = handValues(getImageAltData('dealer-cards')).value;
@@ -337,6 +339,7 @@ function decideWinner() {
         throw 'undefined score system';
     }
 
+    // Displays win/loss text for 1000ms/1s
     toggleButtonVisibility('win-loss-text');
     setTimeout(function() {
         toggleButtonVisibility('win-loss-text')
