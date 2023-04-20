@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Maitree', serif;
+    background-color: #009900;
     text-align: center;
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
@@ -20,56 +21,40 @@ h3 {
     font-family: 'Mukta Vaani', sans-serif;
 }
 
-.left-div,
-.header-div,
-.info-div,
-.middle-div,
-.countdown-timer-div,
-.dealer-div,
-.draw-pile,
-.dealt-cards,
-.dealer-sum,
-.start-button-div,
-.player-div,
-.split-hand,
-.player-sum,
-.actions-div,
-.poker-chips-div,
-.right-div,
-.leaderboard-div {
-    border: 1px solid blue;
-}
-
 /* Game area (middle-div) */
 /* Divs */
+.left-div,
+.right-div {
+    background-color: #177245;
+    border: 4px solid black;
+    box-sizing: border-box;
+}
+
 .countdown-timer-div {
+    background-color: #00693e;
     font-size: 30px;
     font-weight: bold;
 }
 
+.poker-chips-div {
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
+    box-sizing: border-box;
+}
+
 .dealer-div,
 .player-div {
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
     height: 290px;
 }
 
-#win-loss-text {
-    animation: blink 1s;
-}
-
-@keyframes blink {
-    0% {
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 100%;
-    }
-
-    100% {
-        opacity: 0;
-    }
+.start-button-div,
+.actions-div {
+    background-color: #177245;
 }
 
 #win-loss-text,
