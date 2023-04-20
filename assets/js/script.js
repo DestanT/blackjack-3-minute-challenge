@@ -18,6 +18,7 @@
 
 // known issue:
 // - when start game click before anything else is touched on screen; sound effects dont work - maybe mute them to begin with?
+// - the start button is covered by the div above (iphone) - makes the start button hard to click!
 
 // Global Variables
 let gameDeck = [];
@@ -309,6 +310,9 @@ function dealersTurn() {
     decideWinner();
 }
 
+/**
+ * Once the dealer has also had its turn; this function calculates 
+ */
 function decideWinner() {
 
     let dealerSum = handValues(getImageAltData('dealer-cards')).value;
@@ -344,6 +348,35 @@ function decideWinner() {
     setTimeout(function() {
         toggleButtonVisibility('win-loss-text')
     }, 1000);
+}
+
+function clearTable() {
+
+    const bothHands = document.getElementsByClassName('dealt-cards');
+    // const allCards = bothHands.children;
+    console.log(bothHands[0]);
+    console.log(bothHands.length);
+    
+
+    for (let h = 0; h < bothHands.length; h++) {
+        const allCards = bothHands[h].children;
+        for (let c = 0; c < allCards.length; c++) {
+            allCards[c].remove();
+        }
+    }
+
+    // for (let h = 0; h < bothHands[h]; h++) {
+    //     const allCards = bothHands.children;
+    //     for (let c = 0; c < allCards.length; c++) {
+    //         allCards[c].remove();
+    //     }
+    // }
+    
+    // for (let h = 0; h < bothHands[h]; h++) {
+    //     for (let c = 0; c < allCards.length; c++) {
+    //         allCards[c].remove();
+    //     }
+    // }
 }
 
 function submitScore() {
