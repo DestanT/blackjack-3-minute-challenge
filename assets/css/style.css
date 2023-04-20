@@ -149,7 +149,7 @@ h3 {
 
 /* Buttons */
 .hidden {
-    display: none;
+    visibility: hidden;
 }
 
 .start-button-div>button {

@@ -65,6 +65,7 @@ function runGame() {
 
     startCountdownTimer();
 
+    toggleButtonVisibility('start')
     toggleButtonVisibility('hit');
     toggleButtonVisibility('stand');
 
