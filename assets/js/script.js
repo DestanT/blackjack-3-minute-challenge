@@ -65,9 +65,9 @@ function runGame() {
 
     startCountdownTimer();
 
-    toggleButtonVisibility('start')
-    toggleButtonVisibility('hit');
-    toggleButtonVisibility('stand');
+    toggleButtonVisibility('start') // hides
+    toggleButtonVisibility('hit'); // makes visible
+    toggleButtonVisibility('stand'); // makes visible
 
     // Initial starting hand; 1 card to player, 1 facedown card to dealer, second card to player, second card to dealer (face up).
     turnCardOver(dealCard('dealer'));
@@ -308,23 +308,35 @@ function decideWinner() {
     let dealerSum = handValues(getImageAltData('dealer-cards')).value;
     let playerSum = handValues(getImageAltData('player-cards')).value;
 
+    let winLossText = document.getElementById('win-loss-text');
+
     if (playerSum > 21) {
         console.log('Dealer wins!');
+        winLossText.innerHTML = 'Sorry, you lose.'
         soundLoseHand.play();
     } else if (dealerSum > playerSum && !(dealerSum > 21)) {
         console.log('Dealer wins!');
+        winLossText.innerHTML = 'You lose.'
         soundLoseHand.play();
     } else if (dealerSum > 21 && !(playerSum > 21)) {
         console.log('Player wins!');
+        winLossText.innerHTML = 'You won!'
         soundWinHand.play();
     } else if (dealerSum < playerSum) {
         console.log('Player wins!');
+        winLossText.innerHTML = 'You won!'
         soundWinHand.play();
     } else if (dealerSum === playerSum) {
         console.log("It's a Draw");
+        winLossText.innerHTML = 'Draw!'
     } else {
         throw 'undefined score system';
     }
+
+    toggleButtonVisibility('win-loss-text');
+    setTimeout(function() {
+        toggleButtonVisibility('win-loss-text')
+    }, 1000);
 }
 
 function submitScore() {
