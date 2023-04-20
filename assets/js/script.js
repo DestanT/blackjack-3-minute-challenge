@@ -421,6 +421,15 @@ function updateHtml(DealerOrPlayer) {
     showSum.innerHTML = totalSum.value;
 }
 
+function resetScoreHtml() {
+
+    let dealerSum = document.getElementById('dealer-sum');
+    let playerSum = document.getElementById('player-sum');
+    
+    dealerSum.innerHTML = '-';
+    playerSum.innerHTML = '-';
+}
+
 /**
  * Once the dealer has also had its turn; this function calculates 
  */
@@ -463,6 +472,7 @@ function decideWinner() {
     // Allows for some breathing time before player is expected to deal new hand.
     setTimeout(function () {
         clearTable();
+        resetScoreHtml();
     }, 1500);
 }
 
