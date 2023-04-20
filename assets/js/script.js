@@ -226,8 +226,16 @@ function turnCardOver() {
 /**
  * Deals 2 cards to the dealer and the player.
  * Dealer's first card is facedown.
+ * (Initially checks if deck has enough cards for the new round)
  */
 function dealNewHand() {
+
+    // If gameDeck < 15; shuffle new deck.
+    let remainingCards = gameDeck.length;
+    if (remainingCards < 15) {
+        makeFreshDeck();
+        shuffleDeck(gameDeck);
+    }
 
     turnCardOver(dealCard('dealer'));
     dealCard('player');
