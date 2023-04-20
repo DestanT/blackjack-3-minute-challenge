@@ -346,37 +346,29 @@ function decideWinner() {
     // Displays win/loss text for 1000ms/1s
     toggleButtonVisibility('win-loss-text');
     setTimeout(function() {
-        toggleButtonVisibility('win-loss-text')
+        toggleButtonVisibility('win-loss-text');
     }, 1000);
+
+    setTimeout(function() {
+        clearTable();
+    }, 1500);
 }
 
+/**
+ * Loops through both hands to see number of cards, then removes all card; clearing both sides of the table.
+ */
 function clearTable() {
 
     const bothHands = document.getElementsByClassName('dealt-cards');
-    // const allCards = bothHands.children;
-    console.log(bothHands[0]);
-    console.log(bothHands.length);
-    
 
-    for (let h = 0; h < bothHands.length; h++) {
-        const allCards = bothHands[h].children;
-        for (let c = 0; c < allCards.length; c++) {
-            allCards[c].remove();
+    for (let h = (bothHands.length); h > 0; h--) {
+        const allCards = bothHands[h-1].children; // -1 takes into account array [0]
+        for (let c = (allCards.length); c > 0; c--) {
+            allCards[c-1].remove(); // -1 takes into account array [0]
         }
     }
 
-    // for (let h = 0; h < bothHands[h]; h++) {
-    //     const allCards = bothHands.children;
-    //     for (let c = 0; c < allCards.length; c++) {
-    //         allCards[c].remove();
-    //     }
-    // }
-    
-    // for (let h = 0; h < bothHands[h]; h++) {
-    //     for (let c = 0; c < allCards.length; c++) {
-    //         allCards[c].remove();
-    //     }
-    // }
+    toggleButtonVisibility('start');
 }
 
 function submitScore() {
