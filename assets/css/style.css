@@ -51,8 +51,7 @@ h3 {
 .player-div {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    height: 282px;
-    /* 266px (card height) + 6px (border) + 10px (margin) */
+    height: 290px;
 }
 
 #win-loss-text {
@@ -170,8 +169,7 @@ h3 {
     /* Divs */
     .dealer-div,
     .player-div {
-        height: 244px;
-        /* 228px (card height) + 6px (border) + 10px (margin) */
+        height: 295px;
     }
 
     /* Images */
