@@ -348,8 +348,7 @@ h3 {
 
     .dealer-div,
     .player-div {
-        height: 149px;
-        /* 133px (card height) + 6px (border) + 10px (margin) */
+        height: 185px;
     }
 
     /* Images */
@@ -425,8 +424,7 @@ h3 {
 
     .dealer-div,
     .player-div {
-        height: 130px;
-        /* 114px (card height) + 6px (border) + 10px (margin) */
+        height: 155px;
     }
 
     /* Images */
@@ -499,8 +497,7 @@ h3 {
 
     .dealer-div,
     .player-div {
-        height: 111px;
-        /* 95px (card height) + 6px (border) + 10px (margin) */
+        height: 140px;
     }
 
     /* Images */
