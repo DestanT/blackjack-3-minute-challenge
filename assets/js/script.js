@@ -34,7 +34,7 @@ const soundShuffleDeck = document.getElementById('shuffle-deck');
 document.addEventListener('DOMContentLoaded', function () {
 
     let startButton = document.getElementById('start');
-    startButton.addEventListener('pointerdown', runGame);
+    startButton.addEventListener('pointerdown', startGame);
 
     let dealNewHandButton = document.getElementById('deal-new-hand');
     dealNewHandButton.addEventListener('pointerdown', dealNewHand);
@@ -71,16 +71,16 @@ function toggleButtonVisibility(id) {
 /**
  * Start game function.
  */
-function runGame() {
-
-    makeFreshDeck();
-    shuffleDeck(gameDeck);
-
-    startCountdownTimer();
+function startGame() {
 
     toggleButtonVisibility('start') // hides
 
+    makeFreshDeck();
+    shuffleDeck(gameDeck);
+    startCountdownTimer();
+    
     dealNewHand();
+    toggleButtonVisibility('deal-new-hand'); // Off
 
     console.log('Game Running!');
 }
@@ -240,6 +240,7 @@ function dealNewHand() {
         toggleButtonVisibility('split');
     }
 
+    toggleButtonVisibility('deal-new-hand') // Off
     toggleButtonVisibility('hit'); // On
     toggleButtonVisibility('stand'); // On
 }
