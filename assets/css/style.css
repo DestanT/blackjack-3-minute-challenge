@@ -250,8 +250,11 @@ h3 {
 @media screen and (max-width: 768px) {
 
     body {
-        display: block;
         font-size: medium;
+    }
+
+    .main-game-area {
+        display: block;
     }
 
     .display-h1 {
