@@ -33,24 +33,35 @@ const soundShuffleDeck = document.getElementById('shuffle-deck');
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
 
-    let startButton = document.getElementById('start');
+    // Buttons:
+    const startButton = document.getElementById('start');
     startButton.addEventListener('pointerdown', startGame);
 
-    let dealNewHandButton = document.getElementById('deal');
+    const dealNewHandButton = document.getElementById('deal');
     dealNewHandButton.addEventListener('pointerdown', dealNewHand);
     dealNewHandButton.classList.add('display-on-off');
 
-    let hitButton = document.getElementById('hit');
+    const hitButton = document.getElementById('hit');
     hitButton.addEventListener('pointerdown', hit);
     hitButton.classList.add('hidden');
 
-    let splitButton = document.getElementById('split');
+    const splitButton = document.getElementById('split');
     splitButton.addEventListener('pointerdown', splitHand);
     splitButton.classList.add('hidden');
 
-    let standButton = document.getElementById('stand');
+    const standButton = document.getElementById('stand');
     standButton.addEventListener('pointerdown', dealersTurn);
     standButton.classList.add('hidden');
+
+    //Poker Chips:
+    const redChip = document.getElementById('red-chip');
+    redChip.addEventListener('pointerdown', addBetRed);
+
+    const blueChip = document.getElementById('blue-chip');
+    blueChip.addEventListener('pointerdown', addBetBlue);
+
+    const blackChip = document.getElementById('black-chip');
+    blackChip.addEventListener('pointerdown', addBetBlack);
 })
 
 /**
