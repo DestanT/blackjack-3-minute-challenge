@@ -61,6 +61,11 @@ h3 {
     margin: 5px;
 }
 
+.start-div {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr 1fr;
+}
+
 .card-area {
     box-sizing: border-box;
     display: grid;
@@ -301,6 +306,11 @@ h3 {
         font-size: 15px;
     }
 
+    .start-div {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
     .card-area {
         height: 185px;
     }
@@ -425,6 +435,11 @@ h3 {
     /* Card Play Area */
     .actions-div button {
         font-size: 11px;
+    }
+
+    .start-div {
+        display: grid;
+        grid-template-columns: 2fr 1fr 2fr;
     }
 
     .card-area {
