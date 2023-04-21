@@ -78,7 +78,7 @@ function startGame() {
     makeFreshDeck();
     shuffleDeck(gameDeck);
     startCountdownTimer();
-    
+
     dealNewHand();
     toggleButtonVisibility('deal'); // Off
 
@@ -425,7 +425,7 @@ function resetScoreHtml() {
 
     let dealerSum = document.getElementById('dealer-sum');
     let playerSum = document.getElementById('player-sum');
-    
+
     dealerSum.innerHTML = '-';
     playerSum.innerHTML = '-';
 }
