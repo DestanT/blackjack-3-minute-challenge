@@ -15,7 +15,7 @@
     <div class="main-game-area">
 
         <!-- This only displays on smaller screen sizes;
-        Rules & Leaderboards are separate clickable links -->
+        Rules & Leaderboards are displayed as separate clickable links here-->
         <div class="display-on-off">
             <div>
                 <h1>
@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <!-- This it where the heading and information for the game sits -->
+        <!-- Game Rules and Explanation -->
         <div class="rules-leaderboard">
             <div>
                 <h1>
@@ -42,11 +42,14 @@
 
         <!-- This is where the main game area is located -->
         <div>
+            <!-- Timer Area -->
             <div class="actions-div">
                 <span>Timer:</span>
                 <span id="countdown-timer">05 : 00</span>
             </div>
+            <!-- Dealer Card Area -->
             <div class="card-area">
+                <!-- Draw Deck -->
                 <div>
                     <span>Draw Deck</span>
                     <div class="smaller-cards">
@@ -55,26 +58,33 @@
                     <span>Remaining: </span>
                     <span id="draw-deck-remaining">52</span>
                 </div>
+                <!-- Dealer's Cards -->
                 <div id="dealer-cards" class="dealt-cards">
 
                 </div>
+                <!-- Dealer's Total Sum -->
                 <div>
                     <span>Dealer Sum:</span>
                     <br>
                     <span id="dealer-sum">-</span>
                 </div>
             </div>
+            <!-- Start/Deal Action Buttons -->
             <div class="actions-div">
                 <button id="start">Start!</button>
                 <button id="deal">Deal!</button>
             </div>
+            <!-- Player Card Area -->
             <div class="card-area">
+                <!-- Player's Split Hand Area -->
                 <div id="split-hand" class="smaller-cards">
 
                 </div>
+                <!-- Players's Cards -->
                 <div class="dealt-cards" id="player-cards">
 
                 </div>
+                <!-- Players's Total Sum -->
                 <div>
                     <span>Player Sum:</span>
                     <br>
@@ -83,11 +93,13 @@
                     <span id="win-loss-text" class="hidden"></span>
                 </div>
             </div>
+            <!-- Hit/Split/Stand Action Buttons -->
             <div class="actions-div">
                 <button id="hit">Hit</button>
                 <button id="split">Split</button>
                 <button id="stand">Stand</button>
             </div>
+            <!-- Poker Chips - Placing Bets Area -->
             <div class="poker-chips-div">
                 <img src="assets/images/poker-chip-5.PNG" alt="$5 value - poker chip">
                 <img src="assets/images/poker-chip-10.PNG" alt="$10 value - poker chip">
@@ -95,7 +107,7 @@
             </div>
         </div>
 
-        <!-- This is where the leaderboard sits -->
+        <!-- Leaderboard -->
         <div class="rules-leaderboard">
             <div>
                 <h3>Leaderboard</h3>
