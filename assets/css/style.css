@@ -20,7 +20,7 @@ body span {
 
 .display-on-off {
     display: none;
-    /* Toggles depending on screen size */
+    /* .js controlled - button visibility */
 }
 
 .hidden {
@@ -30,6 +30,11 @@ body span {
 
 h1 {
     font-family: 'Righteous', cursive;
+}
+
+.display-h1 {
+    display: none;
+    /* Toggles depending on screen size */
 }
 
 h3 {
@@ -249,7 +254,7 @@ h3 {
         font-size: medium;
     }
 
-    .display-on-off {
+    .display-h1 {
         display: inline-block;
         margin-bottom: 10px;
     }
