@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let startButton = document.getElementById('start');
     startButton.addEventListener('pointerdown', startGame);
 
-    let dealNewHandButton = document.getElementById('deal-new-hand');
+    let dealNewHandButton = document.getElementById('deal');
     dealNewHandButton.addEventListener('pointerdown', dealNewHand);
     dealNewHandButton.classList.add('hidden');
 
@@ -80,7 +80,7 @@ function startGame() {
     startCountdownTimer();
     
     dealNewHand();
-    toggleButtonVisibility('deal-new-hand'); // Off
+    toggleButtonVisibility('deal'); // Off
 
     console.log('Game Running!');
 }
@@ -249,7 +249,7 @@ function dealNewHand() {
         toggleButtonVisibility('split');
     }
 
-    toggleButtonVisibility('deal-new-hand') // Off
+    toggleButtonVisibility('deal') // Off
     toggleButtonVisibility('hit'); // On
     toggleButtonVisibility('stand'); // On
 }
@@ -294,7 +294,7 @@ function splitHand() {
     cardImage.src = 'assets/images/' + altText + '.png';
     cardImage.alt = `${altText}`;
 
-    document.getElementsByClassName('split-hand')[0].append(cardImage);
+    document.getElementById('split-hand').append(cardImage);
     toggleButtonVisibility('split');
 }
 
@@ -489,7 +489,7 @@ function clearTable() {
             allCards[c - 1].remove(); // -1 takes into account array [0]
         }
     }
-    toggleButtonVisibility('deal-new-hand');
+    toggleButtonVisibility('deal');
 }
 
 function submitScore() {

@@ -8,92 +8,98 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <title>Document</title>
+    <title></title>
 </head>
 
 <body>
-    <div class="blackjack-title">
-        <div>
-            <h1>
-                Blackjack: 5 Minute Challenge
-            </h1>
-        </div>
-        <div>
-            <span>Game Rules</span>
-            <span>Leaderboard</span>
-        </div>
-    </div>
-    <!-- This it where the heading and information for the game sits -->
-    <div class="left-div">
-        <div class="header-div">
-            <h1>
-                Blackjack<br>-5 Minute-<br>Challenge
-            </h1>
-        </div>
-        <div class="info-div">
-            <h3>Game Rules:</h3>
-        </div>
-    </div>
+    <div class="main-game-area">
 
-    <!-- This is where the main game area is located -->
-    <div class="middle-div">
-        <div class="countdown-timer-div">
-            <span>Timer:</span>
-            <span id="countdown-timer">05 : 00</span>
+        <!-- This only displays on smaller screen sizes;
+        Rules & Leaderboards are separate clickable links -->
+        <div class="display-on-off">
+            <div>
+                <h1>
+                    Blackjack: 5 Minute Challenge
+                </h1>
+            </div>
+            <div>
+                <span>Game Rules</span>
+                <span>Leaderboard</span>
+            </div>
         </div>
-        <div class="dealer-div">
-            <div class="draw-pile">
-                <span>Draw Deck</span>
+
+        <!-- This it where the heading and information for the game sits -->
+        <div class="rules-leaderboard">
+            <div>
+                <h1>
+                    Blackjack<br>-5 Minute-<br>Challenge
+                </h1>
+            </div>
+            <div>
+                <h3>Game Rules:</h3>
+            </div>
+        </div>
+
+        <!-- This is where the main game area is located -->
+        <div>
+            <div class="actions-div">
+                <span>Timer:</span>
+                <span id="countdown-timer">05 : 00</span>
+            </div>
+            <div class="card-area">
                 <div>
-                    <img src="assets/images/back-of-card.png" alt="back-of-card">
+                    <span>Draw Deck</span>
+                    <div class="smaller-cards">
+                        <img src="assets/images/back-of-card.png" alt="back-of-card">
+                    </div>
+                    <span>Remaining: </span>
+                    <span id="draw-deck-remaining">52</span>
                 </div>
-                <span>Remaining: </span>
-                <span id="draw-deck-remaining">52</span>
-            </div>
-            <div class="dealt-cards" id="dealer-cards">
-                
-            </div>
-            <div class="dealer-sum">
-                <span>Dealer Sum:</span>
-                <br>
-                <span id="dealer-sum">-</span>
-            </div>
-        </div>
-        <div class="start-button-div">
-            <button id="start">Start!</button>
-            <button id="deal-new-hand">Deal!</button>
-        </div>
-        <div class="player-div">
-            <div class="split-hand">
-                
-            </div>
-            <div class="dealt-cards" id="player-cards">
-                
-            </div>
-            <div class="player-sum">
-                <span>Player Sum:</span>
-                <br>
-                <span id="player-sum">-</span>
-                <br>
-                <span id="win-loss-text" class="hidden">You Won!</span>
-            </div>
-        </div>
-        <div class="actions-div">
-            <button id="hit">Hit</button>
-            <button id="split">Split</button>
-            <button id="stand">Stand</button>
-        </div>
-        <div class="poker-chips-div">
-            <img src="assets/images/poker-chip-5.PNG" alt="$5 value - poker chip">
-            <img src="assets/images/poker-chip-10.PNG" alt="$10 value - poker chip">
-            <img src="assets/images/poker-chip-50.PNG" alt="$50 value - poker chip">
-        </div>
-    </div>
+                <div id="dealer-cards" class="dealt-cards">
 
-    <!-- This is where the leaderboard sits -->
-    <div class="right-div">
-        <div class="leaderboard-div">
-            <h3>Leaderboard</h3>
+                </div>
+                <div>
+                    <span>Dealer Sum:</span>
+                    <br>
+                    <span id="dealer-sum">-</span>
+                </div>
+            </div>
+            <div class="actions-div">
+                <button id="start">Start!</button>
+                <button id="deal">Deal!</button>
+            </div>
+            <div class="card-area">
+                <div id="split-hand" class="smaller-cards">
+
+                </div>
+                <div class="dealt-cards" id="player-cards">
+
+                </div>
+                <div>
+                    <span>Player Sum:</span>
+                    <br>
+                    <span id="player-sum">-</span>
+                    <br>
+                    <span id="win-loss-text" class="hidden"></span>
+                </div>
+            </div>
+            <div class="actions-div">
+                <button id="hit">Hit</button>
+                <button id="split">Split</button>
+                <button id="stand">Stand</button>
+            </div>
+            <div class="poker-chips-div">
+                <img src="assets/images/poker-chip-5.PNG" alt="$5 value - poker chip">
+                <img src="assets/images/poker-chip-10.PNG" alt="$10 value - poker chip">
+                <img src="assets/images/poker-chip-50.PNG" alt="$50 value - poker chip">
+            </div>
+        </div>
+
+        <!-- This is where the leaderboard sits -->
+        <div class="rules-leaderboard">
+            <div>
+                <h3>Leaderboard</h3>
+            </div>
         </div>
     </div>
 
