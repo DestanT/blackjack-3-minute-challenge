@@ -361,11 +361,17 @@ function dealersTurn() {
 function addBetRed() {
 
     const cashSpan = document.getElementById('cash');
-    let value = parseInt(cashSpan.innerHTML);
+    const betSpan = document.getElementById('bet-value');
+
+    let cashValue = parseInt(cashSpan.innerHTML);
+    let betValue = parseInt(betSpan.innerHTML);
     
-    if (value >= 5) {
-        value -= 5;
-        cashSpan.innerHTML = value;       
+    
+    if (cashValue >= 5) {
+        cashValue -= 5;
+        betValue += 5;
+        cashSpan.innerHTML = cashValue;
+        betSpan.innerHTML = betValue;
 
     } else {
         alert('You do not have enough money!');
@@ -378,11 +384,17 @@ function addBetRed() {
 function addBetBlue() {
 
     const cashSpan = document.getElementById('cash');
-    let value = parseInt(cashSpan.innerHTML);
+    const betSpan = document.getElementById('bet-value');
+
+    let cashValue = parseInt(cashSpan.innerHTML);
+    let betValue = parseInt(betSpan.innerHTML);
     
-    if (value >= 10) {
-        value -= 10;
-        cashSpan.innerHTML = value;
+    
+    if (cashValue >= 10) {
+        cashValue -= 10;
+        betValue += 10;
+        cashSpan.innerHTML = cashValue;
+        betSpan.innerHTML = betValue;
 
     } else {
         alert('You do not have enough money!');
@@ -395,11 +407,17 @@ function addBetBlue() {
 function addBetBlack() {
 
     const cashSpan = document.getElementById('cash');
-    let value = parseInt(cashSpan.innerHTML);
+    const betSpan = document.getElementById('bet-value');
+
+    let cashValue = parseInt(cashSpan.innerHTML);
+    let betValue = parseInt(betSpan.innerHTML);
     
-    if (value >= 50) {
-        value -= 50;
-        cashSpan.innerHTML = value;
+    
+    if (cashValue >= 50) {
+        cashValue -= 50;
+        betValue += 50;
+        cashSpan.innerHTML = cashValue;
+        betSpan.innerHTML = betValue;
 
     } else {
         alert('You do not have enough money!');
