@@ -1,3 +1,4 @@
+// Check to see if console.log are needed to be there? - tutor question - in decideWinner() for example?
 // search for and ADJUST/DELETE all 'NOTE' comments!
 // add sound:
 // - bust-hand
@@ -7,11 +8,13 @@
 // add effects:
 // - cards moving from draw deck to player + dealer
 // - chips moving to bet stack and back
+// - to decideWinner when its a draw
 
 // add split function
 // hide all buttons until 'start' is pressed
 // remaining cards in deck - shuffle function at certain cards left
 // continue play after first hand finishes - incorporate timer!
+// have a fail condition - when losing all money 
 
 // stack cards on top of eachother in mobile and tablet view - CSS
 // CSS - for media query 768 and below - leaderboard and game rules is hidden - display in elsewhere!
@@ -546,21 +549,39 @@ function decideWinner() {
     const playerSum = handValues(getImageAltData('player-cards')).value;
 
     const winLossText = document.getElementById('win-loss-text');
+    
+    const cashSpan = document.getElementById('cash');
+    const betSpan = document.getElementById('bet-value');
+
+    let cashValue = parseInt(cashSpan.innerHTML);
+    let betValue = parseInt(betSpan.innerHTML);
 
     if (playerSum > 21) {
         console.log('Dealer wins!');
-        winLossText.innerHTML = 'Sorry, you lose.'
+
+        cashSpan.innerHTML = (cashValue - betValue);
+
+        winLossText.innerHTML = 'You lose.'
         soundLoseHand.play();
     } else if (dealerSum > playerSum && !(dealerSum > 21)) {
         console.log('Dealer wins!');
+
+        cashSpan.innerHTML = (cashValue - betValue);
+
         winLossText.innerHTML = 'You lose.'
         soundLoseHand.play();
     } else if (dealerSum > 21 && !(playerSum > 21)) {
         console.log('Player wins!');
+
+        cashSpan.innerHTML = (cashValue + (betValue * 2));
+
         winLossText.innerHTML = 'You won!'
         soundWinHand.play();
     } else if (dealerSum < playerSum) {
         console.log('Player wins!');
+
+        cashSpan.innerHTML = (cashValue + (betValue * 2));
+
         winLossText.innerHTML = 'You won!'
         soundWinHand.play();
     } else if (dealerSum === playerSum) {
