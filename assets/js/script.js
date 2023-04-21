@@ -255,8 +255,8 @@ function dealNewHand() {
     dealCard('dealer');
     dealCard('player');
 
-    // Checks if first two cards in players hand have identical values. 
-    // If true; allows player to split hand.
+    // Checks if player can split by comparing image alt data;
+    // If true unhides the 'split' button.
     if (checkCanSplit(getImageAltData('player-cards'))) {
         toggleButtonVisibility('split', 'hidden');
     }
@@ -295,19 +295,39 @@ function checkCanSplit(array) {
  */
 function splitHand() {
 
-    soundFlipCard.play();
+    const cashSpan = document.getElementById('cash');
+    const betSpan = document.getElementById('bet-value');
+    const sideBet = document.getElementById('side-bet-value');
 
-    let firstCard = document.getElementById('player-cards').children[0];
-    let altText = firstCard.alt
+    let cashValue = parseInt(cashSpan.innerHTML);
+    let betValue = parseInt(betSpan.innerHTML);
 
-    firstCard.remove();
+    if (cashValue >= betValue) {
 
-    let cardImage = document.createElement('img');
-    cardImage.src = 'assets/images/' + altText + '.png';
-    cardImage.alt = `${altText}`;
+        sideBet.innerHTML = betValue;
+        cashSpan.innerHTML = (cashValue-betValue);
+        
+        soundPlaceBet.play();
+        soundFlipCard.play();
+        
+        let firstCard = document.getElementById('player-cards').children[0];
+        let altText = firstCard.alt
+        
+        firstCard.remove();
+        
+        let cardImage = document.createElement('img');
+        cardImage.src = 'assets/images/' + altText + '.png';
+        cardImage.alt = `${altText}`;
+        
+        document.getElementById('split-hand').append(cardImage);
 
-    document.getElementById('split-hand').append(cardImage);
-    toggleButtonVisibility('split', 'hidden');
+        toggleButtonVisibility('side-bet-span', 'hidden'); // On
+        toggleButtonVisibility('side-bet-value', 'hidden'); // On
+        toggleButtonVisibility('split', 'hidden'); // Off
+
+    } else {
+        alert('Sorry! You do not have enough cash to match your original bet!');
+    }
 }
 
 /**
