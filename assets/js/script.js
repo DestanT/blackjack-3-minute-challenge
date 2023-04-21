@@ -542,10 +542,10 @@ function resetScoreHtml() {
  */
 function decideWinner() {
 
-    let dealerSum = handValues(getImageAltData('dealer-cards')).value;
-    let playerSum = handValues(getImageAltData('player-cards')).value;
+    const dealerSum = handValues(getImageAltData('dealer-cards')).value;
+    const playerSum = handValues(getImageAltData('player-cards')).value;
 
-    let winLossText = document.getElementById('win-loss-text');
+    const winLossText = document.getElementById('win-loss-text');
 
     if (playerSum > 21) {
         console.log('Dealer wins!');
