@@ -344,6 +344,8 @@ function dealersTurn() {
     decideWinner();
 }
 
+// ADD BET FUNCTION HERE
+
 /**
  * Input target ID of div; <img> alt data from target is stored in an array for later sum calculations.
  * @returns an array of all cards held in hand (via their altText in HTML).

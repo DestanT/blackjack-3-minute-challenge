@@ -12,10 +12,13 @@ body span {
 }
 
 .main-game-area {
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
     border: 2px solid black;
     background-color: honeydew;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
 }
 
 .display-on-off {
@@ -52,7 +55,7 @@ h3 {
     height: 55px;
 }
 
-.actions-div>button {
+.actions-div button {
     font-size: 25px;
     padding: 2px;
     margin: 5px;
@@ -193,7 +196,7 @@ h3 {
     }
 
     /* Card Play Area */
-    .actions-div>button {
+    .actions-div button {
         font-size: 20px;
     }
 
@@ -294,7 +297,7 @@ h3 {
 @media screen and (max-width: 480px) {
 
     /* Card Play Area */
-    .actions-div>button {
+    .actions-div button {
         font-size: 15px;
     }
 
@@ -359,7 +362,7 @@ h3 {
     }
 
     /* Card Play Area */
-    .actions-div>button {
+    .actions-div button {
         font-size: 13px;
     }
 
@@ -420,7 +423,7 @@ h3 {
     }
     
     /* Card Play Area */
-    .actions-div>button {
+    .actions-div button {
         font-size: 11px;
     }
 
