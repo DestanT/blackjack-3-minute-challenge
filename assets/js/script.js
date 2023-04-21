@@ -172,13 +172,13 @@ function dealCard(DealerOrPlayer) {
     document.getElementById(`${DealerOrPlayer}-cards`).append(cardImage);
     updateHtml(`${DealerOrPlayer}`);
 
-    // Counts the amount of images in hand of ('div') and if it is more than 4;
+    // Counts the amount of images in hand of ('div') and if it is more than 3;
     // stacks the cards (via CSS) for easier viewing.
     let htmlDiv = document.getElementById(`${DealerOrPlayer}-cards`);
     let images = htmlDiv.getElementsByTagName('img');
     numberOfImages = images.length;
 
-    if (numberOfImages >= 4) {
+    if (numberOfImages >= 3) {
         for (let i = 0; i < numberOfImages; i++) {
             images[i].setAttribute('class', `card-image${i+1}`);
         }
