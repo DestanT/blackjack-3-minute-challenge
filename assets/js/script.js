@@ -356,6 +356,57 @@ function dealersTurn() {
 }
 
 /**
+ * Adds a $5 bet value.
+ */
+function addBetRed() {
+
+    const cashSpan = document.getElementById('cash');
+    let value = parseInt(cashSpan.innerHTML);
+    
+    if (value >= 5) {
+        value -= 5;
+        cashSpan.innerHTML = value;       
+
+    } else {
+        alert('You do not have enough money!');
+    }
+}
+
+/**
+ * Adds a $10 bet value.
+ */
+function addBetBlue() {
+
+    const cashSpan = document.getElementById('cash');
+    let value = parseInt(cashSpan.innerHTML);
+    
+    if (value >= 10) {
+        value -= 10;
+        cashSpan.innerHTML = value;
+
+    } else {
+        alert('You do not have enough money!');
+    }
+}
+
+/**
+ * Adds a $50 bet value.
+ */
+function addBetBlack() {
+
+    const cashSpan = document.getElementById('cash');
+    let value = parseInt(cashSpan.innerHTML);
+    
+    if (value >= 50) {
+        value -= 50;
+        cashSpan.innerHTML = value;
+
+    } else {
+        alert('You do not have enough money!');
+    }
+}
+
+/**
  * Input target ID of div; <img> alt data from target is stored in an array for later sum calculations.
  * @returns an array of all cards held in hand (via their altText in HTML).
  */
