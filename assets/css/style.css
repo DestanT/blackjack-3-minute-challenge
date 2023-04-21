@@ -44,11 +44,13 @@ h3 {
 .actions-div {
     font-size: 30px;
     font-weight: bold;
+    height: 55px;
 }
 
 .actions-div>button {
     font-size: 25px;
-    margin: 10px;
+    padding: 2px;
+    margin: 5px;
 }
 
 .card-area {
@@ -191,8 +193,7 @@ h3 {
     }
 
     .card-area {
-        height: 206px;
-        /* 190px (card height) + 6px (border) + 10px (margin) */
+        height: 225px;
     }
 
     /* Images */
@@ -355,7 +356,7 @@ h3 {
     }
 
     .card-area {
-        height: 155px;
+        height: 170px;
     }
 
     /* Images */
