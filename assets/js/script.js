@@ -29,6 +29,7 @@ const soundFlipCard = document.getElementById('flip-card');
 const soundWinHand = document.getElementById('win-hand');
 const soundLoseHand = document.getElementById('lose-hand');
 const soundShuffleDeck = document.getElementById('shuffle-deck');
+const soundPlaceBet = document.getElementById('poker-chip-single');
 
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
@@ -373,6 +374,8 @@ function addBetRed() {
         cashSpan.innerHTML = cashValue;
         betSpan.innerHTML = betValue;
 
+        soundPlaceBet.play();
+
     } else {
         alert('You do not have enough money!');
     }
@@ -396,6 +399,8 @@ function addBetBlue() {
         cashSpan.innerHTML = cashValue;
         betSpan.innerHTML = betValue;
 
+        soundPlaceBet.play();
+
     } else {
         alert('You do not have enough money!');
     }
@@ -418,6 +423,8 @@ function addBetBlack() {
         betValue += 50;
         cashSpan.innerHTML = cashValue;
         betSpan.innerHTML = betValue;
+
+        soundPlaceBet.play();
 
     } else {
         alert('You do not have enough money!');
