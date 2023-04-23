@@ -1,28 +1,3 @@
-// Check to see if console.log are needed to be there? - tutor question - in decideWinner() for example?
-// search for and ADJUST/DELETE all 'NOTE' comments!
-// add sound:
-// - bust-hand
-// - poker-chip-single
-// - poker-chip-winnings
-
-// add effects:
-// - cards moving from draw deck to player + dealer
-// - chips moving to bet stack and back
-// - to decideWinner when its a draw
-
-// add split function
-// hide all buttons until 'start' is pressed
-// remaining cards in deck - shuffle function at certain cards left
-// continue play after first hand finishes - incorporate timer!
-// have a fail condition - when losing all money 
-
-// stack cards on top of eachother in mobile and tablet view - CSS
-// CSS - for media query 768 and below - leaderboard and game rules is hidden - display in elsewhere!
-
-// known issue:
-// - when start game click before anything else is touched on screen; sound effects dont work - maybe mute them to begin with?
-// - the start button is covered by the div above (iphone) - makes the start button hard to click!
-
 // Global Variables
 let gameDeck = [];
 
@@ -42,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const startButton = document.getElementById('start');
     startButton.addEventListener('pointerdown', startGame);
 
-    const dealNewHandButton = document.getElementById('deal');
-    dealNewHandButton.addEventListener('pointerdown', dealNewHand);
-    dealNewHandButton.classList.add('display-on-off');
+    const dealNewRoundButton = document.getElementById('deal');
+    dealNewRoundButton.addEventListener('pointerdown', dealNewRound);
+    dealNewRoundButton.classList.add('display-on-off');
 
     const hitButton = document.getElementById('hit');
     hitButton.addEventListener('pointerdown', hit);
@@ -105,13 +80,13 @@ function adjustButtonVisibility(id, addRemove, cssClassName) {
 function startGame() {
 
     adjustButtonVisibility('start', 'add', 'display-on-off') // Hidden
+    adjustButtonVisibility('deal', 'add', 'display-on-off'); // Hidden
 
     makeFreshDeck();
     shuffleDeck(gameDeck);
     startCountdownTimer();
 
-    dealNewHand();
-    adjustButtonVisibility('deal', 'add', 'display-on-off'); // Hidden
+    dealNewRound();
 
     console.log('Game Running!');
 }
@@ -187,6 +162,36 @@ function startCountdownTimer() {
 }
 
 /**
+ * Deals 2 cards to the dealer and the player.
+ * Dealer's first card is facedown.
+ * (Initially checks if deck has enough cards for the new round)
+ */
+function dealNewRound() {
+
+    // If gameDeck < 15; shuffle new deck.
+    let remainingCards = gameDeck.length;
+    if (remainingCards < 15) {
+        makeFreshDeck();
+        shuffleDeck(gameDeck);
+    }
+
+    turnCardOver(dealCard('dealer'));
+    dealCard('player');
+    dealCard('dealer');
+    dealCard('player');
+
+    // Checks if player can split by comparing image alt data;
+    // If true unhides the 'split' button.
+    if (checkCanSplit(getImageAltData('player-cards'))) {
+        adjustButtonVisibility('split', 'remove', 'hidden'); // Visible
+    }
+
+    adjustButtonVisibility('deal', 'add', 'display-on-off') // Hidden
+    adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
+    adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
+}
+
+/**
  * Deals a card to the hand specified - use either 'dealer' or 'player'.
  * Also checks to see how many cards each hand is holding; stacks cards in html when > 4.
  */
@@ -253,36 +258,6 @@ function turnCardOver() {
         storeFirstCard = altText;
         return storeFirstCard;
     }
-}
-
-/**
- * Deals 2 cards to the dealer and the player.
- * Dealer's first card is facedown.
- * (Initially checks if deck has enough cards for the new round)
- */
-function dealNewHand() {
-
-    // If gameDeck < 15; shuffle new deck.
-    let remainingCards = gameDeck.length;
-    if (remainingCards < 15) {
-        makeFreshDeck();
-        shuffleDeck(gameDeck);
-    }
-
-    turnCardOver(dealCard('dealer'));
-    dealCard('player');
-    dealCard('dealer');
-    dealCard('player');
-
-    // Checks if player can split by comparing image alt data;
-    // If true unhides the 'split' button.
-    if (checkCanSplit(getImageAltData('player-cards'))) {
-        adjustButtonVisibility('split', 'remove', 'hidden'); // Visible
-    }
-
-    adjustButtonVisibility('deal', 'add', 'display-on-off') // Hidden
-    adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
-    adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
 }
 
 /**
@@ -402,9 +377,14 @@ function dealersTurn() {
 }
 
 /**
- * Adds a $5 bet value.
+ * Once the dealer has also had its turn; this function calculates 
  */
-function addBetRed() {
+function decideWinner() {
+
+    const dealerSum = handValues(getImageAltData('dealer-cards')).value;
+    const playerSum = handValues(getImageAltData('player-cards')).value;
+
+    const winLossText = document.getElementById('win-loss-text');
 
     const cashSpan = document.getElementById('cash');
     const betSpan = document.getElementById('bet-value');
@@ -412,67 +392,119 @@ function addBetRed() {
     let cashValue = parseInt(cashSpan.innerHTML);
     let betValue = parseInt(betSpan.innerHTML);
 
+    if (playerSum > 21) {
+        console.log('Dealer wins!');
 
-    if (cashValue >= 5) {
-        cashValue -= 5;
-        betValue += 5;
-        cashSpan.innerHTML = cashValue;
-        betSpan.innerHTML = betValue;
+        cashSpan.innerHTML = (cashValue - betValue);
 
-        soundPlaceBet.play();
+        winLossText.innerHTML = 'You lose.'
+        winLossText.setAttribute('class', 'red-font');
+        soundLoseHand.play();
+    } else if (dealerSum > playerSum && !(dealerSum > 21)) {
+        console.log('Dealer wins!');
+
+        cashSpan.innerHTML = (cashValue - betValue);
+
+        winLossText.innerHTML = 'You lose.'
+        winLossText.setAttribute('class', 'red-font');
+        soundLoseHand.play();
+    } else if (dealerSum > 21 && !(playerSum > 21)) {
+        console.log('Player wins!');
+
+        cashSpan.innerHTML = (cashValue + (betValue * 2));
+
+        winLossText.innerHTML = 'You won!'
+        winLossText.setAttribute('class', 'green-font');
+        soundWinHand.play();
+    } else if (dealerSum < playerSum) {
+        console.log('Player wins!');
+
+        cashSpan.innerHTML = (cashValue + (betValue * 2));
+
+        winLossText.innerHTML = 'You won!'
+        winLossText.setAttribute('class', 'green-font');
+        soundWinHand.play();
+    } else if (dealerSum === playerSum) {
+        console.log("It's a Draw");
+        winLossText.innerHTML = 'Draw!'
+    } else {
+        throw 'undefined score system';
+    }
+
+    // Displays win/loss text for 1000ms/1s
+    adjustButtonVisibility('win-loss-text', 'remove', 'hidden'); // Visibile
+    setTimeout(function () {
+        adjustButtonVisibility('win-loss-text', 'add', 'hidden'); // Hidden
+    }, 1000);
+
+    // Allows for some breathing time before player is expected to deal new hand.
+    setTimeout(function () {
+        endOfRound();
+        resetScoreHtml();
+    }, 1500);
+}
+
+/**
+ * Loops through both hands to see number of cards, then removes all card; clearing both sides of the table.
+ * Then checks to see if player has a split card on the side or not; plays split card if true.
+ */
+function endOfRound() {
+
+    const bothHands = document.getElementsByClassName('dealt-cards');
+
+    for (let h = (bothHands.length); h > 0; h--) {
+        const allCards = bothHands[h - 1].children; // -1 takes into account array [0]
+        for (let c = (allCards.length); c > 0; c--) {
+            allCards[c - 1].remove(); // -1 takes into account array [0]
+        }
+    }
+
+    // If player has a split card on the side, puts that card into play after clearing table.
+    if (checkIfSplit() === true) {
+
+        const splitCard = document.getElementById('split-hand').children[0];
+        const altText = splitCard.alt;
+
+        splitCard.remove();
+
+        const cardImage = document.createElement('img');
+        cardImage.src = 'assets/images/' + altText + '.png';
+        cardImage.alt = `${altText}`;
+
+        document.getElementById('player-cards').append(cardImage);
+
+        // Deals new hand to dealer
+        turnCardOver(dealCard('dealer'));
+        dealCard('dealer');
+
+        // Slight delay necessary to have cards in place, before update can take place.
+        setTimeout(function () {
+            updateHtml('player');
+            updateHtml('dealer');
+        }, 100);
+
+        adjustButtonVisibility('side-bet-span', 'add', 'hidden'); // Hidden
+        adjustButtonVisibility('side-bet-value', 'add', 'hidden'); // Hidden
+        adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
+        adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
 
     } else {
-        alert('You do not have enough money!');
+        adjustButtonVisibility('deal', 'remove', 'display-on-off'); // Visible
     }
 }
 
 /**
- * Adds a $10 bet value.
+ * Checks to see if player has a 'split' card on the side.
+ * @returns true or false
  */
-function addBetBlue() {
+function checkIfSplit() {
 
-    const cashSpan = document.getElementById('cash');
-    const betSpan = document.getElementById('bet-value');
+    const splitCard = document.getElementById('split-hand').children[0];
 
-    let cashValue = parseInt(cashSpan.innerHTML);
-    let betValue = parseInt(betSpan.innerHTML);
-
-
-    if (cashValue >= 10) {
-        cashValue -= 10;
-        betValue += 10;
-        cashSpan.innerHTML = cashValue;
-        betSpan.innerHTML = betValue;
-
-        soundPlaceBet.play();
-
+    if (splitCard === undefined) {
+        return false;
     } else {
-        alert('You do not have enough money!');
-    }
-}
-
-/**
- * Adds a $50 bet value.
- */
-function addBetBlack() {
-
-    const cashSpan = document.getElementById('cash');
-    const betSpan = document.getElementById('bet-value');
-
-    let cashValue = parseInt(cashSpan.innerHTML);
-    let betValue = parseInt(betSpan.innerHTML);
-
-
-    if (cashValue >= 50) {
-        cashValue -= 50;
-        betValue += 50;
-        cashSpan.innerHTML = cashValue;
-        betSpan.innerHTML = betValue;
-
-        soundPlaceBet.play();
-
-    } else {
-        alert('You do not have enough money!');
+        return true;
     }
 }
 
@@ -563,14 +595,9 @@ function resetScoreHtml() {
 }
 
 /**
- * Once the dealer has also had its turn; this function calculates 
+ * Adds a $5 bet value.
  */
-function decideWinner() {
-
-    const dealerSum = handValues(getImageAltData('dealer-cards')).value;
-    const playerSum = handValues(getImageAltData('player-cards')).value;
-
-    const winLossText = document.getElementById('win-loss-text');
+function addBetRed() {
 
     const cashSpan = document.getElementById('cash');
     const betSpan = document.getElementById('bet-value');
@@ -578,119 +605,67 @@ function decideWinner() {
     let cashValue = parseInt(cashSpan.innerHTML);
     let betValue = parseInt(betSpan.innerHTML);
 
-    if (playerSum > 21) {
-        console.log('Dealer wins!');
 
-        cashSpan.innerHTML = (cashValue - betValue);
+    if (cashValue >= 5) {
+        cashValue -= 5;
+        betValue += 5;
+        cashSpan.innerHTML = cashValue;
+        betSpan.innerHTML = betValue;
 
-        winLossText.innerHTML = 'You lose.'
-        winLossText.setAttribute('class', 'red-font');
-        soundLoseHand.play();
-    } else if (dealerSum > playerSum && !(dealerSum > 21)) {
-        console.log('Dealer wins!');
+        soundPlaceBet.play();
 
-        cashSpan.innerHTML = (cashValue - betValue);
-
-        winLossText.innerHTML = 'You lose.'
-        winLossText.setAttribute('class', 'red-font');
-        soundLoseHand.play();
-    } else if (dealerSum > 21 && !(playerSum > 21)) {
-        console.log('Player wins!');
-
-        cashSpan.innerHTML = (cashValue + (betValue * 2));
-
-        winLossText.innerHTML = 'You won!'
-        winLossText.setAttribute('class', 'green-font');
-        soundWinHand.play();
-    } else if (dealerSum < playerSum) {
-        console.log('Player wins!');
-
-        cashSpan.innerHTML = (cashValue + (betValue * 2));
-
-        winLossText.innerHTML = 'You won!'
-        winLossText.setAttribute('class', 'green-font');
-        soundWinHand.play();
-    } else if (dealerSum === playerSum) {
-        console.log("It's a Draw");
-        winLossText.innerHTML = 'Draw!'
     } else {
-        throw 'undefined score system';
-    }
-
-    // Displays win/loss text for 1000ms/1s
-    adjustButtonVisibility('win-loss-text', 'remove', 'hidden'); // Visibile
-    setTimeout(function () {
-        adjustButtonVisibility('win-loss-text', 'add', 'hidden'); // Hidden
-    }, 1000);
-
-    // Allows for some breathing time before player is expected to deal new hand.
-    setTimeout(function () {
-        endRound();
-        resetScoreHtml();
-    }, 1500);
-}
-
-/**
- * Checks to see if player has a 'split' card on the side.
- * @returns true or false
- */
-function checkIfSplit() {
-
-    const splitCard = document.getElementById('split-hand').children[0];
-
-    if (splitCard === undefined) {
-        return false;
-    } else {
-        return true;
+        alert('You do not have enough money!');
     }
 }
 
 /**
- * Loops through both hands to see number of cards, then removes all card; clearing both sides of the table.
- * Then checks to see if player has a split card on the side or not; plays split card if true.
+ * Adds a $10 bet value.
  */
-function endRound() {
+function addBetBlue() {
 
-    const bothHands = document.getElementsByClassName('dealt-cards');
+    const cashSpan = document.getElementById('cash');
+    const betSpan = document.getElementById('bet-value');
 
-    for (let h = (bothHands.length); h > 0; h--) {
-        const allCards = bothHands[h - 1].children; // -1 takes into account array [0]
-        for (let c = (allCards.length); c > 0; c--) {
-            allCards[c - 1].remove(); // -1 takes into account array [0]
-        }
-    }
+    let cashValue = parseInt(cashSpan.innerHTML);
+    let betValue = parseInt(betSpan.innerHTML);
 
-    // If player has a split card on the side, puts that card into play after clearing table.
-    if (checkIfSplit() === true) {
 
-        const splitCard = document.getElementById('split-hand').children[0];
-        const altText = splitCard.alt;
+    if (cashValue >= 10) {
+        cashValue -= 10;
+        betValue += 10;
+        cashSpan.innerHTML = cashValue;
+        betSpan.innerHTML = betValue;
 
-        splitCard.remove();
-
-        const cardImage = document.createElement('img');
-        cardImage.src = 'assets/images/' + altText + '.png';
-        cardImage.alt = `${altText}`;
-
-        document.getElementById('player-cards').append(cardImage);
-
-        // Deals new hand to dealer
-        turnCardOver(dealCard('dealer'));
-        dealCard('dealer');
-
-        // Slight delay necessary to have cards in place, before update can take place.
-        setTimeout(function () {
-            updateHtml('player');
-            updateHtml('dealer');
-        }, 100);
-
-        adjustButtonVisibility('side-bet-span', 'add', 'hidden'); // Hidden
-        adjustButtonVisibility('side-bet-value', 'add', 'hidden'); // Hidden
-        adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
-        adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
+        soundPlaceBet.play();
 
     } else {
-        adjustButtonVisibility('deal', 'remove', 'display-on-off'); // Visible
+        alert('You do not have enough money!');
+    }
+}
+
+/**
+ * Adds a $50 bet value.
+ */
+function addBetBlack() {
+
+    const cashSpan = document.getElementById('cash');
+    const betSpan = document.getElementById('bet-value');
+
+    let cashValue = parseInt(cashSpan.innerHTML);
+    let betValue = parseInt(betSpan.innerHTML);
+
+
+    if (cashValue >= 50) {
+        cashValue -= 50;
+        betValue += 50;
+        cashSpan.innerHTML = cashValue;
+        betSpan.innerHTML = betValue;
+
+        soundPlaceBet.play();
+
+    } else {
+        alert('You do not have enough money!');
     }
 }
 
