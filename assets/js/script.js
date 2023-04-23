@@ -584,6 +584,7 @@ function decideWinner() {
         cashSpan.innerHTML = (cashValue - betValue);
 
         winLossText.innerHTML = 'You lose.'
+        winLossText.setAttribute('class', 'red-font');
         soundLoseHand.play();
     } else if (dealerSum > playerSum && !(dealerSum > 21)) {
         console.log('Dealer wins!');
@@ -591,6 +592,7 @@ function decideWinner() {
         cashSpan.innerHTML = (cashValue - betValue);
 
         winLossText.innerHTML = 'You lose.'
+        winLossText.setAttribute('class', 'red-font');
         soundLoseHand.play();
     } else if (dealerSum > 21 && !(playerSum > 21)) {
         console.log('Player wins!');
@@ -598,6 +600,7 @@ function decideWinner() {
         cashSpan.innerHTML = (cashValue + (betValue * 2));
 
         winLossText.innerHTML = 'You won!'
+        winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
     } else if (dealerSum < playerSum) {
         console.log('Player wins!');
@@ -605,6 +608,7 @@ function decideWinner() {
         cashSpan.innerHTML = (cashValue + (betValue * 2));
 
         winLossText.innerHTML = 'You won!'
+        winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
     } else if (dealerSum === playerSum) {
         console.log("It's a Draw");
