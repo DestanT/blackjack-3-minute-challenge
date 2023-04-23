@@ -627,9 +627,9 @@ function decideWinner() {
  */
 function checkIfSplit() {
 
-    const sideTable = document.getElementById('split-hand');
-    
-    if (sideTable !== undefined) {
+    const splitCard = document.getElementById('split-hand').children[0];
+
+    if (splitCard === undefined) {
         return false;
     } else {
         return true;
@@ -664,8 +664,20 @@ function clearTable() {
 
         document.getElementById('player-cards').append(cardImage);
 
+        // Deals new hand to dealer
+        turnCardOver(dealCard('dealer'));
+        dealCard('dealer');
+
+        // Slight delay necessary to have cards in place, before update can take place.
+        setTimeout(function () {
+            updateHtml('player');
+            updateHtml('dealer');
+        }, 100);
+
         adjustButtonVisibility('side-bet-span', 'add', 'hidden'); // Hidden
         adjustButtonVisibility('side-bet-value', 'add', 'hidden'); // Hidden
+        adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
+        adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
 
     } else {
         adjustButtonVisibility('deal', 'remove', 'display-on-off'); // Visible
