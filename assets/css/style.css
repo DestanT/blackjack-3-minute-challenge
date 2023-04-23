@@ -44,6 +44,14 @@ h3 {
     font-family: 'Mukta Vaani', sans-serif;
 }
 
+.green-font {
+    color: green;
+}
+
+.red-font {
+    color: red;
+}
+
 /* Card Play Area */
 .rules-leaderboard {
     border: 2px solid black;
