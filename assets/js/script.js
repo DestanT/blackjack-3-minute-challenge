@@ -175,6 +175,8 @@ function dealNewRound() {
         shuffleDeck(gameDeck);
     }
 
+    toggleGrayscale(); // Turns poker chips on for betting.
+
     turnCardOver(dealCard('dealer'));
     dealCard('player');
     dealCard('dealer');
@@ -362,6 +364,7 @@ function dealersTurn() {
     adjustButtonVisibility('hit', 'add', 'hidden'); // Hidden
     adjustButtonVisibility('stand', 'add', 'hidden'); // Hidden
 
+    toggleGrayscale(); // Turns poker chips off - no betting after 'stand'
     turnCardOver();
 
     let dealerSum = handValues(getImageAltData('dealer-cards')).value;
@@ -461,6 +464,8 @@ function endOfRound() {
 
     // If player has a split card on the side, puts that card into play after clearing table.
     if (checkIfSplit() === true) {
+
+        toggleGrayscale(); // Re-activates poker chips
 
         const splitCard = document.getElementById('split-hand').children[0];
         const altText = splitCard.alt;
