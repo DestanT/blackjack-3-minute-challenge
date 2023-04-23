@@ -84,6 +84,27 @@ function toggleButtonVisibility(id, cssClassName) {
     }
 }
 
+function adjustButtonVisibility(id, addRemove, cssClassName) {
+
+    const button = document.getElementById(id);
+
+    if (addRemove === 'add') {
+        if (button.classList.contains(cssClassName) === true) {
+            return;
+        } else {
+            button.classList.add(cssClassName);
+        }
+    } else if (addRemove === 'remove') {
+        if (button.classList.contains(cssClassName) === true) {
+            button.classList.remove(cssClassName);
+        } else {
+            return;
+        }
+    } else {
+        throw new Error('function paramters not in use')
+    }
+}
+
 /**
  * Start game function.
  */
@@ -349,7 +370,8 @@ function hit() {
         playerSum = handValues(getImageAltData('player-cards')).value;
         if (playerSum > 21) {
             soundBustHand.play();
-            toggleButtonVisibility('hit', 'hidden');
+            // toggleButtonVisibility('hit', 'hidden');
+            adjustButtonVisibility('hit', 'add', 'hidden');
         }
 
     } else if (playerSum === 21) {
@@ -364,7 +386,8 @@ function hit() {
  */
 function dealersTurn() {
 
-    toggleButtonVisibility('hit', 'hidden');
+    // toggleButtonVisibility('hit', 'hidden');
+    adjustButtonVisibility('hit', 'add', 'hidden');
     toggleButtonVisibility('stand', 'hidden');
     turnCardOver();
 
