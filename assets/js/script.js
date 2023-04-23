@@ -309,20 +309,20 @@ function splitHand() {
     if (cashValue >= betValue) {
 
         sideBet.innerHTML = betValue;
-        cashSpan.innerHTML = (cashValue-betValue);
-        
+        cashSpan.innerHTML = (cashValue - betValue);
+
         soundPlaceBet.play();
         soundFlipCard.play();
-        
+
         let firstCard = document.getElementById('player-cards').children[0];
         let altText = firstCard.alt
-        
+
         firstCard.remove();
-        
+
         let cardImage = document.createElement('img');
         cardImage.src = 'assets/images/' + altText + '.png';
         cardImage.alt = `${altText}`;
-        
+
         document.getElementById('split-hand').append(cardImage);
 
         toggleButtonVisibility('side-bet-span', 'hidden'); // On
@@ -345,16 +345,16 @@ function hit() {
     if (playerSum <= 20) {
 
         dealCard('player');
-        handValues(getImageAltData('player-cards')).value;
-        updateHtml('player');
+
+        playerSum = handValues(getImageAltData('player-cards')).value;
+        if (playerSum > 21) {
+            soundBustHand.play();
+            toggleButtonVisibility('hit', 'hidden');
+        }
 
     } else if (playerSum === 21) {
 
         alert('You have 21, the best score you can get! Press "Stand" to continue!')
-
-    } else {
-
-        alert('Your hand is bust, you cannot hit!');
     }
 }
 
@@ -390,8 +390,8 @@ function addBetRed() {
 
     let cashValue = parseInt(cashSpan.innerHTML);
     let betValue = parseInt(betSpan.innerHTML);
-    
-    
+
+
     if (cashValue >= 5) {
         cashValue -= 5;
         betValue += 5;
@@ -415,8 +415,8 @@ function addBetBlue() {
 
     let cashValue = parseInt(cashSpan.innerHTML);
     let betValue = parseInt(betSpan.innerHTML);
-    
-    
+
+
     if (cashValue >= 10) {
         cashValue -= 10;
         betValue += 10;
@@ -440,8 +440,8 @@ function addBetBlack() {
 
     let cashValue = parseInt(cashSpan.innerHTML);
     let betValue = parseInt(betSpan.innerHTML);
-    
-    
+
+
     if (cashValue >= 50) {
         cashValue -= 50;
         betValue += 50;
@@ -550,7 +550,7 @@ function decideWinner() {
     const playerSum = handValues(getImageAltData('player-cards')).value;
 
     const winLossText = document.getElementById('win-loss-text');
-    
+
     const cashSpan = document.getElementById('cash');
     const betSpan = document.getElementById('bet-value');
 
