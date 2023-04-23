@@ -650,12 +650,26 @@ function clearTable() {
         }
     }
 
+    // If player has a split card on the side, puts that card into play after clearing table.
     if (checkIfSplit() === true) {
-        console.log('split')
+
+        const splitCard = document.getElementById('split-hand').children[0];
+        const altText = splitCard.alt;
+
+        splitCard.remove();
+
+        const cardImage = document.createElement('img');
+        cardImage.src = 'assets/images/' + altText + '.png';
+        cardImage.alt = `${altText}`;
+
+        document.getElementById('player-cards').append(cardImage);
+
+        adjustButtonVisibility('side-bet-span', 'add', 'hidden'); // Hidden
+        adjustButtonVisibility('side-bet-value', 'add', 'hidden'); // Hidden
+
     } else {
-        console.log('not split')
+        adjustButtonVisibility('deal', 'remove', 'display-on-off'); // Visible
     }
-    adjustButtonVisibility('deal', 'remove', 'display-on-off'); // Visible
 }
 
 function submitScore() {
