@@ -85,6 +85,10 @@ h3 {
     position: relative;
 }
 
+#cash-div>span {
+    font-size: xx-large;
+}
+
 /* Images */
 .dealt-cards>img {
     border: 2px solid black;
