@@ -340,6 +340,11 @@ function splitHand() {
 
         document.getElementById('split-hand').append(cardImage);
 
+        // Slight delay necessary to have cards in place, before update can take place.
+        setTimeout(function () {
+            updateHtml('player');
+        }, 100);
+
         adjustButtonVisibility('side-bet-span', 'remove', 'hidden'); // Visible
         adjustButtonVisibility('side-bet-value', 'remove', 'hidden'); // Visible
         adjustButtonVisibility('split', 'add', 'hidden'); // Hidden
