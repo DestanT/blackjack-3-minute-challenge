@@ -119,6 +119,11 @@ h3 {
     height: 100px;
 }
 
+.grayscale {
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
 /* Cards Stacking Horizontally */
 /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
 .card-image1 {
