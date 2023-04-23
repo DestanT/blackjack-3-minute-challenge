@@ -622,6 +622,21 @@ function decideWinner() {
 }
 
 /**
+ * Checks to see if player has a 'split' card on the side.
+ * @returns true or false
+ */
+function checkIfSplit() {
+
+    const sideTable = document.getElementById('split-hand');
+    
+    if (sideTable !== undefined) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
  * Loops through both hands to see number of cards, then removes all card; clearing both sides of the table.
  */
 function clearTable() {
