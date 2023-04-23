@@ -616,7 +616,7 @@ function decideWinner() {
 
     // Allows for some breathing time before player is expected to deal new hand.
     setTimeout(function () {
-        clearTable();
+        endRound();
         resetScoreHtml();
     }, 1500);
 }
@@ -638,8 +638,9 @@ function checkIfSplit() {
 
 /**
  * Loops through both hands to see number of cards, then removes all card; clearing both sides of the table.
+ * Then checks to see if player has a split card on the side or not; plays split card if true.
  */
-function clearTable() {
+function endRound() {
 
     const bothHands = document.getElementsByClassName('dealt-cards');
 
