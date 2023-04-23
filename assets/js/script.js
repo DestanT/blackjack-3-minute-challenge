@@ -669,6 +669,38 @@ function addBetBlack() {
     }
 }
 
+/**
+ * Toggles the poker chips from coloured to grayscale and back.
+ * Removes eventListeners and adds them back respectively.
+ */
+function toggleGrayscale() {
+
+    const redChip = document.getElementById('red-chip');
+    const blueChip = document.getElementById('blue-chip');
+    const blackChip = document.getElementById('black-chip');
+    
+    if (redChip.classList.contains('grayscale') === true) {
+
+        redChip.classList.remove('grayscale');
+        blueChip.classList.remove('grayscale');
+        blackChip.classList.remove('grayscale');
+
+        redChip.addEventListener('pointerdown', addBetRed);
+        blueChip.addEventListener('pointerdown', addBetBlue);
+        blackChip.addEventListener('pointerdown', addBetBlack);
+
+    } else {
+
+        redChip.classList.add('grayscale');
+        blueChip.classList.add('grayscale');
+        blackChip.classList.add('grayscale');
+
+        redChip.removeEventListener('pointerdown', addBetRed);
+        blueChip.removeEventListener('pointerdown', addBetBlue);
+        blackChip.removeEventListener('pointerdown', addBetBlack);
+    }
+}
+
 function submitScore() {
 
     console.log('Submitting Score');
