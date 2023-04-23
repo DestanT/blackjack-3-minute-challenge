@@ -110,9 +110,9 @@ h3 {
 }
 
 .poker-chips-div>img {
-    margin: 5px;
-    width: 140px;
-    height: 140px;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
 }
 
 /* Cards Stacking Horizontally */
@@ -167,11 +167,6 @@ h3 {
         /* height and width given maintain original 255px x 380px ratio */
         width: 102px;
         height: 152px;
-    }
-
-    .poker-chips-div>img {
-        width: 120px;
-        height: 120px;
     }
 
     /* Cards Stacking Horizontally */
@@ -235,8 +230,8 @@ h3 {
     }
 
     .poker-chips-div>img {
-        width: 110px;
-        height: 110px;
+        width: 90px;
+        height: 90px;
     }
 
     /* Cards Stacking Horizontally */
@@ -341,8 +336,8 @@ h3 {
     }
 
     .poker-chips-div>img {
-        width: 90px;
-        height: 90px;
+        width: 75px;
+        height: 75px;
     }
 
     /* Cards Stacking Horizontally */
@@ -399,11 +394,6 @@ h3 {
         /* height and width given maintain original 255px x 380px ratio */
         width: 56.1px;
         height: 83.6px;
-    }
-
-    .poker-chips-div>img {
-        width: 75px;
-        height: 75px;
     }
 
     /* Cards Stacking Horizontally */
