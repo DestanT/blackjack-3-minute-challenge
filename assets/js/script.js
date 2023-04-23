@@ -70,20 +70,14 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 /**
- * Toggles button visibility by adding/removing CSS class.
- * @param {button} id 
+ * Hides or unhides elements by adding a css class to them.
+ * If element is already hidden and the function is instructed to 'add'
+ * the 'hidden' css class - the command is simply ignored.
+ * @param {'getElementById'} id 
+ * @param {"'add' or 'remove'"} addRemove 
+ * @param {"'hidden' or 'display-on-off'"} cssClassName 
+ * @returns 
  */
-function toggleButtonVisibility(id, cssClassName) {
-
-    let button = document.getElementById(id);
-
-    if (button.classList.contains(cssClassName)) {
-        button.classList.remove(cssClassName);
-    } else {
-        button.classList.add(cssClassName);
-    }
-}
-
 function adjustButtonVisibility(id, addRemove, cssClassName) {
 
     const button = document.getElementById(id);
@@ -110,14 +104,14 @@ function adjustButtonVisibility(id, addRemove, cssClassName) {
  */
 function startGame() {
 
-    toggleButtonVisibility('start', 'display-on-off') // Off
+    adjustButtonVisibility('start', 'add', 'display-on-off') // Hidden
 
     makeFreshDeck();
     shuffleDeck(gameDeck);
     startCountdownTimer();
 
     dealNewHand();
-    toggleButtonVisibility('deal', 'display-on-off'); // Off
+    adjustButtonVisibility('deal', 'add', 'display-on-off'); // Hidden
 
     console.log('Game Running!');
 }
@@ -283,12 +277,12 @@ function dealNewHand() {
     // Checks if player can split by comparing image alt data;
     // If true unhides the 'split' button.
     if (checkCanSplit(getImageAltData('player-cards'))) {
-        toggleButtonVisibility('split', 'hidden');
+        adjustButtonVisibility('split', 'remove', 'hidden'); // Visible
     }
 
-    toggleButtonVisibility('deal', 'display-on-off') // Off
-    toggleButtonVisibility('hit', 'hidden'); // On
-    toggleButtonVisibility('stand', 'hidden'); // On
+    adjustButtonVisibility('deal', 'add', 'display-on-off') // Hidden
+    adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
+    adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
 }
 
 /**
@@ -346,9 +340,9 @@ function splitHand() {
 
         document.getElementById('split-hand').append(cardImage);
 
-        toggleButtonVisibility('side-bet-span', 'hidden'); // On
-        toggleButtonVisibility('side-bet-value', 'hidden'); // On
-        toggleButtonVisibility('split', 'hidden'); // Off
+        adjustButtonVisibility('side-bet-span', 'remove', 'hidden'); // Visible
+        adjustButtonVisibility('side-bet-value', 'remove', 'hidden'); // Visible
+        adjustButtonVisibility('split', 'add', 'hidden'); // Hidden
 
     } else {
         alert('Sorry! You do not have enough cash to match your original bet!');
@@ -370,8 +364,7 @@ function hit() {
         playerSum = handValues(getImageAltData('player-cards')).value;
         if (playerSum > 21) {
             soundBustHand.play();
-            // toggleButtonVisibility('hit', 'hidden');
-            adjustButtonVisibility('hit', 'add', 'hidden');
+            adjustButtonVisibility('hit', 'add', 'hidden'); // Hidden
         }
 
     } else if (playerSum === 21) {
@@ -386,9 +379,9 @@ function hit() {
  */
 function dealersTurn() {
 
-    // toggleButtonVisibility('hit', 'hidden');
-    adjustButtonVisibility('hit', 'add', 'hidden');
-    toggleButtonVisibility('stand', 'hidden');
+    adjustButtonVisibility('hit', 'add', 'hidden'); // Hidden
+    adjustButtonVisibility('stand', 'add', 'hidden'); // Hidden
+
     turnCardOver();
 
     let dealerSum = handValues(getImageAltData('dealer-cards')).value;
@@ -616,9 +609,9 @@ function decideWinner() {
     }
 
     // Displays win/loss text for 1000ms/1s
-    toggleButtonVisibility('win-loss-text', 'hidden');
+    adjustButtonVisibility('win-loss-text', 'remove', 'hidden'); // Visibile
     setTimeout(function () {
-        toggleButtonVisibility('win-loss-text', 'hidden');
+        adjustButtonVisibility('win-loss-text', 'add', 'hidden'); // Hidden
     }, 1000);
 
     // Allows for some breathing time before player is expected to deal new hand.
@@ -641,7 +634,7 @@ function clearTable() {
             allCards[c - 1].remove(); // -1 takes into account array [0]
         }
     }
-    toggleButtonVisibility('deal', 'display-on-off');
+    adjustButtonVisibility('deal', 'remove', 'display-on-off'); // Visible
 }
 
 function submitScore() {
