@@ -630,9 +630,9 @@ function checkIfSplit() {
     const sideTable = document.getElementById('split-hand');
     
     if (sideTable !== undefined) {
-        return true;
-    } else {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -648,6 +648,12 @@ function clearTable() {
         for (let c = (allCards.length); c > 0; c--) {
             allCards[c - 1].remove(); // -1 takes into account array [0]
         }
+    }
+
+    if (checkIfSplit() === true) {
+        console.log('split')
+    } else {
+        console.log('not split')
     }
     adjustButtonVisibility('deal', 'remove', 'display-on-off'); // Visible
 }
