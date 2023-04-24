@@ -1,108 +1,109 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Blackjack: 5 Minute Challenge
 
-Welcome Destan Tezel,
+## Table of Contents
+1. [Strategy: The Who and Why](#strategy-the-who-and-why)
+2. [Scope: What Features Are Required](#scope-what-features-are-required)
+3. [Structure: Shaping The Site](#structure-shaping-the-site)
+4. [Skeleton: The View For The User](#skeleton-the-view-for-the-user)
+5. [Testing, Struggles, and Future Features](#testing-struggles-and-future-features)
+    1. [Testing](#testing)
+    2. [Bugs/Challenges](#bugschallenges)
+6. [Feature Ideas For The Future](#feature-ideas-for-the-future)
+7. [Technologies Used](#technologies-used)
+8. [Deployment](#deployment)
+9. [Development](#development)
+10. [Credits](#credits)
+    1. [Content](#content)
+    2. [Media](#media)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Strategy: The Who and Why
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+This card game is primarily intended for someone who is already quite familiar with the casino game "Blackjack". It does include a link to a set of rules for newer players who are potentially interested in learning to play the game.
 
-## Gitpod Reminders
+The idea of the game is for the player to reach the highest possible score in 5 minutes and compete with other players around the world for a spot on the leaderboard. The speed in which actions happen; such as cards being dealt and win/losses being shown is done to minimize the downtime and maximise speed of the game. Although mobile/tablet play is totally possible, the high-score freaks out there will favour playing on a laptop/desktop with a keyboard as keyboard shortcuts have also been added to help the speed agenda along.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+As a player, I would seek to beat my own high score every time I play. I would also share the game with my friends to add to the competitive nature of the game. The high risk, high reward nature of any casino game drives this attention naturally.
 
-`python3 -m http.server`
+You can view the deployed website by clicking [**here**](https://destant.github.io/blackjack-5-minute-challenge/).
 
-A blue button should appear to click: _Make Public_,
+## Scope: What Features Are Required
 
-Another blue button should appear to click: _Open Browser_.
+## Structure: Shaping The Site
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+## Skeleton: The View For The User
 
-A blue button should appear to click: _Make Public_,
+## Testing, Struggles, and Future Features
 
-Another blue button should appear to click: _Open Browser_.
+### __Testing__
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+__Lighthouse Tests__
 
-To log into the Heroku toolbelt CLI:
+* Pictures!
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+The project was also tested via friends and family; using their native web browsers for responsiveness using these devices/tools:
+  * Monitor 25" screen
+  * Windows laptop 15" screen
+  * iPhone 12 Pro Max
+  * OnePlus 8
+  * iPad Pro 12.9" screen
+  * iPad Pro 11" screen
+  * Chrome dev tools for various other options
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+__Validator Testing__
 
-------
+RECHECK THIS!
 
-## Release History
+- HTML - No errors or warnings to show. Link to report [here](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdestant.github.io%2Fblackjack-5-minute-challenge%2F).
+- CSS - No errors found. Link to report [here](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdestant.github.io%2Fblackjack-5-minute-challenge%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en).
+- JavaScript - No errors found. ADD PICTURE HERE + TALK ABOUT CONFIGURATIONS OF TEST.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### __Bugs/Challenges__
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+__Challenges__
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+__Unfixed Bugs__
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+### __Feature Ideas For The Future__
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+## Technologies Used
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+* HTML
+* CSS
+* JavaScript
+* Node.js
+* Express
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+## Deployment
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+The project was deployed on GitHub pages from the 'Main Branch Source Code' using the following steps:
+* 'git add .', 'git commit" and 'git push' commands were issued one final time when the project was ready and finished.
+* On Github the repository for the project was selected.
+* Click the 'Settings' tab.
+* On the left; select 'Pages'.
+* From here; select the source as 'Main Branch'.
+* Click 'Save'.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+GitHub may take a few minutes to deploy the website so be patient.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+The live link to my project can be found [**here**](https://destant.github.io/blackjack-5-minute-challenge/).
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+## Development
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+Should anyone wish to add to the project, please feel free to open a new workspace within its current state; then commit and push any changes to the main branch. I will review and add them to the main branch as soon as possible. Thank you!
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+Should anyone wish to copy and paste the project - you are also welcome to - please remember to give me some credit!
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+## Credits 
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### __Content__
 
-------
+* The wireframe was made using the [Endless Paper App](https://endlesspaper.app/) on the iPad.
+* To help me find and visualize the font I used [Fontjoy](https://fontjoy.com/).
+* [Stack Overflow](https://stackoverflow.com/), [Mozilla Dev Tools](https://developer.mozilla.org) was referred to a lot for general syntax and whenever I was stuck on a bug for a while - other similar experiences helped me build a better app.
 
-## FAQ about the uptime script
+### __Media__
 
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+* The poker chip images are from [PngAAA](https://www.pngaaa.com/).
+* The playing cards .png are from [Super Dev Resources](https://superdevresources.com/free-playing-cards-set/).
+* The sound effects are from [Epidemic Sound](https://www.epidemicsound.com/).
+* To compress .PNG [CompressPNG](https://compresspng.com/).
