@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const blackChip = document.getElementById('black-chip');
     blackChip.addEventListener('pointerdown', addBetBlack);
-})
+});
 
 /**
  * Hides or unhides elements by adding a css class to them.
@@ -70,7 +70,7 @@ function adjustButtonVisibility(id, addRemove, cssClassName) {
             return;
         }
     } else {
-        throw new Error('function paramters not in use')
+        throw new Error('function paramters not in use');
     }
 }
 
@@ -79,7 +79,7 @@ function adjustButtonVisibility(id, addRemove, cssClassName) {
  */
 function startGame() {
 
-    adjustButtonVisibility('start', 'add', 'display-on-off') // Hidden
+    adjustButtonVisibility('start', 'add', 'display-on-off'); // Hidden
     adjustButtonVisibility('deal', 'add', 'display-on-off'); // Hidden
 
     makeFreshDeck();
@@ -188,7 +188,7 @@ function dealNewRound() {
         adjustButtonVisibility('split', 'remove', 'hidden'); // Visible
     }
 
-    adjustButtonVisibility('deal', 'add', 'display-on-off') // Hidden
+    adjustButtonVisibility('deal', 'add', 'display-on-off'); // Hidden
     adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
     adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
 }
@@ -214,7 +214,7 @@ function dealCard(DealerOrPlayer) {
     // stacks the cards (via CSS) for easier viewing.
     let htmlDiv = document.getElementById(`${DealerOrPlayer}-cards`);
     let images = htmlDiv.getElementsByTagName('img');
-    numberOfImages = images.length;
+    const numberOfImages = images.length;
 
     if (numberOfImages >= 3) {
         for (let i = 0; i < numberOfImages; i++) {
@@ -233,7 +233,7 @@ function turnCardOver() {
     soundFlipCard.play();
 
     let firstCard = document.getElementById('dealer-cards').children[0];
-    let altText = firstCard.alt
+    altText = firstCard.alt;
 
     if (altText === 'back-of-card') {
 
@@ -307,7 +307,7 @@ function splitHand() {
         soundFlipCard.play();
 
         let firstCard = document.getElementById('player-cards').children[0];
-        let altText = firstCard.alt
+        let altText = firstCard.alt;
 
         firstCard.remove();
 
@@ -351,7 +351,7 @@ function hit() {
 
     } else if (playerSum === 21) {
 
-        alert('You have 21, the best score you can get! Press "Stand" to continue!')
+        alert('You have 21, the best score you can get! Press "Stand" to continue!');
     }
 }
 
@@ -400,23 +400,23 @@ function decideWinner() {
 
         cashSpan.innerHTML = (cashValue - betValue);
 
-        winLossText.innerHTML = 'You lose.'
+        winLossText.innerHTML = 'You lose.';
         winLossText.setAttribute('class', 'red-font');
         soundLoseHand.play();
-    } else if (dealerSum > playerSum && !(dealerSum > 21)) {
+    } else if ((dealerSum > playerSum) && (dealerSum <= 21)) {
         console.log('Dealer wins!');
 
         cashSpan.innerHTML = (cashValue - betValue);
 
-        winLossText.innerHTML = 'You lose.'
+        winLossText.innerHTML = 'You lose.';
         winLossText.setAttribute('class', 'red-font');
         soundLoseHand.play();
-    } else if (dealerSum > 21 && !(playerSum > 21)) {
+    } else if ((dealerSum > 21) && (playerSum <= 21)) {
         console.log('Player wins!');
 
         cashSpan.innerHTML = (cashValue + (betValue * 2));
 
-        winLossText.innerHTML = 'You won!'
+        winLossText.innerHTML = 'You won!';
         winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
     } else if (dealerSum < playerSum) {
@@ -424,12 +424,12 @@ function decideWinner() {
 
         cashSpan.innerHTML = (cashValue + (betValue * 2));
 
-        winLossText.innerHTML = 'You won!'
+        winLossText.innerHTML = 'You won!';
         winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
     } else if (dealerSum === playerSum) {
         console.log("It's a Draw");
-        winLossText.innerHTML = 'Draw!'
+        winLossText.innerHTML = 'Draw!';
     } else {
         throw 'undefined score system';
     }
