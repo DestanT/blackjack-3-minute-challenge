@@ -218,7 +218,7 @@ function dealCard(DealerOrPlayer) {
 
     if (numberOfImages >= 3) {
         for (let i = 0; i < numberOfImages; i++) {
-            images[i].setAttribute('class', `card-image${i+1}`);
+            images[i].setAttribute('class', `stack-${numberOfImages}-card-${[i+1]}`);
         }
     }
 }
