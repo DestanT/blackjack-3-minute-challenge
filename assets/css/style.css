@@ -129,8 +129,33 @@ h3 {
     opacity: 0.5;
 }
 
-/* 5 Card Stack Effect */
 /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+/* 4 Card Stack Effect */
+.stack-4-card-1 {
+    position: absolute;
+    top: 0;
+    left: 100px;
+}
+
+.stack-4-card-2 {
+    position: absolute;
+    top: 0;
+    left: 250px;
+}
+
+.stack-4-card-3 {
+    position: absolute;
+    top: 0;
+    left: 400px;
+}
+
+.stack-4-card-4 {
+    position: absolute;
+    top: 0;
+    left: 550px;
+}
+
+/* 5 Card Stack Effect */
 .stack-5-card-1 {
     position: absolute;
     top: 0;
@@ -213,15 +238,32 @@ h3 {
         width: 153px;
         height: 228px;
     }
-
+    
     .smaller-cards>img {
         /* height and width given maintain original 255px x 380px ratio */
         width: 102px;
         height: 152px;
     }
-
-    /* Cards Stacking Horizontally */
+    
     /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    /* 4 Card Stack Effect */
+    .stack-4-card-1 {
+        left: 75px;
+    }
+
+    .stack-4-card-2 {
+        left: 175px;
+    }
+
+    .stack-4-card-3 {
+        left: 275px;
+    }
+
+    .stack-4-card-4 {
+        left: 375px;
+    }
+
+    /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 70px;
     }
@@ -241,28 +283,28 @@ h3 {
     .stack-5-card-5 {
         left: 390px;
     }
-    
+
     /* 6 Card Stack Effect */
     .stack-6-card-1 {
         left: 30px;
     }
-    
+
     .stack-6-card-2 {
         left: 110px;
     }
-    
+
     .stack-6-card-3 {
         left: 190px;
     }
-    
+
     .stack-6-card-4 {
         left: 270px;
     }
-    
+
     .stack-6-card-5 {
         left: 350px;
     }
-    
+
     .stack-6-card-6 {
         left: 430px;
     }
@@ -311,8 +353,25 @@ h3 {
         height: 90px;
     }
 
-    /* Cards Stacking Horizontally */
     /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    /* 4 Card Stack Effect */
+    .stack-4-card-1 {
+        left: 30px;
+    }
+
+    .stack-4-card-2 {
+        left: 110px;
+    }
+
+    .stack-4-card-3 {
+        left: 190px;
+    }
+
+    .stack-4-card-4 {
+        left: 270px;
+    }
+
+    /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 10px;
     }
@@ -380,8 +439,25 @@ h3 {
         display: none;
     }
 
-    /* Cards Stacking Horizontally */
     /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    /* 4 Card Stack Effect */
+    .stack-4-card-1 {
+        left: 40px;
+    }
+
+    .stack-4-card-2 {
+        left: 130px;
+    }
+
+    .stack-4-card-3 {
+        left: 220px;
+    }
+
+    .stack-4-card-4 {
+        left: 310px;
+    }
+
+    /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 40px;
     }
@@ -467,8 +543,25 @@ h3 {
         height: 75px;
     }
 
-    /* Cards Stacking Horizontally */
     /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    /* 4 Card Stack Effect */
+    .stack-4-card-1 {
+        left: 10px;
+    }
+
+    .stack-4-card-2 {
+        left: 70px;
+    }
+
+    .stack-4-card-3 {
+        left: 130px;
+    }
+
+    .stack-4-card-4 {
+        left: 190px;
+    }
+
+    /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 10px;
     }
@@ -548,8 +641,25 @@ h3 {
         height: 83.6px;
     }
 
-    /* Cards Stacking Horizontally */
     /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    /* 4 Card Stack Effect */
+    .stack-4-card-1 {
+        left: 5px;
+    }
+
+    .stack-4-card-2 {
+        left: 60px;
+    }
+
+    .stack-4-card-3 {
+        left: 115px;
+    }
+
+    .stack-4-card-4 {
+        left: 170px;
+    }
+
+    /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 5px;
     }
@@ -645,8 +755,25 @@ h3 {
         height: 60px;
     }
 
-    /* Cards Stacking Horizontally */
     /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    /* 4 Card Stack Effect */
+    .stack-4-card-1 {
+        left: 10px;
+    }
+
+    .stack-4-card-2 {
+        left: 45px;
+    }
+
+    .stack-4-card-3 {
+        left: 80px;
+    }
+
+    .stack-4-card-4 {
+        left: 115px;
+    }
+
+    /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 1px;
     }
