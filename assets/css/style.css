@@ -129,7 +129,26 @@ h3 {
     opacity: 0.5;
 }
 
-/* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+/* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
+/* 3 Card Stack Effect */
+.stack-3-card-1 {
+    position: absolute;
+    top: 0;
+    left: 150px;
+}
+
+.stack-3-card-2 {
+    position: absolute;
+    top: 0;
+    left: 300px;
+}
+
+.stack-3-card-3 {
+    position: absolute;
+    top: 0;
+    left: 450px;
+}
+
 /* 4 Card Stack Effect */
 .stack-4-card-1 {
     position: absolute;
@@ -238,14 +257,27 @@ h3 {
         width: 153px;
         height: 228px;
     }
-    
+
     .smaller-cards>img {
         /* height and width given maintain original 255px x 380px ratio */
         width: 102px;
         height: 152px;
     }
-    
-    /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+
+    /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
+    /* 3 Card Stack Effect */
+    .stack-3-card-1 {
+        left: 130px;
+    }
+
+    .stack-3-card-2 {
+        left: 230px;
+    }
+
+    .stack-3-card-3 {
+        left: 330px;
+    }
+
     /* 4 Card Stack Effect */
     .stack-4-card-1 {
         left: 75px;
@@ -353,7 +385,20 @@ h3 {
         height: 90px;
     }
 
-    /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
+    /* 3 Card Stack Effect */
+    .stack-3-card-1 {
+        left: 50px;
+    }
+
+    .stack-3-card-2 {
+        left: 150px;
+    }
+
+    .stack-3-card-3 {
+        left: 250px;
+    }
+
     /* 4 Card Stack Effect */
     .stack-4-card-1 {
         left: 30px;
@@ -439,7 +484,20 @@ h3 {
         display: none;
     }
 
-    /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
+    /* 3 Card Stack Effect */
+    .stack-3-card-1 {
+        left: 80px;
+    }
+
+    .stack-3-card-2 {
+        left: 180px;
+    }
+
+    .stack-3-card-3 {
+        left: 280px;
+    }
+
     /* 4 Card Stack Effect */
     .stack-4-card-1 {
         left: 40px;
@@ -543,7 +601,20 @@ h3 {
         height: 75px;
     }
 
-    /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
+    /* 3 Card Stack Effect */
+    .stack-3-card-1 {
+        left: 40px;
+    }
+
+    .stack-3-card-2 {
+        left: 100px;
+    }
+
+    .stack-3-card-3 {
+        left: 160px;
+    }
+
     /* 4 Card Stack Effect */
     .stack-4-card-1 {
         left: 10px;
@@ -641,7 +712,20 @@ h3 {
         height: 83.6px;
     }
 
-    /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
+    /* 3 Card Stack Effect */
+    .stack-3-card-1 {
+        left: 30px;
+    }
+
+    .stack-3-card-2 {
+        left: 90px;
+    }
+
+    .stack-3-card-3 {
+        left: 150px;
+    }
+
     /* 4 Card Stack Effect */
     .stack-4-card-1 {
         left: 5px;
@@ -755,7 +839,20 @@ h3 {
         height: 60px;
     }
 
-    /* script.js attaches classes card-image[1 through 5] when card stacking becomes necessary */
+    /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
+    /* 3 Card Stack Effect */
+    .stack-3-card-1 {
+        left: 20px;
+    }
+
+    .stack-3-card-2 {
+        left: 60px;
+    }
+
+    .stack-3-card-3 {
+        left: 100px;
+    }
+
     /* 4 Card Stack Effect */
     .stack-4-card-1 {
         left: 10px;
