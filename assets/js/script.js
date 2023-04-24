@@ -12,7 +12,6 @@ const soundBustHand = document.getElementById('bust-hand');
 
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
-
     // Buttons:
     const startButton = document.getElementById('start');
     startButton.addEventListener('pointerdown', startGame);
@@ -48,13 +47,12 @@ document.addEventListener('DOMContentLoaded', function () {
  * Hides or unhides elements by adding a css class to them.
  * If element is already hidden and the function is instructed to 'add'
  * the 'hidden' css class - the command is simply ignored.
- * @param {'getElementById'} id 
- * @param {"'add' or 'remove'"} addRemove 
- * @param {"'hidden' or 'display-on-off'"} cssClassName 
- * @returns 
+ * @param {'getElementById'} id
+ * @param {"'add' or 'remove'"} addRemove
+ * @param {"'hidden' or 'display-on-off'"} cssClassName
+ * @returns
  */
 function adjustButtonVisibility(id, addRemove, cssClassName) {
-
     const button = document.getElementById(id);
 
     if (addRemove === 'add') {
@@ -78,7 +76,6 @@ function adjustButtonVisibility(id, addRemove, cssClassName) {
  * Start game function.
  */
 function startGame() {
-
     adjustButtonVisibility('start', 'add', 'display-on-off'); // Hidden
     adjustButtonVisibility('deal', 'add', 'display-on-off'); // Hidden
 
@@ -95,10 +92,23 @@ function startGame() {
  * Makes a fresh deck. Pushes array to global gameDeck variable.
  */
 function makeFreshDeck() {
-
     gameDeck = [];
     let suit = ['clubs', 'diamonds', 'hearts', 'spades'];
-    let rank = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
+    let rank = [
+        'ace',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        'jack',
+        'queen',
+        'king',
+    ];
 
     // loops through and combines 'suit' and 'rank' arrays; makes an ordered deck of cards.
     for (let s = 0; s < suit.length; s++) {
@@ -111,15 +121,13 @@ function makeFreshDeck() {
 /**
  * Shuffles a deck of cards by randomly drawing from it and placing it in a temporary variable.
  * Once all cards are drawn the temporary deck copies itself onto global variable; gameDeck.
- * @param {array} deck 
+ * @param {array} deck
  */
 function shuffleDeck(deck) {
-
     soundShuffleDeck.play();
 
     let tempDeck = [];
     for (let i = deck.length; i > 0; i--) {
-
         let randomNumber = Math.floor(Math.random() * i);
         let randomCard = deck.splice(randomNumber, 1);
         tempDeck.push(randomCard);
@@ -131,14 +139,11 @@ function shuffleDeck(deck) {
  * Starts a 5 minute timer
  */
 function startCountdownTimer() {
-
     let timer = 300;
     let myInterval = setInterval(countdownTimer, 1000);
 
     function countdownTimer() {
-
         if (timer >= 0) {
-
             const countdownTimer = document.getElementById('countdown-timer');
 
             let minutes = Math.floor(timer / 60);
@@ -151,9 +156,7 @@ function startCountdownTimer() {
 
             countdownTimer.innerHTML = `${minutes} : ${seconds}`;
             timer--;
-
         } else {
-
             clearInterval(myInterval);
             console.log('finished'); // NOTE: exchange for code to do endGame functions and leaderboard calculations
             return;
@@ -167,7 +170,6 @@ function startCountdownTimer() {
  * (Initially checks if deck has enough cards for the new round)
  */
 function dealNewRound() {
-
     // If gameDeck < 15; shuffle new deck.
     let remainingCards = gameDeck.length;
     if (remainingCards < 15) {
@@ -198,7 +200,6 @@ function dealNewRound() {
  * Also checks to see how many cards each hand is holding; stacks cards in html when > 4.
  */
 function dealCard(DealerOrPlayer) {
-
     soundDealSingle.play();
 
     let drawCard = gameDeck.pop();
@@ -218,7 +219,10 @@ function dealCard(DealerOrPlayer) {
 
     if (numberOfImages >= 3) {
         for (let i = 0; i < numberOfImages; i++) {
-            images[i].setAttribute('class', `stack-${numberOfImages}-card-${[i+1]}`);
+            images[i].setAttribute(
+                'class',
+                `stack-${numberOfImages}-card-${[i + 1]}`
+            );
         }
     }
 }
@@ -229,14 +233,12 @@ function dealCard(DealerOrPlayer) {
  * re-uses this value when called again to turn over the same card.
  */
 function turnCardOver() {
-
     soundFlipCard.play();
 
     let firstCard = document.getElementById('dealer-cards').children[0];
     altText = firstCard.alt;
 
     if (altText === 'back-of-card') {
-
         firstCard.remove();
 
         let flippedCard = document.createElement('img');
@@ -246,9 +248,7 @@ function turnCardOver() {
         document.getElementById('dealer-cards').prepend(flippedCard);
 
         updateHtml('dealer');
-
     } else {
-
         firstCard.remove();
 
         let flippedCard = document.createElement('img');
@@ -265,15 +265,13 @@ function turnCardOver() {
 /**
  * Checks the first 2 items of an array and compares their values.
  * If values match; return true.
- * @param {getImageAltData('player-cards')} array 
+ * @param {getImageAltData('player-cards')} array
  * @returns true or false
  */
 function checkCanSplit(array) {
-
     let hand = [];
 
     for (let i = 0; i < 2; i++) {
-
         let cardData = array[i].split('-');
         hand.push(cardData[1]);
     }
@@ -290,7 +288,6 @@ function checkCanSplit(array) {
  * This card is played in the next round.
  */
 function splitHand() {
-
     const cashSpan = document.getElementById('cash');
     const betSpan = document.getElementById('bet-value');
     const sideBet = document.getElementById('side-bet-value');
@@ -299,9 +296,8 @@ function splitHand() {
     let betValue = parseInt(betSpan.innerHTML);
 
     if (cashValue >= betValue) {
-
         sideBet.innerHTML = betValue;
-        cashSpan.innerHTML = (cashValue - betValue);
+        cashSpan.innerHTML = cashValue - betValue;
 
         soundPlaceBet.play();
         soundFlipCard.play();
@@ -325,7 +321,6 @@ function splitHand() {
         adjustButtonVisibility('side-bet-span', 'remove', 'hidden'); // Visible
         adjustButtonVisibility('side-bet-value', 'remove', 'hidden'); // Visible
         adjustButtonVisibility('split', 'add', 'hidden'); // Hidden
-
     } else {
         alert('Sorry! You do not have enough cash to match your original bet!');
     }
@@ -336,11 +331,9 @@ function splitHand() {
  * Otherwise alerts player of 'bust' hand.
  */
 function hit() {
-
     let playerSum = handValues(getImageAltData('player-cards')).value;
 
     if (playerSum <= 20) {
-
         dealCard('player');
 
         playerSum = handValues(getImageAltData('player-cards')).value;
@@ -348,10 +341,10 @@ function hit() {
             soundBustHand.play();
             adjustButtonVisibility('hit', 'add', 'hidden'); // Hidden
         }
-
     } else if (playerSum === 21) {
-
-        alert('You have 21, the best score you can get! Press "Stand" to continue!');
+        alert(
+            'You have 21, the best score you can get! Press "Stand" to continue!'
+        );
     }
 }
 
@@ -360,7 +353,6 @@ function hit() {
  * Will continue taking cards until at least 17 handValue is reached.
  */
 function dealersTurn() {
-
     adjustButtonVisibility('hit', 'add', 'hidden'); // Hidden
     adjustButtonVisibility('stand', 'add', 'hidden'); // Hidden
 
@@ -370,7 +362,6 @@ function dealersTurn() {
     let dealerSum = handValues(getImageAltData('dealer-cards')).value;
 
     while (dealerSum < 17) {
-
         dealCard('dealer');
 
         dealerSum = handValues(getImageAltData('dealer-cards')).value;
@@ -380,10 +371,9 @@ function dealersTurn() {
 }
 
 /**
- * Once the dealer has also had its turn; this function calculates 
+ * Once the dealer has also had its turn; this function calculates
  */
 function decideWinner() {
-
     const dealerSum = handValues(getImageAltData('dealer-cards')).value;
     const playerSum = handValues(getImageAltData('player-cards')).value;
 
@@ -398,23 +388,23 @@ function decideWinner() {
     if (playerSum > 21) {
         console.log('Dealer wins!');
 
-        cashSpan.innerHTML = (cashValue - betValue);
+        cashSpan.innerHTML = cashValue - betValue;
 
         winLossText.innerHTML = 'You lose.';
         winLossText.setAttribute('class', 'red-font');
         soundLoseHand.play();
-    } else if ((dealerSum > playerSum) && (dealerSum <= 21)) {
+    } else if (dealerSum > playerSum && dealerSum <= 21) {
         console.log('Dealer wins!');
 
-        cashSpan.innerHTML = (cashValue - betValue);
+        cashSpan.innerHTML = cashValue - betValue;
 
         winLossText.innerHTML = 'You lose.';
         winLossText.setAttribute('class', 'red-font');
         soundLoseHand.play();
-    } else if ((dealerSum > 21) && (playerSum <= 21)) {
+    } else if (dealerSum > 21 && playerSum <= 21) {
         console.log('Player wins!');
 
-        cashSpan.innerHTML = (cashValue + (betValue * 2));
+        cashSpan.innerHTML = cashValue + betValue * 2;
 
         winLossText.innerHTML = 'You won!';
         winLossText.setAttribute('class', 'green-font');
@@ -422,7 +412,7 @@ function decideWinner() {
     } else if (dealerSum < playerSum) {
         console.log('Player wins!');
 
-        cashSpan.innerHTML = (cashValue + (betValue * 2));
+        cashSpan.innerHTML = cashValue + betValue * 2;
 
         winLossText.innerHTML = 'You won!';
         winLossText.setAttribute('class', 'green-font');
@@ -452,19 +442,17 @@ function decideWinner() {
  * Then checks to see if player has a split card on the side or not; plays split card if true.
  */
 function endOfRound() {
-
     const bothHands = document.getElementsByClassName('dealt-cards');
 
-    for (let h = (bothHands.length); h > 0; h--) {
+    for (let h = bothHands.length; h > 0; h--) {
         const allCards = bothHands[h - 1].children; // -1 takes into account array [0]
-        for (let c = (allCards.length); c > 0; c--) {
+        for (let c = allCards.length; c > 0; c--) {
             allCards[c - 1].remove(); // -1 takes into account array [0]
         }
     }
 
     // If player has a split card on the side, puts that card into play after clearing table.
     if (checkIfSplit() === true) {
-
         toggleGrayscale(); // Re-activates poker chips
 
         const splitCard = document.getElementById('split-hand').children[0];
@@ -492,7 +480,6 @@ function endOfRound() {
         adjustButtonVisibility('side-bet-value', 'add', 'hidden'); // Hidden
         adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
         adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
-
     } else {
         adjustButtonVisibility('deal', 'remove', 'display-on-off'); // Visible
     }
@@ -503,7 +490,6 @@ function endOfRound() {
  * @returns true or false
  */
 function checkIfSplit() {
-
     const splitCard = document.getElementById('split-hand').children[0];
 
     if (splitCard === undefined) {
@@ -534,12 +520,10 @@ function getImageAltData(div) {
  * @returns an object - {value: , aces: }
  */
 function handValues(array) {
-
     let value = 0;
     let numberOfAces = 0;
 
     for (let i = 0; i < array.length; i++) {
-
         let cardValueString = array[i].split('-');
 
         if (cardValueString[1] === 'ace') {
@@ -549,13 +533,16 @@ function handValues(array) {
             // https://stackoverflow.com/questions/2363840/how-to-use-or-condition-in-a-javascript-if-statement
             // quote: "Note that if you use string comparisons in the conditions, you need to perform a comparison for each condition..
             // ..otherwise if you only do it in the first one, then it will always return true" - this helped tremendously!
-        } else if (cardValueString[1] === 'jack' || cardValueString[1] === 'queen' || cardValueString[1] === 'king') {
+        } else if (
+            cardValueString[1] === 'jack' ||
+            cardValueString[1] === 'queen' ||
+            cardValueString[1] === 'king'
+        ) {
             value += 10;
 
             // 'assets/images/back-of-card.png' - cardValueString[1] is 'of' - if not included results showed NaN.
         } else if (cardValueString[1] === 'of') {
             value += 0;
-
         } else {
             value += parseInt(cardValueString[1]);
         }
@@ -564,14 +551,13 @@ function handValues(array) {
         if (value > 21 && numberOfAces > 0) {
             value -= 10;
             numberOfAces -= 1;
-
         } else {
             continue;
         }
     }
     return {
         value: value,
-        aces: numberOfAces
+        aces: numberOfAces,
     };
 }
 
@@ -580,7 +566,6 @@ function handValues(array) {
  * @param {*} who - either 'dealer' or 'player'
  */
 function updateHtml(DealerOrPlayer) {
-
     let remainingCardsSpan = document.getElementById('draw-deck-remaining');
     let remainingCards = gameDeck.length;
     remainingCardsSpan.innerHTML = remainingCards;
@@ -591,7 +576,6 @@ function updateHtml(DealerOrPlayer) {
 }
 
 function resetScoreHtml() {
-
     let dealerSum = document.getElementById('dealer-sum');
     let playerSum = document.getElementById('player-sum');
 
@@ -603,13 +587,11 @@ function resetScoreHtml() {
  * Adds a $5 bet value.
  */
 function addBetRed() {
-
     const cashSpan = document.getElementById('cash');
     const betSpan = document.getElementById('bet-value');
 
     let cashValue = parseInt(cashSpan.innerHTML);
     let betValue = parseInt(betSpan.innerHTML);
-
 
     if (cashValue >= 5) {
         cashValue -= 5;
@@ -618,7 +600,6 @@ function addBetRed() {
         betSpan.innerHTML = betValue;
 
         soundPlaceBet.play();
-
     } else {
         alert('You do not have enough money!');
     }
@@ -628,13 +609,11 @@ function addBetRed() {
  * Adds a $10 bet value.
  */
 function addBetBlue() {
-
     const cashSpan = document.getElementById('cash');
     const betSpan = document.getElementById('bet-value');
 
     let cashValue = parseInt(cashSpan.innerHTML);
     let betValue = parseInt(betSpan.innerHTML);
-
 
     if (cashValue >= 10) {
         cashValue -= 10;
@@ -643,7 +622,6 @@ function addBetBlue() {
         betSpan.innerHTML = betValue;
 
         soundPlaceBet.play();
-
     } else {
         alert('You do not have enough money!');
     }
@@ -653,13 +631,11 @@ function addBetBlue() {
  * Adds a $50 bet value.
  */
 function addBetBlack() {
-
     const cashSpan = document.getElementById('cash');
     const betSpan = document.getElementById('bet-value');
 
     let cashValue = parseInt(cashSpan.innerHTML);
     let betValue = parseInt(betSpan.innerHTML);
-
 
     if (cashValue >= 50) {
         cashValue -= 50;
@@ -668,7 +644,6 @@ function addBetBlack() {
         betSpan.innerHTML = betValue;
 
         soundPlaceBet.play();
-
     } else {
         alert('You do not have enough money!');
     }
@@ -679,13 +654,11 @@ function addBetBlack() {
  * Removes eventListeners and adds them back respectively.
  */
 function toggleGrayscale() {
-
     const redChip = document.getElementById('red-chip');
     const blueChip = document.getElementById('blue-chip');
     const blackChip = document.getElementById('black-chip');
-    
-    if (redChip.classList.contains('grayscale') === true) {
 
+    if (redChip.classList.contains('grayscale') === true) {
         redChip.classList.remove('grayscale');
         blueChip.classList.remove('grayscale');
         blackChip.classList.remove('grayscale');
@@ -693,9 +666,7 @@ function toggleGrayscale() {
         redChip.addEventListener('pointerdown', addBetRed);
         blueChip.addEventListener('pointerdown', addBetBlue);
         blackChip.addEventListener('pointerdown', addBetBlack);
-
     } else {
-
         redChip.classList.add('grayscale');
         blueChip.classList.add('grayscale');
         blackChip.classList.add('grayscale');
@@ -707,6 +678,5 @@ function toggleGrayscale() {
 }
 
 function submitScore() {
-
     console.log('Submitting Score');
 }
