@@ -47,10 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
  * Hides or unhides elements by adding a css class to them.
  * If element is already hidden and the function is instructed to 'add'
  * the 'hidden' css class - the command is simply ignored.
- * @param {'getElementById'} id
- * @param {"'add' or 'remove'"} addRemove
- * @param {"'hidden' or 'display-on-off'"} cssClassName
- * @returns
+ * 
+ * @param {string} 'id'
+ * @param {string} 'add' or 'remove'
+ * @param {string} 'hidden' or 'display-on-off'
  */
 function adjustButtonVisibility(id, addRemove, cssClassName) {
     const button = document.getElementById(id);
@@ -121,6 +121,7 @@ function makeFreshDeck() {
 /**
  * Shuffles a deck of cards by randomly drawing from it and placing it in a temporary variable.
  * Once all cards are drawn the temporary deck copies itself onto global variable; gameDeck.
+ * 
  * @param {array} deck
  */
 function shuffleDeck(deck) {
@@ -165,9 +166,9 @@ function startCountdownTimer() {
 }
 
 /**
- * Deals 2 cards to the dealer and the player.
+ * Checks if enough card are remaining in deck;
+ * Deals a new round of 2 cards each.
  * Dealer's first card is facedown.
- * (Initially checks if deck has enough cards for the new round)
  */
 function dealNewRound() {
     // If gameDeck < 15; shuffle new deck.
@@ -196,8 +197,10 @@ function dealNewRound() {
 }
 
 /**
- * Deals a card to the hand specified - use either 'dealer' or 'player'.
- * Also checks to see how many cards each hand is holding; stacks cards in html when > 4.
+ * Deals a card to specified hand.
+ * If cards in hand reach > 3; adds classes for stacking effect - via css.
+ * 
+ * @param {string} 'dealer' or 'player'
  */
 function dealCard(DealerOrPlayer) {
     soundDealSingle.play();
@@ -228,9 +231,10 @@ function dealCard(DealerOrPlayer) {
 }
 
 /**
- * Turns card over to its back, when re-used turns card over to its front.
- * @returns the altText value for the flipped over card; the function;
- * re-uses this value when called again to turn over the same card.
+ * Flips card on its back;
+ * flips back when re-used.
+ * 
+ * @returns .alt of flipped card 
  */
 function turnCardOver() {
     soundFlipCard.play();
@@ -263,9 +267,9 @@ function turnCardOver() {
 }
 
 /**
- * Checks the first 2 items of an array and compares their values.
- * If values match; return true.
- * @param {getImageAltData('player-cards')} array
+ * Checks first two cards of the player's hand.
+ * 
+ * @param {array} player cards
  * @returns true or false
  */
 function checkCanSplit(array) {
@@ -327,7 +331,7 @@ function splitHand() {
 }
 
 /**
- * Deals a card to the player if they're handValues value is < 21.
+ * Deals a card to the player if hand value is < 21.
  * Otherwise alerts player of 'bust' hand.
  */
 function hit() {
@@ -350,7 +354,7 @@ function hit() {
 
 /**
  * Dealer takes its turn.
- * Will continue taking cards until at least 17 handValue is reached.
+ * Will continue taking cards until at least 17 hand value is reached.
  */
 function dealersTurn() {
     adjustButtonVisibility('hit', 'add', 'hidden'); // Hidden
@@ -371,7 +375,8 @@ function dealersTurn() {
 }
 
 /**
- * Once the dealer has also had its turn; this function calculates
+ * Decides the outcome of the round,
+ * bet earnings are calculated.
  */
 function decideWinner() {
     const dealerSum = handValues(getImageAltData('dealer-cards')).value;
@@ -438,8 +443,8 @@ function decideWinner() {
 }
 
 /**
- * Loops through both hands to see number of cards, then removes all card; clearing both sides of the table.
- * Then checks to see if player has a split card on the side or not; plays split card if true.
+ * Loops through both hands and removes all cards.
+ * If split card = true; puts it into play next.
  */
 function endOfRound() {
     const bothHands = document.getElementsByClassName('dealt-cards');
@@ -487,6 +492,7 @@ function endOfRound() {
 
 /**
  * Checks to see if player has a 'split' card on the side.
+ * 
  * @returns true or false
  */
 function checkIfSplit() {
@@ -500,8 +506,10 @@ function checkIfSplit() {
 }
 
 /**
- * Input target ID of div; <img> alt data from target is stored in an array for later sum calculations.
- * @returns an array of all cards held in hand (via their altText in HTML).
+ * Loops through selected hand and stores .alt of all cards held.
+ * 
+ * @param {string} 'dealer-cards' or 'player-cards'
+ * @returns array
  */
 function getImageAltData(div) {
     let handOfCards = document.getElementById(div);
@@ -516,8 +524,11 @@ function getImageAltData(div) {
 }
 
 /**
- * Input arrayOfHand; calculates total sum of hand card values and number of aces held.
- * @returns an object - {value: , aces: }
+ * Calculates total sum of hand values;
+ * considers whether an ace = 11 or 1.
+ * 
+ * @param {array} getImageAltData 
+ * @returns object
  */
 function handValues(array) {
     let value = 0;
@@ -562,8 +573,9 @@ function handValues(array) {
 }
 
 /**
- * Updates the total sum in either the dealer's hand or the player's hand in the HTML (depending on what parameters were chosen).
- * @param {*} who - either 'dealer' or 'player'
+ * Updates HTML element with the total sum.
+ * 
+ * @param {string} 'dealer' or 'player'
  */
 function updateHtml(DealerOrPlayer) {
     let remainingCardsSpan = document.getElementById('draw-deck-remaining');
@@ -575,6 +587,9 @@ function updateHtml(DealerOrPlayer) {
     showSum.innerHTML = totalSum.value;
 }
 
+/**
+ * Resets scores in HTML.
+ */
 function resetScoreHtml() {
     let dealerSum = document.getElementById('dealer-sum');
     let playerSum = document.getElementById('player-sum');
