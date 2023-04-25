@@ -67,8 +67,8 @@ h3 {
     border: 2px solid black;
 }
 
-.title-rules-display>button {
-    display: none;
+.title-rules-display i {
+    visibility: hidden;
 }
 
 .actions-div {
@@ -523,7 +523,7 @@ h3 {
     }
 
     .pop-up-rules-content>i {
-        display: flex;
+        visibility: visible;
         position: absolute;
         font-size: larger;
         top: 20px;
