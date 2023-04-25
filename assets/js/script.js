@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     standButton.classList.add('hidden');
 
     const gameRulesSpan = document.getElementById('game-rules-span');
-    gameRulesSpan.addEventListener('pointerdown', function() {
+    gameRulesSpan.addEventListener('pointerdown', function () {
         // Add css classes that are applied to the 'game rules' div. Pops up a modal window.
         const gameRulesModal = document.getElementById('game-rules-modal');
         gameRulesModal.classList.add('pop-up-rules-modal');
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         gameRulesContent.classList.add('pop-up-rules-content');
         // Removes css classes to 'turn off' modal when X icon is pressed.
         const closeButton = document.getElementById('x-button');
-        closeButton.addEventListener('pointerdown', function() {
+        closeButton.addEventListener('pointerdown', function () {
             gameRulesModal.classList.remove('pop-up-rules-modal');
             gameRulesContent.classList.remove('pop-up-rules-content');
         })
@@ -189,6 +189,25 @@ function startCountdownTimer() {
  * Dealer's first card is facedown.
  */
 function dealNewRound() {
+    // Checks if player has enough money for the minimum bet of $50.
+    const betSpan = document.getElementById('bet-value');
+    let betValue = parseInt(betSpan.innerHTML);
+
+    if (betValue === 0) {
+        const cashSpan = document.getElementById('cash');
+        let cashValue = parseInt(cashSpan.innerHTML);
+
+        if (cashValue < 50) {
+            alert('You have no more money, please restart!');
+            console.log('you lost all your money'); // NOTE: replace with end of game modal
+        } else {
+            cashValue -= 50;
+            betValue += 50;
+            cashSpan.innerHTML = cashValue;
+            betSpan.innerHTML = betValue;
+        }
+    }
+    
     // If gameDeck < 15; shuffle new deck.
     let remainingCards = gameDeck.length;
     if (remainingCards < 15) {
