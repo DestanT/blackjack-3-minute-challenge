@@ -364,6 +364,7 @@ function splitHand() {
         adjustButtonVisibility('side-bet-value', 'remove', 'hidden'); // Visible
         adjustButtonVisibility('split', 'add', 'hidden'); // Hidden
     } else {
+        soundBoing.play();
         alert('Sorry! You do not have enough cash to match your original bet!');
     }
 }
@@ -676,6 +677,7 @@ function addBetRed() {
 
         soundPlaceBet.play();
     } else {
+        soundBoing.play();
         alert('You do not have enough money!');
     }
 }
@@ -698,6 +700,7 @@ function addBetBlue() {
 
         soundPlaceBet.play();
     } else {
+        soundBoing.play();
         alert('You do not have enough money!');
     }
 }
@@ -720,6 +723,7 @@ function addBetBlack() {
 
         soundPlaceBet.play();
     } else {
+        soundBoing.play();
         alert('You do not have enough money!');
     }
 }
