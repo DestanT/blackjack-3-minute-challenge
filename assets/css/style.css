@@ -492,7 +492,7 @@ h3 {
     .pop-up-rules-modal {
         display: block;
         position: fixed;
-        background-color: grey;
+        background-color: rgba(20, 120, 58, 0.7);
         width: 100%;
         height: 100%;
         left: 0;
@@ -502,6 +502,14 @@ h3 {
 
     .pop-up-rules-content{
         position: relative;
+        background-color: honeydew;
+        border: 2px solid black;
+        border-radius: 10px;
+        max-width: 70%;
+        overflow: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .pop-up-rules-content>h3 {
