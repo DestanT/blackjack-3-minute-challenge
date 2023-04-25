@@ -15,7 +15,7 @@
 
 <body>
     <!-- This only displays on smaller screen sizes;
-    Rules & Leaderboards are displayed as separate clickable links here-->
+    Rules are displayed as separate clickable links here-->
     <div class="display-h1-small-screen">
         <div>
             <h1>
@@ -23,11 +23,11 @@
             </h1>
         </div>
         <div>
-            <span>Game Rules</span>
+            <span id="game-rules-span">Game Rules</span>
         </div>
     </div>
     <div class="main-game-area grid">
-        <!-- Game Rules and Explanation -->
+        <!-- Title -->
         <div class="title-rules-display">
             <div>
                 <h1>
@@ -115,11 +115,11 @@
                 <span id="cash">500</span>
             </div>
         </div>
-        <!-- Leaderboard -->
-        <div class="title-rules-display pop-up-rules-modal">
-            <div class="pop-up-rules-content">
+        <!-- Game Rules -->
+        <div id="game-rules-modal" class="title-rules-display">
+            <div id="game-rules-content">
                 <h3>Game Rules:</h3>
-                <i class="fa-solid fa-xmark"></i>
+                <i id="x-button" class="fa-solid fa-xmark"></i>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non possimus sapiente fugiat nihil culpa,
                     accusamus pariatur explicabo expedita suscipit minus aut ipsa neque ut harum, asperiores odit
                     facilis in. Accusamus.

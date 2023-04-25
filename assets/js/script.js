@@ -32,6 +32,21 @@ document.addEventListener('DOMContentLoaded', function () {
     standButton.addEventListener('pointerdown', dealersTurn);
     standButton.classList.add('hidden');
 
+    const gameRulesSpan = document.getElementById('game-rules-span');
+    gameRulesSpan.addEventListener('pointerdown', function() {
+        // Add css classes that are applied to the 'game rules' div. Pops up a modal window.
+        const gameRulesModal = document.getElementById('game-rules-modal');
+        gameRulesModal.classList.add('pop-up-rules-modal');
+        const gameRulesContent = document.getElementById('game-rules-content');
+        gameRulesContent.classList.add('pop-up-rules-content');
+        // Removes css classes to 'turn off' modal when X icon is pressed.
+        const closeButton = document.getElementById('x-button');
+        closeButton.addEventListener('pointerdown', function() {
+            gameRulesModal.classList.remove('pop-up-rules-modal');
+            gameRulesContent.classList.remove('pop-up-rules-content');
+        })
+    })
+
     //Poker Chips:
     const redChip = document.getElementById('red-chip');
     redChip.addEventListener('pointerdown', addBetRed);
