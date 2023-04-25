@@ -9,6 +9,7 @@ const soundLoseHand = document.getElementById('lose-hand');
 const soundShuffleDeck = document.getElementById('shuffle-deck');
 const soundPlaceBet = document.getElementById('poker-chip-single');
 const soundBustHand = document.getElementById('bust-hand');
+const soundBoing = document.getElementById('boing');
 
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
