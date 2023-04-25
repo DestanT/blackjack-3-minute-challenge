@@ -40,13 +40,14 @@ h1 {
     font-family: 'Righteous', cursive;
 }
 
-.display-h1 {
+.display-h1-small-screen {
     display: none;
     /* Toggles depending on screen size */
 }
 
 h3 {
     font-family: 'Mukta Vaani', sans-serif;
+    font-size: x-large;
 }
 
 .green-font {
@@ -58,10 +59,6 @@ h3 {
 }
 
 /* Card Play Area */
-.rules-leaderboard {
-    border: 2px solid black;
-}
-
 .actions-div {
     font-size: 30px;
     font-weight: bold;
@@ -474,13 +471,13 @@ h3 {
         display: block;
     }
 
-    .display-h1 {
+    .display-h1-small-screen {
         display: inline-block;
         margin-bottom: 10px;
     }
 
     /* Card Play Area */
-    .rules-leaderboard {
+    .display-title-rules {
         display: none;
     }
 
