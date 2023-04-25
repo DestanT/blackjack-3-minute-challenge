@@ -40,7 +40,7 @@ h1 {
     font-family: 'Righteous', cursive;
 }
 
-.display-h1 {
+.display-h1-small-screen {
     display: none;
     /* Toggles depending on screen size */
 }
@@ -474,7 +474,7 @@ h3 {
         display: block;
     }
 
-    .display-h1 {
+    .display-h1-small-screen {
         display: inline-block;
         margin-bottom: 10px;
     }
