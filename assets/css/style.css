@@ -27,7 +27,7 @@ body span {
 }
 
 .display-on {
-    display: block;
+    display: inline-block;
     /* .js controlled - button visibility */
 }
 
