@@ -10,6 +10,7 @@ const soundShuffleDeck = document.getElementById('shuffle-deck');
 const soundPlaceBet = document.getElementById('poker-chip-single');
 const soundBustHand = document.getElementById('bust-hand');
 const soundBoing = document.getElementById('boing');
+const soundPokerChipWinnings = document.getElementById('poker-chip-winnings');
 
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
@@ -470,6 +471,10 @@ function decideWinner() {
         winLossText.innerHTML = 'You won!';
         winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
+        // Slight delay - sound of paying out poker chip winnings
+        setTimeout(function() {
+            soundPokerChipWinnings.play();
+        }, 500);
     } else if (dealerSum < playerSum) {
         console.log('Player wins!');
 
@@ -483,6 +488,10 @@ function decideWinner() {
         winLossText.innerHTML = 'You won!';
         winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
+        // Slight delay - sound of paying out poker chip winnings
+        setTimeout(function() {
+            soundPokerChipWinnings.play();
+        }, 500);
     } else if (dealerSum === playerSum) {
         console.log("It's a Draw");
         winLossText.innerHTML = 'Draw!';
