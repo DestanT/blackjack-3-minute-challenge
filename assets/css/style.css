@@ -525,8 +525,8 @@ h3 {
     .pop-up-rules-content>button {
         display: flex;
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 30px;
+        right: 10px;
         transform: translate(-50%, -50%);
     }
 
