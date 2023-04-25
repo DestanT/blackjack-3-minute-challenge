@@ -430,32 +430,54 @@ function decideWinner() {
     if (playerSum > 21) {
         console.log('Dealer wins!');
 
-        cashSpan.innerHTML = cashValue - betValue;
-
-        winLossText.innerHTML = 'You lose.';
-        winLossText.setAttribute('class', 'red-font');
-        soundLoseHand.play();
+        // In case player doesn't have enough money in hand; accounts for it in the new bet and adjusts to maximum possible.
+        if (betValue > cashValue) {
+            let difference = betValue - cashValue; // Example: bet = 500, cash = 150; difference = 350
+            betSpan.innerHTML = (betValue - difference); // bet HTML will show 150
+            cashSpan.innerHTML = cashValue - cashValue; // cash HTML will show 0 (150 - 150).
+        } else {
+            cashSpan.innerHTML = cashValue - betValue;
+        }
+            winLossText.innerHTML = 'You lose.';
+            winLossText.setAttribute('class', 'red-font');
+            soundLoseHand.play();
     } else if (dealerSum > playerSum && dealerSum <= 21) {
         console.log('Dealer wins!');
 
-        cashSpan.innerHTML = cashValue - betValue;
-
-        winLossText.innerHTML = 'You lose.';
-        winLossText.setAttribute('class', 'red-font');
-        soundLoseHand.play();
+        // In case player doesn't have enough money in hand; accounts for it in the new bet and adjusts to maximum possible.
+        if (betValue > cashValue) {
+            let difference = betValue - cashValue; // Another example: bet = 800, cash = 0; difference = 0
+            betSpan.innerHTML = (betValue - difference); // bet HTML will show 800
+            cashSpan.innerHTML = cashValue - cashValue; // cash HTML will show 0 (0 - 0).
+        } else {
+            cashSpan.innerHTML = cashValue - betValue;
+        }
+            winLossText.innerHTML = 'You lose.';
+            winLossText.setAttribute('class', 'red-font');
+            soundLoseHand.play();
     } else if (dealerSum > 21 && playerSum <= 21) {
         console.log('Player wins!');
 
-        cashSpan.innerHTML = cashValue + betValue * 2;
-
+        if (betValue > cashValue) {
+            let difference = betValue - cashValue; // Another example: bet = 800, cash = 0; difference = 0
+            betSpan.innerHTML = (betValue - difference); // bet HTML will show 800
+            cashSpan.innerHTML = cashValue - cashValue; // cash HTML will show 0 (0 - 0).
+        } else {
+            cashSpan.innerHTML = cashValue + betValue * 2;
+        }
         winLossText.innerHTML = 'You won!';
         winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
     } else if (dealerSum < playerSum) {
         console.log('Player wins!');
 
-        cashSpan.innerHTML = cashValue + betValue * 2;
-
+        if (betValue > cashValue) {
+            let difference = betValue - cashValue; // Another example: bet = 800, cash = 0; difference = 0
+            betSpan.innerHTML = (betValue - difference); // bet HTML will show 800
+            cashSpan.innerHTML = cashValue - cashValue; // cash HTML will show 0 (0 - 0).
+        } else {
+            cashSpan.innerHTML = cashValue + betValue * 2;
+        }
         winLossText.innerHTML = 'You won!';
         winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
@@ -523,19 +545,6 @@ function endOfRound() {
         adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
         adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
     } else {
-        // In case player doesn't have enough money in hand; accounts for it in the new bet and adjusts to maximum possible.
-        const betSpan = document.getElementById('bet-value');
-        const cashSpan = document.getElementById('cash');
-        
-        let betValue = parseInt(betSpan.innerHTML);
-        let cashValue = parseInt(cashSpan.innerHTML);
-
-        if (betValue > cashValue) {
-            let difference = betValue - cashValue; // Example: bet = 500, cash = 150; difference = 350
-            betSpan.innerHTML = (betValue - difference); // bet HTML will show 150
-            cashSpan.innerHTML = cashValue - cashValue; // cash HTML will show 0 (150-150); importance of cashValue - cashValue is incase cash = 0.
-        }
-
         adjustButtonVisibility('deal', 'add', 'display-on'); // Visible
     }
 }
