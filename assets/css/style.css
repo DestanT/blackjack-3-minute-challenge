@@ -500,6 +500,24 @@ h3 {
         z-index: 10;
     }
 
+    .pop-up-rules-content{
+        position: relative;
+    }
+
+    .pop-up-rules-content>h3 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pop-up-rules-content>button {
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-50%, -50%);
+    }
+
     /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
     /* 3 Card Stack Effect */
     .stack-3-card-1 {
