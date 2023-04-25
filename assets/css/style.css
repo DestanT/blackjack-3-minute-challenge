@@ -26,7 +26,12 @@ body span {
     grid-template-columns: 1fr 4fr 1fr;
 }
 
-.display-on-off {
+.display-on {
+    display: block;
+    /* .js controlled - button visibility */
+}
+
+.display-off {
     display: none;
     /* .js controlled - button visibility */
 }

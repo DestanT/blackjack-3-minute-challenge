@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const dealNewRoundButton = document.getElementById('deal');
     dealNewRoundButton.addEventListener('pointerdown', dealNewRound);
-    dealNewRoundButton.classList.add('display-on-off');
+    dealNewRoundButton.classList.add('display-off');
 
     const hitButton = document.getElementById('hit');
     hitButton.addEventListener('pointerdown', hit);
@@ -49,14 +49,17 @@ document.addEventListener('DOMContentLoaded', function () {
  * the 'hidden' css class - the command is simply ignored.
  * 
  * @param {string} 'id'
- * @param {string} 'add' or 'remove'
- * @param {string} 'hidden' or 'display-on-off'
+ * @param {string} 'add' || 'remove'
+ * @param {string} 'hidden' || 'display-on' || 'display-off'
  */
 function adjustButtonVisibility(id, addRemove, cssClassName) {
     const button = document.getElementById(id);
 
     if (addRemove === 'add') {
-        if (button.classList.contains(cssClassName) === true) {
+        if (cssClassName === 'display-on' || cssClassName === 'display-off') {
+            button.removeAttribute('class'); // Resets classes
+            button.classList.add(cssClassName);
+        } else if (button.classList.contains(cssClassName) === true) {
             return;
         } else {
             button.classList.add(cssClassName);
@@ -76,8 +79,8 @@ function adjustButtonVisibility(id, addRemove, cssClassName) {
  * Start game function.
  */
 function startGame() {
-    adjustButtonVisibility('start', 'add', 'display-on-off'); // Hidden
-    adjustButtonVisibility('deal', 'add', 'display-on-off'); // Hidden
+    adjustButtonVisibility('start', 'add', 'display-off'); // Hidden
+    adjustButtonVisibility('deal', 'add', 'display-off'); // Hidden
 
     makeFreshDeck();
     shuffleDeck(gameDeck);
@@ -191,7 +194,7 @@ function dealNewRound() {
         adjustButtonVisibility('split', 'remove', 'hidden'); // Visible
     }
 
-    adjustButtonVisibility('deal', 'add', 'display-on-off'); // Hidden
+    adjustButtonVisibility('deal', 'add', 'display-off'); // Hidden
     adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
     adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
 }
@@ -200,7 +203,7 @@ function dealNewRound() {
  * Deals a card to specified hand.
  * If cards in hand reach > 3; adds classes for stacking effect - via css.
  * 
- * @param {string} 'dealer' or 'player'
+ * @param {string} 'dealer' || 'player'
  */
 function dealCard(DealerOrPlayer) {
     soundDealSingle.play();
@@ -270,7 +273,7 @@ function turnCardOver() {
  * Checks first two cards of the player's hand.
  * 
  * @param {array} player cards
- * @returns true or false
+ * @returns true || false
  */
 function checkCanSplit(array) {
     let hand = [];
@@ -486,14 +489,14 @@ function endOfRound() {
         adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
         adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
     } else {
-        adjustButtonVisibility('deal', 'remove', 'display-on-off'); // Visible
+        adjustButtonVisibility('deal', 'add', 'display-on'); // Visible
     }
 }
 
 /**
  * Checks to see if player has a 'split' card on the side.
  * 
- * @returns true or false
+ * @returns true || false
  */
 function checkIfSplit() {
     const splitCard = document.getElementById('split-hand').children[0];
@@ -508,7 +511,7 @@ function checkIfSplit() {
 /**
  * Loops through selected hand and stores .alt of all cards held.
  * 
- * @param {string} 'dealer-cards' or 'player-cards'
+ * @param {string} 'dealer-cards' || 'player-cards'
  * @returns array
  */
 function getImageAltData(div) {
@@ -575,7 +578,7 @@ function handValues(array) {
 /**
  * Updates HTML element with the total sum.
  * 
- * @param {string} 'dealer' or 'player'
+ * @param {string} 'dealer' || 'player'
  */
 function updateHtml(DealerOrPlayer) {
     let remainingCardsSpan = document.getElementById('draw-deck-remaining');
