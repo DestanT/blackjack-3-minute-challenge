@@ -58,7 +58,7 @@ h3 {
 }
 
 /* Card Play Area */
-.rules-leaderboard {
+.title-rules-display {
     border: 2px solid black;
 }
 
@@ -480,7 +480,7 @@ h3 {
     }
 
     /* Card Play Area */
-    .rules-leaderboard {
+    .title-rules-display {
         display: none;
     }
 
