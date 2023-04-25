@@ -522,12 +522,12 @@ h3 {
         justify-content: center;
     }
 
-    .pop-up-rules-content>button {
+    .pop-up-rules-content>i {
         display: flex;
         position: absolute;
-        top: 30px;
-        right: 10px;
-        transform: translate(-50%, -50%);
+        font-size: larger;
+        top: 20px;
+        right: 20px;
     }
 
     /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/

@@ -100,6 +100,7 @@ Should anyone wish to copy and paste the project - you are also welcome to - ple
 * The wireframe was made using the [Endless Paper App](https://endlesspaper.app/) on the iPad.
 * To help me find and visualize the font I used [Fontjoy](https://fontjoy.com/).
 * [W3Schools](https://www.w3schools.com/), [Stack Overflow](https://stackoverflow.com/), [Mozilla Dev Tools](https://developer.mozilla.org) was referred to a lot for general syntax and whenever I was stuck on a bug for a while - other similar experiences helped me build a better app.
+* [FontAwesome](https://fontawesome.com/) for the "X" mark in the pop-up modal.
 
 ### __Media__
 
