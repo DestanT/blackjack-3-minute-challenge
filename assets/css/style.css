@@ -256,9 +256,7 @@ h3 {
     animation-name: poker-chip;
     animation-duration: 0.5s;
     animation-direction: alternate;
-    /* animation-iteration-count: infinite; */
     animation-timing-function: linear;
-
 }
 
 @keyframes poker-chip {
@@ -286,9 +284,7 @@ h3 {
     animation-name: poker-chip-deduct;
     animation-duration: 0.5s;
     animation-direction: alternate;
-    /* animation-iteration-count: infinite; */
     animation-timing-function: linear;
-
 }
 
 @keyframes poker-chip-deduct {
@@ -305,6 +301,62 @@ h3 {
         height: 60px;
         left: 50dvw;
         bottom: 5dvh;
+        opacity: 1;
+    }
+}
+
+.deal-player-animation {
+    display: block;
+    position: absolute;
+    
+    animation-name: deal-player;
+    animation-duration: 0.5s;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+}
+
+@keyframes deal-player {
+    from {
+        width: 51px;
+        height: 76px;
+        left: 20dvw;
+        top: 20dvh;
+        opacity: 0;
+    }
+
+    to {
+        width: 51px;
+        height: 76px;
+        left: 50dvw;
+        top: 60dvh;
+        opacity: 1;
+    }
+}
+
+.deal-dealer-animation {
+    display: block;
+    position: absolute;
+    
+    animation-name: deal-dealer;
+    animation-duration: 0.5s;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+}
+
+@keyframes deal-dealer {
+    from {
+        width: 51px;
+        height: 76px;
+        left: 20dvw;
+        top: 20dvh;
+        opacity: 0;
+    }
+
+    to {
+        width: 51px;
+        height: 76px;
+        left: 50dvw;
+        top: 15dvh;
         opacity: 1;
     }
 }
