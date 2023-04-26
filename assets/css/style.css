@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Maitree:wght@300&family=Mukta+Vaani&family=Righteous&display=swap');
 
-/* delete */
-.border {
-    border: 1px solid blue;
-}
-
 body {
     font-family: 'Maitree', serif;
     text-align: center;
@@ -249,6 +244,38 @@ h3 {
     position: absolute;
     top: 0;
     left: 570px;
+}
+
+/* Animations */
+/* Poker Chip Animations */
+/* https://blog.hubspot.com/website/css-animation-examples */
+.poker-chip-animation {
+    display: block;
+    position: absolute;
+    animation-name: poker-chip;
+    animation-duration: 0.5s;
+    animation-direction: alternate;
+    /* animation-iteration-count: infinite; */
+    animation-timing-function: linear;
+
+}
+
+@keyframes poker-chip {
+    from {
+        width: 60px;
+        height: 60px;
+        left: 50dvw;
+        bottom: 5dvh;
+        opacity: 1;
+    }
+
+    to {
+        width: 30px;
+        height: 30px;
+        left: 70dvw;
+        bottom: 50dvh;
+        opacity: 0;
+    }
 }
 
 /* Media Queries */
@@ -504,7 +531,7 @@ h3 {
         z-index: 10;
     }
 
-    .pop-up-rules-content{
+    .pop-up-rules-content {
         position: relative;
         background-color: honeydew;
         border: 2px solid black;

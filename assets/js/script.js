@@ -13,6 +13,11 @@ const soundBoing = document.getElementById('boing');
 const soundPokerChipWinnings = document.getElementById('poker-chip-winnings');
 const soundDeductBet = document.getElementById('deduct-bet');
 
+// Animations:
+function playAnimation(element) {
+    
+}
+
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
     // Buttons:
