@@ -274,7 +274,7 @@ function dealNewRound() {
         shuffleDeck(gameDeck);
     }
 
-    toggleGrayscale(); // Turns poker chips on for betting.
+    toggleGrayscale(); // Turns poker chips OFF.
 
     turnCardOver(dealCard('dealer'));
     // Waits for animations to finish before dealing next cards.
@@ -848,28 +848,28 @@ function toggleGrayscale() {
     const redChip = document.getElementById('red-chip');
     const blueChip = document.getElementById('blue-chip');
     const blackChip = document.getElementById('black-chip');
-    const deductBet = document.getElementById('minus-chip');
+    const whiteChip = document.getElementById('minus-chip');
 
     if (redChip.classList.contains('grayscale') === true) {
         redChip.classList.remove('grayscale');
         blueChip.classList.remove('grayscale');
         blackChip.classList.remove('grayscale');
-        deductBet.classList.remove('grayscale');
+        whiteChip.classList.remove('grayscale');
 
         redChip.addEventListener('pointerdown', addBetRed);
         blueChip.addEventListener('pointerdown', addBetBlue);
         blackChip.addEventListener('pointerdown', addBetBlack);
-        deductBet.addEventListener('pointerdown', deductBet);
+        whiteChip.addEventListener('pointerdown', deductBet);
     } else {
         redChip.classList.add('grayscale');
         blueChip.classList.add('grayscale');
         blackChip.classList.add('grayscale');
-        deductBet.classList.add('grayscale');
+        whiteChip.classList.add('grayscale');
 
         redChip.removeEventListener('pointerdown', addBetRed);
         blueChip.removeEventListener('pointerdown', addBetBlue);
         blackChip.removeEventListener('pointerdown', addBetBlack);
-        deductBet.removeEventListener('pointerdown', deductBet);
+        whiteChip.removeEventListener('pointerdown', deductBet);
     }
 }
 
