@@ -737,6 +737,28 @@ function addBetBlack() {
     }
 }
 
+function deductBet() {
+    const cashSpan = document.getElementById('cash');
+    const betSpan = document.getElementById('bet-value');
+
+    let cashValue = parseInt(cashSpan.innerHTML);
+    let betValue = parseInt(betSpan.innerHTML);
+
+    if (betValue >= 100) {
+        betValue -= 100;
+        cashValue += 100;
+        betSpan.innerHTML = betValue;
+        cashSpan.innerHTML = cashValue;
+    } else if (betValue < 100) {
+        betValue -= betValue;
+        cashValue += betValue
+        betSpan.innerHTML = betValue;
+        cashSpan.innerHTML = cashValue;
+    } else {
+        soundBoing.play();
+    }
+}
+
 /**
  * Toggles the poker chips from coloured to grayscale and back.
  * Removes eventListeners and adds them back respectively.
