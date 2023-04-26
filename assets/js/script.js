@@ -758,7 +758,7 @@ function deductBet() {
         betSpan.innerHTML = betValue;
         cashSpan.innerHTML = cashValue;
         soundDeductBet.play();
-    } else if (betValue < 100) {
+    } else if (betValue < 100 && betValue > 0) {
         const storeValue = betValue;
         betValue -= betValue;
         cashValue += storeValue;
