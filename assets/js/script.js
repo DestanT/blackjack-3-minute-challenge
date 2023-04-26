@@ -23,7 +23,7 @@ function playPokerChipAnimation(colour) {
     const pokerChip = document.getElementById(`${colour}-chip-animation`);
     pokerChip.classList.add('poker-chip-animation');
 
-    setTimeout(function() {
+    setTimeout(function () {
         pokerChip.classList.remove('poker-chip-animation');
     }, 500);
 }
@@ -36,18 +36,18 @@ function deductBetAnimation() {
     const minusChip1 = document.getElementById('deduct-animation-1');
     minusChip1.classList.add('poker-chip-deduct-animation');
 
-    setTimeout(function() {
+    setTimeout(function () {
         minusChip1.classList.remove('poker-chip-deduct-animation');
     }, 500);
 
     // Second Chip animation
     const minusChip2 = document.getElementById('deduct-animation-2');
 
-    setTimeout(function() {
+    setTimeout(function () {
         minusChip2.classList.add('poker-chip-deduct-animation');
     }, 100);
 
-    setTimeout(function() {
+    setTimeout(function () {
         minusChip2.classList.remove('poker-chip-deduct-animation');
     }, 600);
 }
@@ -61,7 +61,7 @@ function animationDealCard(DealerOrPlayer) {
     const animationCard = document.getElementById('deal-card-animation');
     animationCard.classList.add(`deal-${DealerOrPlayer}-animation`);
 
-    setTimeout(function() {
+    setTimeout(function () {
         animationCard.classList.remove(`deal-${DealerOrPlayer}-animation`);
     }, 500);
 }
@@ -276,36 +276,31 @@ function dealNewRound() {
 
     toggleGrayscale(); // Turns poker chips on for betting.
 
-    // Waits for animations to finish before dealing next card.
-    setTimeout(function() {
-        animationDealCard('dealer');
-        turnCardOver(dealCard('dealer'));
+    turnCardOver(dealCard('dealer'));
+    // Waits for animations to finish before dealing next cards.
+    setTimeout(function () {
+        dealCard('player');
     }, 500);
-    setTimeout(function() {
-        animationDealCard('player');
-        dealCard('player');
-    }, 1000);
-    setTimeout(function() {
-        animationDealCard('dealer');
+    setTimeout(function () {
         dealCard('dealer');
-    }, 1500);
-    setTimeout(function() {
-        animationDealCard('player');
+    }, 1000);
+    setTimeout(function () {
         dealCard('player');
-    }, 2000);
+    }, 1500);
 
     // Checks if player can split by comparing image alt data;
     // If true unhides the 'split' button.
 
-    setTimeout(function() {
+    // Animations to deal the 4 card above takes 2000ms; waits for them before executing next commands.
+    setTimeout(function () {
         if (checkCanSplit(getImageAltData('player-cards'))) {
             adjustButtonVisibility('split', 'remove', 'hidden'); // Visible
         }
-    
+
         adjustButtonVisibility('deal', 'add', 'display-off'); // Hidden
         adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
         adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
-    }, 2000);
+    }, 1500);
 }
 
 /**
@@ -316,6 +311,7 @@ function dealNewRound() {
  */
 function dealCard(DealerOrPlayer) {
     soundDealSingle.play();
+    animationDealCard(`${DealerOrPlayer}`);
 
     let drawCard = gameDeck.pop();
 
@@ -430,7 +426,7 @@ function splitHand() {
         document.getElementById('split-hand').append(cardImage);
 
         // Slight delay necessary to have cards in place, before update can take place.
-        setTimeout(function() {
+        setTimeout(function () {
             updateHtml('player');
         }, 100);
 
@@ -514,9 +510,9 @@ function decideWinner() {
         } else {
             cashSpan.innerHTML = cashValue - betValue;
         }
-            winLossText.innerHTML = 'You lose.';
-            winLossText.setAttribute('class', 'red-font');
-            soundLoseHand.play();
+        winLossText.innerHTML = 'You lose.';
+        winLossText.setAttribute('class', 'red-font');
+        soundLoseHand.play();
     } else if (dealerSum > playerSum && dealerSum <= 21) {
         console.log('Dealer wins!');
 
@@ -528,9 +524,9 @@ function decideWinner() {
         } else {
             cashSpan.innerHTML = cashValue - betValue;
         }
-            winLossText.innerHTML = 'You lose.';
-            winLossText.setAttribute('class', 'red-font');
-            soundLoseHand.play();
+        winLossText.innerHTML = 'You lose.';
+        winLossText.setAttribute('class', 'red-font');
+        soundLoseHand.play();
     } else if (dealerSum > 21 && playerSum <= 21) {
         console.log('Player wins!');
 
@@ -545,7 +541,7 @@ function decideWinner() {
         winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
         // Slight delay - sound of paying out poker chip winnings
-        setTimeout(function() {
+        setTimeout(function () {
             soundPokerChipWinnings.play();
         }, 500);
     } else if (dealerSum < playerSum) {
@@ -562,7 +558,7 @@ function decideWinner() {
         winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
         // Slight delay - sound of paying out poker chip winnings
-        setTimeout(function() {
+        setTimeout(function () {
             soundPokerChipWinnings.play();
         }, 500);
     } else if (dealerSum === playerSum) {
@@ -574,12 +570,12 @@ function decideWinner() {
 
     // Displays win/loss text for 1000ms/1s
     adjustButtonVisibility('win-loss-text', 'remove', 'hidden'); // Visibile
-    setTimeout(function() {
+    setTimeout(function () {
         adjustButtonVisibility('win-loss-text', 'add', 'hidden'); // Hidden
     }, 1000);
 
     // Allows for some breathing time before player is expected to deal new hand.
-    setTimeout(function() {
+    setTimeout(function () {
         endOfRound();
         resetScoreHtml();
     }, 1500);
@@ -619,7 +615,7 @@ function endOfRound() {
         dealCard('dealer');
 
         // Slight delay necessary to have cards in place, before update can take place.
-        setTimeout(function() {
+        setTimeout(function () {
             updateHtml('player');
             updateHtml('dealer');
         }, 100);
