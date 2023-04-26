@@ -728,6 +728,7 @@ function addBetBlue() {
         betSpan.innerHTML = betValue;
 
         soundPlaceBet.play();
+        playPokerChipAnimation('blue');
     } else {
         soundBoing.play();
         alert('You do not have enough money!');
@@ -751,6 +752,7 @@ function addBetBlack() {
         betSpan.innerHTML = betValue;
 
         soundPlaceBet.play();
+        playPokerChipAnimation('black');
     } else {
         soundBoing.play();
         alert('You do not have enough money!');
