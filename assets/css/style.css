@@ -252,6 +252,7 @@ h3 {
 .poker-chip-animation {
     display: block;
     position: absolute;
+
     animation-name: poker-chip;
     animation-duration: 0.5s;
     animation-direction: alternate;
@@ -275,6 +276,36 @@ h3 {
         left: 70dvw;
         bottom: 50dvh;
         opacity: 0;
+    }
+}
+
+.poker-chip-deduct-animation {
+    display: block;
+    position: absolute;
+    
+    animation-name: poker-chip-deduct;
+    animation-duration: 0.5s;
+    animation-direction: alternate;
+    /* animation-iteration-count: infinite; */
+    animation-timing-function: linear;
+
+}
+
+@keyframes poker-chip-deduct {
+    from {
+        width: 30px;
+        height: 30px;
+        left: 70dvw;
+        bottom: 50dvh;
+        opacity: 0;
+    }
+
+    to {
+        width: 60px;
+        height: 60px;
+        left: 50dvw;
+        bottom: 5dvh;
+        opacity: 1;
     }
 }
 

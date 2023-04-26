@@ -28,6 +28,27 @@ function playPokerChipAnimation(colour) {
     }, 500);
 }
 
+function deductBetAnimation() {
+    // First chip animation
+    const minusChip1 = document.getElementById('deduct-animation-1');
+    minusChip1.classList.add('poker-chip-deduct-animation');
+
+    setTimeout(function () {
+        minusChip1.classList.remove('poker-chip-deduct-animation');
+    }, 500);
+
+    // Second Chip animation
+    const minusChip2 = document.getElementById('deduct-animation-2');
+
+    setTimeout(function () {
+        minusChip2.classList.add('poker-chip-deduct-animation');
+    }, 100);
+
+    setTimeout(function () {
+        minusChip2.classList.remove('poker-chip-deduct-animation');
+    }, 600);
+}
+
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
     // Buttons:
@@ -776,6 +797,7 @@ function deductBet() {
         betSpan.innerHTML = betValue;
         cashSpan.innerHTML = cashValue;
         soundDeductBet.play();
+        deductBetAnimation();
     } else if (betValue < 100 && betValue > 0) {
         const storeValue = betValue;
         betValue -= betValue;
@@ -783,6 +805,7 @@ function deductBet() {
         betSpan.innerHTML = betValue;
         cashSpan.innerHTML = cashValue;
         soundDeductBet.play();
+        deductBetAnimation();
     } else {
         soundBoing.play();
     }
