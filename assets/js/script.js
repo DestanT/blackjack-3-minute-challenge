@@ -59,6 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const blackChip = document.getElementById('black-chip');
     blackChip.addEventListener('pointerdown', addBetBlack);
+
+    const deductBet = document.getElementById('deduct-bet');
+    deductBet.addEventListener('pointerdown', deductBet);
 });
 
 /**
