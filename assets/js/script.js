@@ -14,8 +14,18 @@ const soundPokerChipWinnings = document.getElementById('poker-chip-winnings');
 const soundDeductBet = document.getElementById('deduct-bet');
 
 // Animations:
-function playAnimation(element) {
-    
+/**
+ * Plays one iteration of the animation properties - via css.
+ * 
+ * @param {string} colour 
+ */
+function playPokerChipAnimation(colour) {
+    const pokerChip = document.getElementById(`${colour}-chip-animation`);
+    pokerChip.classList.add('poker-chip-animation');
+
+    setTimeout(function () {
+        pokerChip.classList.remove('poker-chip-animation');
+    }, 500);
 }
 
 // Event Listeners and initial hiding of buttons:
@@ -694,6 +704,7 @@ function addBetRed() {
         betSpan.innerHTML = betValue;
 
         soundPlaceBet.play();
+        playPokerChipAnimation('red');
     } else {
         soundBoing.play();
         alert('You do not have enough money!');
