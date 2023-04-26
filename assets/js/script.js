@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const blackChip = document.getElementById('black-chip');
     blackChip.addEventListener('pointerdown', addBetBlack);
 
-    const deductBet = document.getElementById('deduct-bet');
-    deductBet.addEventListener('pointerdown', deductBet);
+    const minusChip = document.getElementById('minus-chip');
+    minusChip.addEventListener('pointerdown', deductBet);
 });
 
 /**
@@ -759,8 +759,9 @@ function deductBet() {
         cashSpan.innerHTML = cashValue;
         soundDeductBet.play();
     } else if (betValue < 100) {
+        const storeValue = betValue;
         betValue -= betValue;
-        cashValue += betValue
+        cashValue += storeValue;
         betSpan.innerHTML = betValue;
         cashSpan.innerHTML = cashValue;
         soundDeductBet.play();
@@ -777,7 +778,7 @@ function toggleGrayscale() {
     const redChip = document.getElementById('red-chip');
     const blueChip = document.getElementById('blue-chip');
     const blackChip = document.getElementById('black-chip');
-    const deductBet = document.getElementById('deduct-bet');
+    const deductBet = document.getElementById('minus-chip');
 
     if (redChip.classList.contains('grayscale') === true) {
         redChip.classList.remove('grayscale');
