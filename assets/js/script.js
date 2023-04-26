@@ -15,7 +15,7 @@ const soundDeductBet = document.getElementById('deduct-bet');
 
 // Animations:
 /**
- * Plays one iteration of the animation properties - via css.
+ * Plays one iteration of the poker chip animation - via css.
  * 
  * @param {string} colour 
  */
@@ -23,30 +23,47 @@ function playPokerChipAnimation(colour) {
     const pokerChip = document.getElementById(`${colour}-chip-animation`);
     pokerChip.classList.add('poker-chip-animation');
 
-    setTimeout(function () {
+    setTimeout(function() {
         pokerChip.classList.remove('poker-chip-animation');
     }, 500);
 }
 
+/**
+ * Plays 2 animations to deduct chip value; with a slight delay between them.
+ */
 function deductBetAnimation() {
     // First chip animation
     const minusChip1 = document.getElementById('deduct-animation-1');
     minusChip1.classList.add('poker-chip-deduct-animation');
 
-    setTimeout(function () {
+    setTimeout(function() {
         minusChip1.classList.remove('poker-chip-deduct-animation');
     }, 500);
 
     // Second Chip animation
     const minusChip2 = document.getElementById('deduct-animation-2');
 
-    setTimeout(function () {
+    setTimeout(function() {
         minusChip2.classList.add('poker-chip-deduct-animation');
     }, 100);
 
-    setTimeout(function () {
+    setTimeout(function() {
         minusChip2.classList.remove('poker-chip-deduct-animation');
     }, 600);
+}
+
+/**
+ * Plays one iteration of the deal card animation - via css.
+ * 
+ * @param {string} DealerOrPlayer 
+ */
+function animationDealCard(DealerOrPlayer) {
+    const animationCard = document.getElementById('deal-card-animation');
+    animationCard.classList.add(`deal-${DealerOrPlayer}-animation`);
+
+    setTimeout(function() {
+        animationCard.classList.remove(`deal-${DealerOrPlayer}-animation`);
+    }, 500);
 }
 
 // Event Listeners and initial hiding of buttons:
@@ -259,20 +276,36 @@ function dealNewRound() {
 
     toggleGrayscale(); // Turns poker chips on for betting.
 
-    turnCardOver(dealCard('dealer'));
-    dealCard('player');
-    dealCard('dealer');
-    dealCard('player');
+    // Waits for animations to finish before dealing next card.
+    setTimeout(function() {
+        animationDealCard('dealer');
+        turnCardOver(dealCard('dealer'));
+    }, 500);
+    setTimeout(function() {
+        animationDealCard('player');
+        dealCard('player');
+    }, 1000);
+    setTimeout(function() {
+        animationDealCard('dealer');
+        dealCard('dealer');
+    }, 1500);
+    setTimeout(function() {
+        animationDealCard('player');
+        dealCard('player');
+    }, 2000);
 
     // Checks if player can split by comparing image alt data;
     // If true unhides the 'split' button.
-    if (checkCanSplit(getImageAltData('player-cards'))) {
-        adjustButtonVisibility('split', 'remove', 'hidden'); // Visible
-    }
 
-    adjustButtonVisibility('deal', 'add', 'display-off'); // Hidden
-    adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
-    adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
+    setTimeout(function() {
+        if (checkCanSplit(getImageAltData('player-cards'))) {
+            adjustButtonVisibility('split', 'remove', 'hidden'); // Visible
+        }
+    
+        adjustButtonVisibility('deal', 'add', 'display-off'); // Hidden
+        adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
+        adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
+    }, 2000);
 }
 
 /**
@@ -397,7 +430,7 @@ function splitHand() {
         document.getElementById('split-hand').append(cardImage);
 
         // Slight delay necessary to have cards in place, before update can take place.
-        setTimeout(function () {
+        setTimeout(function() {
             updateHtml('player');
         }, 100);
 
@@ -541,12 +574,12 @@ function decideWinner() {
 
     // Displays win/loss text for 1000ms/1s
     adjustButtonVisibility('win-loss-text', 'remove', 'hidden'); // Visibile
-    setTimeout(function () {
+    setTimeout(function() {
         adjustButtonVisibility('win-loss-text', 'add', 'hidden'); // Hidden
     }, 1000);
 
     // Allows for some breathing time before player is expected to deal new hand.
-    setTimeout(function () {
+    setTimeout(function() {
         endOfRound();
         resetScoreHtml();
     }, 1500);
@@ -586,7 +619,7 @@ function endOfRound() {
         dealCard('dealer');
 
         // Slight delay necessary to have cards in place, before update can take place.
-        setTimeout(function () {
+        setTimeout(function() {
             updateHtml('player');
             updateHtml('dealer');
         }, 100);
