@@ -11,6 +11,7 @@ const soundPlaceBet = document.getElementById('poker-chip-single');
 const soundBustHand = document.getElementById('bust-hand');
 const soundBoing = document.getElementById('boing');
 const soundPokerChipWinnings = document.getElementById('poker-chip-winnings');
+const soundDeductBet = document.getElementById('deduct-bet');
 
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
@@ -737,6 +738,10 @@ function addBetBlack() {
     }
 }
 
+/**
+ * Deducts $100 from betValue and adds it back to players cash.
+ * If less than $100, deducts whats available.
+ */
 function deductBet() {
     const cashSpan = document.getElementById('cash');
     const betSpan = document.getElementById('bet-value');
@@ -749,11 +754,13 @@ function deductBet() {
         cashValue += 100;
         betSpan.innerHTML = betValue;
         cashSpan.innerHTML = cashValue;
+        soundDeductBet.play();
     } else if (betValue < 100) {
         betValue -= betValue;
         cashValue += betValue
         betSpan.innerHTML = betValue;
         cashSpan.innerHTML = cashValue;
+        soundDeductBet.play();
     } else {
         soundBoing.play();
     }
