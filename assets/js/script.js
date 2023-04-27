@@ -297,10 +297,10 @@ function dealNewRound() {
             adjustButtonVisibility('split', 'remove', 'hidden'); // Visible
         }
 
-        adjustButtonVisibility('deal', 'add', 'display-off'); // Hidden
         adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
         adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
     }, 1500);
+    adjustButtonVisibility('deal', 'add', 'display-off'); // Hidden immediately.
 }
 
 /**
