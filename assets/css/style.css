@@ -14,6 +14,7 @@ body span {
 .main-game-area {
     border: 2px solid black;
     background-color: honeydew;
+    max-height: 100dvh;
 }
 
 .grid {
@@ -57,13 +58,40 @@ h3 {
     color: red;
 }
 
+/* Game Rules Area */
+#game-rules-content {
+    max-height: 100dvh;
+    overflow: auto;
+}
+
+#game-rules-content>p,
+#game-rules-content>h3 {
+    font-size: 1.5em;
+}
+
+#game-rules-content>p {
+    text-align: left;
+    margin: 10px 10px;
+    line-height: 120%;
+}
+
+#game-rules-content>ul,
+#game-rules-content>ol {
+    text-align: left;
+    font-size: 1.3em;
+}
+
+#game-rules-content li {
+    margin-left: -5px;
+}
+
 /* Card Play Area */
 .title-rules-display {
     border: 2px solid black;
 }
 
 .title-rules-display i {
-    visibility: hidden;
+    display: none;
 }
 
 .actions-div {
@@ -634,7 +662,7 @@ h3 {
     }
 
     .pop-up-rules-content>i {
-        visibility: visible;
+        display: flex;
         position: absolute;
         font-size: larger;
         top: 20px;
