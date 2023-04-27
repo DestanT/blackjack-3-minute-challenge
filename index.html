@@ -261,9 +261,24 @@
     </div>
 
     <!-- Various Pop-Up Modal Windows -->
-    <!-- Score Screen/End of Game -->
-    <div class="modal-window">
+    <!-- Name Input Screen -->
+    <div id="name-input-screen" class="modal-window">
         <div class="modal-content">
+            <p>
+                <strong>Please input your name:</strong>
+            </p>
+            <form action="">
+                <input type="text" minlength="2" maxlength="15" required>
+                <br>
+                <br>
+                <input type="submit" value="Enter" id="enter-name">
+            </form>
+            <br>
+        </div>
+    </div>
+    <!-- Score Screen/End of Game -->
+    <div id="score-screen">
+        <div>
             <h3>Congratulations</h3>
             <p>You have beaten you previous record!</p>
             <p>Your top 3 scores:</p>
