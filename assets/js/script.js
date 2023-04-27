@@ -452,6 +452,7 @@ function hit() {
         playerSum = handValues(getImageAltData('player-cards')).value;
         if (playerSum > 21) {
             soundBustHand.play();
+            decideWinner(); // Immediately lose hand on 'bust'
             adjustButtonVisibility('hit', 'add', 'hidden'); // Hidden
         }
     } else if (playerSum === 21) {
