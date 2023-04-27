@@ -58,6 +58,40 @@ h3 {
     color: red;
 }
 
+/* Pop-Up Modal Windows */
+.modal-window {
+    display: block;
+    position: fixed;
+    background-color: rgba(20, 120, 58, 0.7);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
+
+.modal-content {
+    position: relative;
+    background-color: honeydew;
+    border: 2px solid black;
+    border-radius: 10px;
+    max-width: 50dvw;
+    max-height: 80dvh;
+    overflow: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-content>table {
+    display: inline-block;
+    align-items: center;
+}
+
+.modal-content>button {
+    margin-bottom: 20px;
+}
+
 /* Game Rules Area */
 #game-rules-content {
     max-height: 100dvh;
@@ -308,7 +342,7 @@ h3 {
 .poker-chip-deduct-animation {
     display: block;
     position: absolute;
-    
+
     animation-name: poker-chip-deduct;
     animation-duration: 0.5s;
     animation-direction: alternate;
@@ -336,7 +370,7 @@ h3 {
 .deal-player-animation {
     display: block;
     position: absolute;
-    
+
     animation-name: deal-player;
     animation-duration: 0.5s;
     animation-direction: alternate;
@@ -364,7 +398,7 @@ h3 {
 .deal-dealer-animation {
     display: block;
     position: absolute;
-    
+
     animation-name: deal-dealer;
     animation-duration: 0.5s;
     animation-direction: alternate;
