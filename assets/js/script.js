@@ -107,6 +107,27 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 
+    const playAgainButton = document.getElementById('play-again');
+    playAgainButton.addEventListener('pointerdown', function () {
+        // Closes score screen.
+        const scoreScreen = document.getElementById('score-screen');
+        scoreScreen.classList.remove('modal-window');
+        scoreScreen.children[0].classList.remove('modal-content');
+        scoreScreen.classList.add('display-off');
+        scoreScreen.children[0].classList.add('display-off');
+
+        // Clears the table for the new round.
+        const bothHands = document.getElementsByClassName('dealt-cards');
+
+        for (let h = bothHands.length; h > 0; h--) {
+            const allCards = bothHands[h - 1].children; // -1 takes into account array [0]
+            for (let c = allCards.length; c > 0; c--) {
+                allCards[c - 1].remove(); // -1 takes into account array [0]
+            }
+        }
+        startGame();
+    });
+
     //Poker Chips:
     const redChip = document.getElementById('red-chip');
     redChip.addEventListener('pointerdown', addBetRed);
@@ -255,7 +276,7 @@ function dealNewRound() {
         let cashValue = parseInt(cashSpan.innerHTML);
 
         if (cashValue < 50) {
-            submitScore(); // NOTE: ADD different HTML text here.
+            alert('not enough money');
         } else {
             cashValue -= 50;
             betValue += 50;
@@ -579,6 +600,7 @@ function decideWinner() {
  * If split card = true; puts it into play next.
  */
 function endOfRound() {
+    // Clears the cards from the table.
     const bothHands = document.getElementsByClassName('dealt-cards');
 
     for (let h = bothHands.length; h > 0; h--) {
@@ -587,6 +609,11 @@ function endOfRound() {
             allCards[c - 1].remove(); // -1 takes into account array [0]
         }
     }
+
+    const cashSpan = document.getElementById('cash');
+    const betSpan = document.getElementById('bet-value');
+    let cashValue = parseInt(cashSpan.innerHTML);
+    let betValue = parseInt(betSpan.innerHTML);
 
     // If player has a split card on the side, puts that card into play after clearing table.
     if (checkIfSplit() === true) {
@@ -617,6 +644,10 @@ function endOfRound() {
         adjustButtonVisibility('side-bet-value', 'add', 'hidden');
         adjustButtonVisibility('hit', 'remove', 'hidden');
         adjustButtonVisibility('stand', 'remove', 'hidden');
+        
+        // If player doesn't have enough cash to bet with; triggers end game.
+    } else if (betValue < 50 && cashValue === 0) {
+        submitScore();
     } else {
         adjustButtonVisibility('deal', 'add', 'display-on');
     }
@@ -980,27 +1011,4 @@ function submitScore() {
     scoreScreen.children[0].classList.add('modal-content');
     scoreScreen.classList.remove('display-off');
     scoreScreen.children[0].classList.remove('display-off');
-
-    // Add event listener to 'Play Again' button in score screen.
-    const playAgainButton = document.getElementById('play-again');
-
-    playAgainButton.addEventListener('pointerdown', function () {
-        // Closes score screen.
-        scoreScreen.classList.remove('modal-window');
-        scoreScreen.children[0].classList.remove('modal-content');
-        scoreScreen.classList.add('display-off');
-        scoreScreen.children[0].classList.add('display-off');
-
-        // Clears the table for the new round.
-        const bothHands = document.getElementsByClassName('dealt-cards');
-
-        for (let h = bothHands.length; h > 0; h--) {
-            const allCards = bothHands[h - 1].children; // -1 takes into account array [0]
-            for (let c = allCards.length; c > 0; c--) {
-                allCards[c - 1].remove(); // -1 takes into account array [0]
-            }
-        }
-
-        startGame();
-    });
 }
