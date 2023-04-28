@@ -452,6 +452,7 @@ function hit() {
             soundBustHand.play();
             decideWinner(); // Immediately lose hand on 'bust'
             adjustButtonVisibility('hit', 'add', 'hidden'); // Hidden
+            adjustButtonVisibility('stand', 'add', 'hidden'); // Hidden
         }
     } else if (playerSum === 21) {
         alert(
