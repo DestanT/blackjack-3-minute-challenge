@@ -938,17 +938,38 @@ function submitScore() {
     const cashValue = parseInt(cashSpan.innerHTML);
     const betValue = parseInt(betSpan.innerHTML);
     let sideBetValue = 0;
+    let totalScore = 0;
 
     // Considers possibility of active side bet as the timer runs out and submitScore is triggered.
     if (checkIfSplit() === true) {
         const sideBet = document.getElementById('side-bet-value');
         sideBetValue += parseInt(sideBet.innerHTML);
-    }
+    } 
+    
+    // Tallies up the total score.
+    totalScore = cashValue + betValue + sideBetValue;
 
-    const totalScore = cashValue + betValue + sideBetValue;
-
-    // Save TotalScore to localStorage - highScore4 - used in sorting later.
+    // Save current totalScore to localStorage - highScore4 - used in sorting later.
     localStorage.setItem('highScore4', totalScore);
 
+    // Retrieves the 3 current high scores and the newly set one.
+    let highScore1 = localStorage.getItem('highScore1');
+    let highScore2 = localStorage.getItem('highScore2');
+    let highScore3 = localStorage.getItem('highScore3');
+    let highScore4 = localStorage.getItem('highScore4');
 
+    // Stores all 4 scores in an array.
+    let scoresArray = [];
+
+    scoresArray.push(highScore1);
+    scoresArray.push(highScore2);
+    scoresArray.push(highScore3);
+    scoresArray.push(highScore4);
+
+    // Sorts the array by order of value.
+    scoresArray.sort(function(a, b) {
+        return a - b;
+      });
+      
+      console.log(scoresArray);
 }
