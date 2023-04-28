@@ -42,33 +42,33 @@ document.addEventListener('DOMContentLoaded', function () {
     // Input Name Field:
     const inputButton = document.getElementById('enter-name');
     inputButton.addEventListener('pointerdown', function (event) {
-        event.preventDefault();
-
-        // Saves the players name on local storage. Minimum 2 letters.
-        const playerName = document.getElementById('input-name');
-        if (playerName.value.length >= 2) {
-            localStorage.setItem('playerName', playerName.value);
-
-            // Closes the modal window.
-            nameInputScreen.classList.remove('modal-window');
-            nameInputScreen.children[0].classList.remove('modal-content');
-            nameInputScreen.classList.add('display-off');
-            nameInputScreen.children[0].classList.add('display-off');
-
-            // Updates players name in the rules section.
-            playerNameSpan.innerHTML = `Hi ${localStorage.getItem('playerName')}.`;
-        }
+            event.preventDefault();
+            
+            // Saves the players name on local storage. Minimum 2 letters.
+            const playerName = document.getElementById('input-name');
+            if (playerName.value.length >= 2) {
+                localStorage.setItem('playerName', playerName.value);
+                
+                // Closes the modal window.
+                nameInputScreen.classList.remove('modal-window');
+                nameInputScreen.children[0].classList.remove('modal-content');
+                nameInputScreen.classList.add('display-off');
+                nameInputScreen.children[0].classList.add('display-off');
+                
+                // Updates players name in the rules section.
+                playerNameSpan.innerHTML = `Hi ${localStorage.getItem('playerName')}.`;
+            }
     })
 
     // If localStorage for high scores don't already exist;
     // set initial high scores to 0.
-    if (localStorage.getItem('highScore1') !== 'null') {
+    if (localStorage.getItem('highScore1') !== null) {
         localStorage.setItem('highScore1', 0);
     }
-    if (localStorage.getItem('highScore2') !== 'null') {
+    if (localStorage.getItem('highScore2') !== null) {
         localStorage.setItem('highScore2', 0);
     }
-    if (localStorage.getItem('highScore3') !== 'null') {
+    if (localStorage.getItem('highScore3') !== null) {
         localStorage.setItem('highScore3', 0);
     }
 
@@ -939,13 +939,13 @@ function submitScore() {
     totalScore = cashValue + betValue + sideBetValue;
 
     // Save current totalScore to localStorage - highScore4 - used in sorting later.
-    localStorage.setItem('highScore4', totalScore);
+    localStorage.setItem('recentScore', totalScore);
 
     // Retrieves the 3 current high scores and the newly set one.
     let highScore1 = localStorage.getItem('highScore1');
     let highScore2 = localStorage.getItem('highScore2');
     let highScore3 = localStorage.getItem('highScore3');
-    let highScore4 = localStorage.getItem('highScore4');
+    let recentScore = localStorage.getItem('recentScore');
 
     // Stores all 4 scores in an array.
     let scoresArray = [];
@@ -953,7 +953,7 @@ function submitScore() {
     scoresArray.push(highScore1);
     scoresArray.push(highScore2);
     scoresArray.push(highScore3);
-    scoresArray.push(highScore4);
+    scoresArray.push(recentScore);
 
     // Sorts the array by order of value.
     // https://stackoverflow.com/questions/38807946/localstorage-sort-order-by-value
@@ -965,4 +965,12 @@ function submitScore() {
     localStorage.setItem('highScore1', scoresArray[3]);
     localStorage.setItem('highScore2', scoresArray[2]);
     localStorage.setItem('highScore3', scoresArray[1]);
+
+    // Updates .html table with high scores.
+    const htmlHighScore1 = document.getElementById('high-score-1');
+    htmlHighScore1.innerHTML = `$${localStorage.getItem('highScore1')}`;
+    const htmlHighScore2 = document.getElementById('high-score-2');
+    htmlHighScore2.innerHTML = `$${localStorage.getItem('highScore2')}`;
+    const htmlHighScore3 = document.getElementById('high-score-3');
+    htmlHighScore3.innerHTML = `$${localStorage.getItem('highScore3')}`;
 }
