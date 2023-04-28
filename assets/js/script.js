@@ -1,5 +1,6 @@
 // Global Variables
 let gameDeck = [];
+let timeInterval;
 
 // Sound Effects:
 const soundDealSingle = document.getElementById('deal-single');
@@ -126,13 +127,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        // Reset cash and bet values.
+        // Reset cash/bet values and clearInterval for timer.
         const cashSpan = document.getElementById('cash');
         const betSpan = document.getElementById('bet-value');
 
         cashSpan.innerHTML = 500;
         betSpan.innerHTML = 0;
 
+        clearInterval(timeInterval);
         startGame();
     });
 
@@ -245,7 +247,7 @@ function shuffleDeck(deck) {
  */
 function startCountdownTimer() {
     let timer = 180;
-    let myInterval = setInterval(countdownTimer, 1000);
+    timeInterval = setInterval(countdownTimer, 1000);
 
     function countdownTimer() {
         if (timer >= 0) {
@@ -262,7 +264,7 @@ function startCountdownTimer() {
             countdownTimer.innerHTML = `${minutes} : ${seconds}`;
             timer--;
         } else {
-            clearInterval(myInterval);
+            clearInterval(timeInterval);
             submitScore();
             return;
         }
