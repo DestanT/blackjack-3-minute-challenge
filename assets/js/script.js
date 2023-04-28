@@ -944,8 +944,8 @@ function submitScore() {
     if (checkIfSplit() === true) {
         const sideBet = document.getElementById('side-bet-value');
         sideBetValue += parseInt(sideBet.innerHTML);
-    } 
-    
+    }
+
     // Tallies up the total score.
     totalScore = cashValue + betValue + sideBetValue;
 
@@ -967,9 +967,12 @@ function submitScore() {
     scoresArray.push(highScore4);
 
     // Sorts the array by order of value.
-    scoresArray.sort(function(a, b) {
+    scoresArray.sort(function (a, b) {
         return a - b;
-      });
-      
-      console.log(scoresArray);
+    });
+
+    // Overrides highScore1-3 on localStorage.
+    localStorage.setItem('highScore1', scoresArray[3]);
+    localStorage.setItem('highScore2', scoresArray[2]);
+    localStorage.setItem('highScore3', scoresArray[1]);
 }
