@@ -234,7 +234,7 @@ function startCountdownTimer() {
             timer--;
         } else {
             clearInterval(myInterval);
-            console.log('finished'); // NOTE: exchange for code to do endGame functions and leaderboard calculations
+            submitScore();
             return;
         }
     }
@@ -983,14 +983,24 @@ function submitScore() {
     scoreScreen.children[0].classList.remove('display-off');
 
     // Add event listener to 'Play Again' button in score screen.
-    const playAgain = document.getElementById('play-again');
+    const playAgainButton = document.getElementById('play-again');
 
-    playAgain.addEventListener('pointerdown', function () {
+    playAgainButton.addEventListener('pointerdown', function () {
         // Closes score screen.
-        nameInputScreen.classList.remove('modal-window');
-        nameInputScreen.children[0].classList.remove('modal-content');
-        nameInputScreen.classList.add('display-off');
-        nameInputScreen.children[0].classList.add('display-off');
+        scoreScreen.classList.remove('modal-window');
+        scoreScreen.children[0].classList.remove('modal-content');
+        scoreScreen.classList.add('display-off');
+        scoreScreen.children[0].classList.add('display-off');
+
+        // Clears the table for the new round.
+        const bothHands = document.getElementsByClassName('dealt-cards');
+
+        for (let h = bothHands.length; h > 0; h--) {
+            const allCards = bothHands[h - 1].children; // -1 takes into account array [0]
+            for (let c = allCards.length; c > 0; c--) {
+                allCards[c - 1].remove(); // -1 takes into account array [0]
+            }
+        }
 
         startGame();
     });
