@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const nameInputScreen = document.getElementById('name-input-screen');
 
     // If localStorage for 'playerName' already exists:
-    if (localStorage.getItem('playerName') !== 'null') {
+    if (localStorage.getItem('playerName') !== null) {
         // Closes the modal window immediately.
         nameInputScreen.classList.remove('modal-window');
         nameInputScreen.children[0].classList.remove('modal-content');
