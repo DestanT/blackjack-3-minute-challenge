@@ -84,6 +84,10 @@ document.addEventListener('DOMContentLoaded', function () {
             nameInputScreen.children[0].classList.remove('modal-content');
             nameInputScreen.classList.add('display-off');
             nameInputScreen.children[0].classList.add('display-off');
+
+            // Updates players name in the rules section.
+            let playerNameSpan = document.getElementById('name-span');
+            playerNameSpan.innerHTML = localStorage.getItem('playerName');
         }
     })
 
