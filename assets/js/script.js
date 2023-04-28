@@ -151,8 +151,8 @@ function adjustButtonVisibility(id, addRemove, cssClassName) {
  * Start game function.
  */
 function startGame() {
-    adjustButtonVisibility('start', 'add', 'display-off'); // Hidden
-    adjustButtonVisibility('deal', 'add', 'display-off'); // Hidden
+    adjustButtonVisibility('start', 'add', 'display-off');
+    adjustButtonVisibility('deal', 'add', 'display-off');
 
     makeFreshDeck();
     shuffleDeck(gameDeck);
@@ -292,11 +292,11 @@ function dealNewRound() {
     // Animations to deal the 4 card above takes 1500ms; waits for them before executing next commands.
     setTimeout(function () {
         if (checkCanSplit(getImageAltData('player-cards'))) {
-            adjustButtonVisibility('split', 'remove', 'hidden'); // Visible
+            adjustButtonVisibility('split', 'remove', 'hidden');
         }
 
-        adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
-        adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
+        adjustButtonVisibility('hit', 'remove', 'hidden');
+        adjustButtonVisibility('stand', 'remove', 'hidden');
     }, 1500);
     adjustButtonVisibility('deal', 'add', 'display-off'); // Hidden immediately.
 }
@@ -428,9 +428,9 @@ function splitHand() {
             updateHtml('player');
         }, 100);
 
-        adjustButtonVisibility('side-bet-span', 'remove', 'hidden'); // Visible
-        adjustButtonVisibility('side-bet-value', 'remove', 'hidden'); // Visible
-        adjustButtonVisibility('split', 'add', 'hidden'); // Hidden
+        adjustButtonVisibility('side-bet-span', 'remove', 'hidden');
+        adjustButtonVisibility('side-bet-value', 'remove', 'hidden');
+        adjustButtonVisibility('split', 'add', 'hidden');
     } else {
         soundBoing.play();
         alert('Sorry! You do not have enough cash to match your original bet!');
@@ -442,6 +442,9 @@ function splitHand() {
  * Otherwise alerts player of 'bust' hand.
  */
 function hit() {
+    // When 'split' is an option but player chooses to 'hit', hides 'split' button.
+    adjustButtonVisibility('split', 'add', 'hidden');
+
     let playerSum = handValues(getImageAltData('player-cards')).value;
 
     if (playerSum <= 20) {
@@ -451,8 +454,8 @@ function hit() {
         if (playerSum > 21) {
             soundBustHand.play();
             decideWinner(); // Immediately lose hand on 'bust'
-            adjustButtonVisibility('hit', 'add', 'hidden'); // Hidden
-            adjustButtonVisibility('stand', 'add', 'hidden'); // Hidden
+            adjustButtonVisibility('hit', 'add', 'hidden');
+            adjustButtonVisibility('stand', 'add', 'hidden');
         }
     } else if (playerSum === 21) {
         alert(
@@ -466,8 +469,8 @@ function hit() {
  * Will continue taking cards until at least 17 hand value is reached.
  */
 function dealersTurn() {
-    adjustButtonVisibility('hit', 'add', 'hidden'); // Hidden
-    adjustButtonVisibility('stand', 'add', 'hidden'); // Hidden
+    adjustButtonVisibility('hit', 'add', 'hidden');
+    adjustButtonVisibility('stand', 'add', 'hidden');
 
     toggleGrayscale(); // Turns poker chips off - no betting after 'stand'
     turnCardOver();
@@ -559,9 +562,9 @@ function decideWinner() {
     }
 
     // Displays win/loss text for 1000ms/1s
-    adjustButtonVisibility('win-loss-text', 'remove', 'hidden'); // Visibile
+    adjustButtonVisibility('win-loss-text', 'remove', 'hidden');
     setTimeout(function () {
-        adjustButtonVisibility('win-loss-text', 'add', 'hidden'); // Hidden
+        adjustButtonVisibility('win-loss-text', 'add', 'hidden');
     }, 1000);
 
     // Allows for some breathing time before player is expected to deal new hand.
@@ -610,12 +613,12 @@ function endOfRound() {
             updateHtml('dealer');
         }, 100);
 
-        adjustButtonVisibility('side-bet-span', 'add', 'hidden'); // Hidden
-        adjustButtonVisibility('side-bet-value', 'add', 'hidden'); // Hidden
-        adjustButtonVisibility('hit', 'remove', 'hidden'); // Visible
-        adjustButtonVisibility('stand', 'remove', 'hidden'); // Visible
+        adjustButtonVisibility('side-bet-span', 'add', 'hidden');
+        adjustButtonVisibility('side-bet-value', 'add', 'hidden');
+        adjustButtonVisibility('hit', 'remove', 'hidden');
+        adjustButtonVisibility('stand', 'remove', 'hidden');
     } else {
-        adjustButtonVisibility('deal', 'add', 'display-on'); // Visible
+        adjustButtonVisibility('deal', 'add', 'display-on');
     }
 }
 
