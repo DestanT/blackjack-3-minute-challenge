@@ -68,26 +68,39 @@ function animationDealCard(DealerOrPlayer) {
 
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
+    // If localStorage for 'playerName' already exists:
+    const playerNameSpan = document.getElementById('name-span');
+    const nameInputScreen = document.getElementById('name-input-screen');
+    
+    if (localStorage.getItem('playerName') !== 'null') {
+        // Closes the modal window.
+        nameInputScreen.classList.remove('modal-window');
+        nameInputScreen.children[0].classList.remove('modal-content');
+        nameInputScreen.classList.add('display-off');
+        nameInputScreen.children[0].classList.add('display-off');
+
+        // Updates players name in the rules section.
+        playerNameSpan.innerHTML = `Welcome back ${localStorage.getItem('playerName')}!`;
+    }
+
     // Input Name Field:
     const inputButton = document.getElementById('enter-name');
-    inputButton.addEventListener('pointerdown', function(event) {
+    inputButton.addEventListener('pointerdown', function (event) {
         event.preventDefault();
 
-        // Saves the players name on local storage.
+        // Saves the players name on local storage. Minimum 2 letters.
         const playerName = document.getElementById('input-name');
         if (playerName.value.length >= 2) {
             localStorage.setItem('playerName', playerName.value);
-            
+
             // Closes the modal window.
-            const nameInputScreen = document.getElementById('name-input-screen');
             nameInputScreen.classList.remove('modal-window');
             nameInputScreen.children[0].classList.remove('modal-content');
             nameInputScreen.classList.add('display-off');
             nameInputScreen.children[0].classList.add('display-off');
 
             // Updates players name in the rules section.
-            let playerNameSpan = document.getElementById('name-span');
-            playerNameSpan.innerHTML = localStorage.getItem('playerName');
+            playerNameSpan.innerHTML = `Hi ${localStorage.getItem('playerName')}.`;
         }
     })
 
