@@ -535,13 +535,8 @@ function decideWinner() {
     } else if (dealerSum > 21 && playerSum <= 21) {
         console.log('Player wins!');
 
-        if (betValue > cashValue) {
-            let difference = betValue - cashValue; // Another example: bet = 800, cash = 0; difference = 0
-            betSpan.innerHTML = (betValue - difference); // bet HTML will show 800
-            cashSpan.innerHTML = cashValue - cashValue; // cash HTML will show 0 (0 - 0).
-        } else {
-            cashSpan.innerHTML = cashValue + betValue * 2;
-        }
+        cashSpan.innerHTML = cashValue + betValue;        
+
         winLossText.innerHTML = 'You won!';
         winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
@@ -552,13 +547,8 @@ function decideWinner() {
     } else if (dealerSum < playerSum) {
         console.log('Player wins!');
 
-        if (betValue > cashValue) {
-            let difference = betValue - cashValue; // Another example: bet = 800, cash = 0; difference = 0
-            betSpan.innerHTML = (betValue - difference); // bet HTML will show 800
-            cashSpan.innerHTML = cashValue - cashValue; // cash HTML will show 0 (0 - 0).
-        } else {
-            cashSpan.innerHTML = cashValue + betValue * 2;
-        }
+        cashSpan.innerHTML = cashValue + betValue;
+
         winLossText.innerHTML = 'You won!';
         winLossText.setAttribute('class', 'green-font');
         soundWinHand.play();
