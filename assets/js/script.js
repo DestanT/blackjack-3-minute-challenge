@@ -956,6 +956,7 @@ function submitScore() {
     scoresArray.push(highScore4);
 
     // Sorts the array by order of value.
+    // https://stackoverflow.com/questions/38807946/localstorage-sort-order-by-value
     scoresArray.sort(function (a, b) {
         return a - b;
     });
