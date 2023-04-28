@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // If localStorage for 'playerName' already exists:
     const playerNameSpan = document.getElementById('name-span');
     const nameInputScreen = document.getElementById('name-input-screen');
-    
+
     if (localStorage.getItem('playerName') !== 'null') {
         // Closes the modal window.
         nameInputScreen.classList.remove('modal-window');
@@ -81,6 +81,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Updates players name in the rules section.
         playerNameSpan.innerHTML = `Welcome back ${localStorage.getItem('playerName')}!`;
+
+        // Add event listener to clicks on name span. Allows player to change name, should they wish to.
+        playerNameSpan.addEventListener('pointerdown', function () {
+            // Opens the modal window.
+            nameInputScreen.classList.add('modal-window');
+            nameInputScreen.children[0].classList.add('modal-content');
+            nameInputScreen.classList.remove('display-off');
+            nameInputScreen.children[0].classList.remove('display-off');
+        })
     }
 
     // Input Name Field:
