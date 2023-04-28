@@ -456,6 +456,7 @@ function hit() {
             decideWinner(); // Immediately lose hand on 'bust'
             adjustButtonVisibility('hit', 'add', 'hidden');
             adjustButtonVisibility('stand', 'add', 'hidden');
+            toggleGrayscale();
         }
     } else if (playerSum === 21) {
         alert(
