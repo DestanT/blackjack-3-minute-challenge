@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
     standButton.addEventListener('pointerdown', dealersTurn);
     standButton.classList.add('hidden');
 
+    // Game Rules:
     const gameRulesSpan = document.getElementById('game-rules-span');
     gameRulesSpan.addEventListener('pointerdown', function () {
         // Add css classes that are applied to the 'game rules' div. Pops up a modal window.
@@ -108,7 +109,8 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 
-    const playAgainButton = document.getElementById('play-again');
+    // Score Screen - Play Again Button:
+    const playAgainButton = document.getElementById('close-button');
     playAgainButton.addEventListener('pointerdown', function () {
         // Closes score screen.
         const scoreScreen = document.getElementById('score-screen');
@@ -127,15 +129,15 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        // Reset cash/bet values and clearInterval for timer.
+        // Reset cash/bet values and adjust button visibilities.
         const cashSpan = document.getElementById('cash');
         const betSpan = document.getElementById('bet-value');
 
         cashSpan.innerHTML = 500;
         betSpan.innerHTML = 0;
 
-        clearInterval(timeInterval);
-        startGame();
+        adjustButtonVisibility('deal', 'add', 'display-off');
+        adjustButtonVisibility('start', 'add', 'display-on');
     });
 
     //Poker Chips:
@@ -961,6 +963,8 @@ function animationDealCard(DealerOrPlayer) {
 }
 
 function submitScore() {
+    clearInterval(timeInterval); // Stops timer from counting down.
+
     const cashSpan = document.getElementById('cash');
     const betSpan = document.getElementById('bet-value');
 
