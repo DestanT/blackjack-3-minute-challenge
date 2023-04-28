@@ -15,10 +15,10 @@ const soundDeductBet = document.getElementById('deduct-bet');
 
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
-    // If localStorage for 'playerName' already exists:
     const playerNameSpan = document.getElementById('name-span');
     const nameInputScreen = document.getElementById('name-input-screen');
 
+    // If localStorage for 'playerName' already exists:
     if (localStorage.getItem('playerName') !== 'null') {
         // Closes the modal window immediately.
         nameInputScreen.classList.remove('modal-window');
@@ -59,6 +59,18 @@ document.addEventListener('DOMContentLoaded', function () {
             playerNameSpan.innerHTML = `Hi ${localStorage.getItem('playerName')}.`;
         }
     })
+
+    // If localStorage for high scores don't already exist;
+    // set initial high scores to 0.
+    if (localStorage.getItem('highScore1') !== 'null') {
+        localStorage.setItem('highScore1', 0);
+    }
+    if (localStorage.getItem('highScore2') !== 'null') {
+        localStorage.setItem('highScore2', 0);
+    }
+    if (localStorage.getItem('highScore3') !== 'null') {
+        localStorage.setItem('highScore3', 0);
+    }
 
     // Buttons:
     const startButton = document.getElementById('start');
@@ -920,5 +932,23 @@ function animationDealCard(DealerOrPlayer) {
 }
 
 function submitScore() {
-    console.log('Submitting Score');
+    const cashSpan = document.getElementById('cash');
+    const betSpan = document.getElementById('bet-value');
+
+    const cashValue = parseInt(cashSpan.innerHTML);
+    const betValue = parseInt(betSpan.innerHTML);
+    let sideBetValue = 0;
+
+    // Considers possibility of active side bet as the timer runs out and submitScore is triggered.
+    if (checkIfSplit() === true) {
+        const sideBet = document.getElementById('side-bet-value');
+        sideBetValue += parseInt(sideBet.innerHTML);
+    }
+
+    const totalScore = cashValue + betValue + sideBetValue;
+
+    // Save TotalScore to localStorage - highScore4 - used in sorting later.
+    localStorage.setItem('highScore4', totalScore);
+
+
 }
