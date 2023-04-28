@@ -128,6 +128,10 @@ h3 {
     display: none;
 }
 
+#end-game {
+    align-items: flex-start;
+}
+
 .actions-div {
     font-size: 30px;
     font-weight: bold;

@@ -81,6 +81,10 @@ document.addEventListener('DOMContentLoaded', function () {
     dealNewRoundButton.addEventListener('pointerdown', dealNewRound);
     dealNewRoundButton.classList.add('display-off');
 
+    const endGameButton = document.getElementById('end-game');
+    endGameButton.addEventListener('pointerdown', submitScore);
+    endGameButton.classList.add('display-off');
+
     const hitButton = document.getElementById('hit');
     hitButton.addEventListener('pointerdown', hit);
     hitButton.classList.add('hidden');
@@ -137,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
         betSpan.innerHTML = 0;
 
         adjustButtonVisibility('deal', 'add', 'display-off');
+        adjustButtonVisibility('end-game', 'add', 'display-off');
         adjustButtonVisibility('start', 'add', 'display-on');
     });
 
@@ -186,6 +191,7 @@ function adjustButtonVisibility(id, addRemove, cssClassName) {
 function startGame() {
     adjustButtonVisibility('start', 'add', 'display-off');
     adjustButtonVisibility('deal', 'add', 'display-off');
+    adjustButtonVisibility('end-game', 'add', 'display-off');
 
     makeFreshDeck();
     shuffleDeck(gameDeck);
@@ -331,6 +337,7 @@ function dealNewRound() {
         adjustButtonVisibility('stand', 'remove', 'hidden');
     }, 1500);
     adjustButtonVisibility('deal', 'add', 'display-off'); // Hidden immediately.
+    adjustButtonVisibility('end-game', 'add', 'display-off'); // Hidden immediately.
 }
 
 /**
@@ -662,6 +669,7 @@ function endOfRound() {
         submitScore();
     } else {
         adjustButtonVisibility('deal', 'add', 'display-on');
+        adjustButtonVisibility('end-game', 'add', 'display-on');
     }
 }
 
@@ -964,6 +972,11 @@ function animationDealCard(DealerOrPlayer) {
 
 function submitScore() {
     clearInterval(timeInterval); // Stops timer from counting down.
+
+    // Ensures buttons stay hidden - the case on early submits.
+    adjustButtonVisibility('hit', 'add', 'hidden');
+    adjustButtonVisibility('split', 'add', 'hidden');
+    adjustButtonVisibility('stand', 'add', 'hidden');
 
     const cashSpan = document.getElementById('cash');
     const betSpan = document.getElementById('bet-value');
