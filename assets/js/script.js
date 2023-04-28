@@ -134,14 +134,8 @@ function adjustButtonVisibility(id, addRemove, cssClassName) {
     const button = document.getElementById(id);
 
     if (addRemove === 'add') {
-        if (cssClassName === 'display-on' || cssClassName === 'display-off') {
-            button.removeAttribute('class'); // Resets classes
-            button.classList.add(cssClassName);
-        } else if (button.classList.contains(cssClassName) === true) {
-            return;
-        } else {
-            button.classList.add(cssClassName);
-        }
+        button.removeAttribute('class'); // Resets classes
+        button.classList.add(cssClassName);
     } else if (addRemove === 'remove') {
         if (button.classList.contains(cssClassName) === true) {
             button.classList.remove(cssClassName);
@@ -295,7 +289,7 @@ function dealNewRound() {
     // Checks if player can split by comparing image alt data;
     // If true unhides the 'split' button.
 
-    // Animations to deal the 4 card above takes 2000ms; waits for them before executing next commands.
+    // Animations to deal the 4 card above takes 1500ms; waits for them before executing next commands.
     setTimeout(function () {
         if (checkCanSplit(getImageAltData('player-cards'))) {
             adjustButtonVisibility('split', 'remove', 'hidden'); // Visible
