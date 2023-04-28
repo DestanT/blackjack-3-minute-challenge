@@ -212,10 +212,10 @@ function shuffleDeck(deck) {
 }
 
 /**
- * Starts a 5 minute timer
+ * Starts a 3 minute timer
  */
 function startCountdownTimer() {
-    let timer = 300;
+    let timer = 180;
     let myInterval = setInterval(countdownTimer, 1000);
 
     function countdownTimer() {
@@ -225,7 +225,7 @@ function startCountdownTimer() {
             let minutes = Math.floor(timer / 60);
             let seconds = timer % 60;
 
-            // redundant in a 5 minute timer, could have just added a '0' to innerHTML;
+            // redundant in a 3 minute timer, could have just added a '0' to innerHTML;
             // incase I decide to increase timer.
             minutes = minutes < 10 ? '0' + minutes : minutes;
             seconds = seconds < 10 ? '0' + seconds : seconds;
