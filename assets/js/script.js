@@ -13,59 +13,6 @@ const soundBoing = document.getElementById('boing');
 const soundPokerChipWinnings = document.getElementById('poker-chip-winnings');
 const soundDeductBet = document.getElementById('deduct-bet');
 
-// Animations:
-/**
- * Plays one iteration of the poker chip animation - via css.
- * 
- * @param {string} colour 
- */
-function playPokerChipAnimation(colour) {
-    const pokerChip = document.getElementById(`${colour}-chip-animation`);
-    pokerChip.classList.add('poker-chip-animation');
-
-    setTimeout(function () {
-        pokerChip.classList.remove('poker-chip-animation');
-    }, 500);
-}
-
-/**
- * Plays 2 animations to deduct chip value; with a slight delay between them.
- */
-function deductBetAnimation() {
-    // First chip animation
-    const minusChip1 = document.getElementById('deduct-animation-1');
-    minusChip1.classList.add('poker-chip-deduct-animation');
-
-    setTimeout(function () {
-        minusChip1.classList.remove('poker-chip-deduct-animation');
-    }, 500);
-
-    // Second Chip animation
-    const minusChip2 = document.getElementById('deduct-animation-2');
-
-    setTimeout(function () {
-        minusChip2.classList.add('poker-chip-deduct-animation');
-    }, 100);
-
-    setTimeout(function () {
-        minusChip2.classList.remove('poker-chip-deduct-animation');
-    }, 600);
-}
-
-/**
- * Plays one iteration of the deal card animation - via css.
- * 
- * @param {string} DealerOrPlayer 
- */
-function animationDealCard(DealerOrPlayer) {
-    const animationCard = document.getElementById('deal-card-animation');
-    animationCard.classList.add(`deal-${DealerOrPlayer}-animation`);
-
-    setTimeout(function () {
-        animationCard.classList.remove(`deal-${DealerOrPlayer}-animation`);
-    }, 500);
-}
-
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
     // If localStorage for 'playerName' already exists:
@@ -73,25 +20,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const nameInputScreen = document.getElementById('name-input-screen');
 
     if (localStorage.getItem('playerName') !== 'null') {
-        // Closes the modal window.
+        // Closes the modal window immediately.
         nameInputScreen.classList.remove('modal-window');
         nameInputScreen.children[0].classList.remove('modal-content');
         nameInputScreen.classList.add('display-off');
         nameInputScreen.children[0].classList.add('display-off');
 
-        // Updates players name in the rules section.
+        // Updates players name in the rules section. 'Welcomes' them back.
         playerNameSpan.innerHTML = `Welcome back ${localStorage.getItem('playerName')}!`;
 
         // Add event listener to clicks on name span. Allows player to change name, should they wish to.
         playerNameSpan.addEventListener('pointerdown', function () {
-            // Opens the modal window.
+            // Opens the modal window to input name.
             nameInputScreen.classList.add('modal-window');
             nameInputScreen.children[0].classList.add('modal-content');
             nameInputScreen.classList.remove('display-off');
             nameInputScreen.children[0].classList.remove('display-off');
         })
     }
-
+    // If localStorage for 'playerName' does NOT exists:
     // Input Name Field:
     const inputButton = document.getElementById('enter-name');
     inputButton.addEventListener('pointerdown', function (event) {
@@ -800,7 +747,7 @@ function addBetRed() {
         betSpan.innerHTML = betValue;
 
         soundPlaceBet.play();
-        playPokerChipAnimation('red');
+        animationPlayPokerChip('red');
     } else {
         soundBoing.play();
         alert('You do not have enough money!');
@@ -824,7 +771,7 @@ function addBetBlue() {
         betSpan.innerHTML = betValue;
 
         soundPlaceBet.play();
-        playPokerChipAnimation('blue');
+        animationPlayPokerChip('blue');
     } else {
         soundBoing.play();
         alert('You do not have enough money!');
@@ -848,7 +795,7 @@ function addBetBlack() {
         betSpan.innerHTML = betValue;
 
         soundPlaceBet.play();
-        playPokerChipAnimation('black');
+        animationPlayPokerChip('black');
     } else {
         soundBoing.play();
         alert('You do not have enough money!');
@@ -872,7 +819,7 @@ function deductBet() {
         betSpan.innerHTML = betValue;
         cashSpan.innerHTML = cashValue;
         soundDeductBet.play();
-        deductBetAnimation();
+        animationDeductBet();
     } else if (betValue < 100 && betValue > 0) {
         const storeValue = betValue;
         betValue -= betValue;
@@ -880,7 +827,7 @@ function deductBet() {
         betSpan.innerHTML = betValue;
         cashSpan.innerHTML = cashValue;
         soundDeductBet.play();
-        deductBetAnimation();
+        animationDeductBet();
     } else {
         soundBoing.play();
     }
@@ -917,6 +864,59 @@ function toggleGrayscale() {
         blackChip.removeEventListener('pointerdown', addBetBlack);
         whiteChip.removeEventListener('pointerdown', deductBet);
     }
+}
+
+// Animations:
+/**
+ * Plays one iteration of the poker chip animation - via css.
+ * 
+ * @param {string} colour 
+ */
+function animationPlayPokerChip(colour) {
+    const pokerChip = document.getElementById(`${colour}-chip-animation`);
+    pokerChip.classList.add('poker-chip-animation');
+
+    setTimeout(function () {
+        pokerChip.classList.remove('poker-chip-animation');
+    }, 500);
+}
+
+/**
+ * Plays 2 animations to deduct chip value; with a slight delay between them.
+ */
+function animationDeductBet() {
+    // First chip animation
+    const minusChip1 = document.getElementById('deduct-animation-1');
+    minusChip1.classList.add('poker-chip-deduct-animation');
+
+    setTimeout(function () {
+        minusChip1.classList.remove('poker-chip-deduct-animation');
+    }, 500);
+
+    // Second Chip animation
+    const minusChip2 = document.getElementById('deduct-animation-2');
+
+    setTimeout(function () {
+        minusChip2.classList.add('poker-chip-deduct-animation');
+    }, 100);
+
+    setTimeout(function () {
+        minusChip2.classList.remove('poker-chip-deduct-animation');
+    }, 600);
+}
+
+/**
+ * Plays one iteration of the deal card animation - via css.
+ * 
+ * @param {string} DealerOrPlayer 
+ */
+function animationDealCard(DealerOrPlayer) {
+    const animationCard = document.getElementById('deal-card-animation');
+    animationCard.classList.add(`deal-${DealerOrPlayer}-animation`);
+
+    setTimeout(function () {
+        animationCard.classList.remove(`deal-${DealerOrPlayer}-animation`);
+    }, 500);
 }
 
 function submitScore() {
