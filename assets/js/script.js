@@ -255,8 +255,7 @@ function dealNewRound() {
         let cashValue = parseInt(cashSpan.innerHTML);
 
         if (cashValue < 50) {
-            alert('You have no more money, please restart!');
-            console.log('you lost all your money'); // NOTE: replace with end of game modal
+            submitScore(); // NOTE: ADD different HTML text here.
         } else {
             cashValue -= 50;
             betValue += 50;
