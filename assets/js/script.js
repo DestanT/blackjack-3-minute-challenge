@@ -125,6 +125,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 allCards[c - 1].remove(); // -1 takes into account array [0]
             }
         }
+
+        // Reset cash and bet values.
+        const cashSpan = document.getElementById('cash');
+        const betSpan = document.getElementById('bet-value');
+
+        cashSpan.innerHTML = 500;
+        betSpan.innerHTML = 0;
+
         startGame();
     });
 
@@ -644,7 +652,7 @@ function endOfRound() {
         adjustButtonVisibility('side-bet-value', 'add', 'hidden');
         adjustButtonVisibility('hit', 'remove', 'hidden');
         adjustButtonVisibility('stand', 'remove', 'hidden');
-        
+
         // If player doesn't have enough cash to bet with; triggers end game.
     } else if (betValue < 50 && cashValue === 0) {
         submitScore();
