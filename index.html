@@ -268,7 +268,7 @@
                 <strong>Please input your name:</strong>
             </p>
             <form action="">
-                <input type="text" minlength="2" maxlength="15" required>
+                <input type="text" id="input-name" minlength="2" maxlength="15" required>
                 <br>
                 <br>
                 <input type="submit" value="Enter" id="enter-name">
@@ -277,8 +277,8 @@
         </div>
     </div>
     <!-- Score Screen/End of Game -->
-    <div id="score-screen">
-        <div>
+    <div id="score-screen" class="display-off">
+        <div class="display-off">
             <h3>Congratulations</h3>
             <p>You have beaten you previous record!</p>
             <p>Your top 3 scores:</p>

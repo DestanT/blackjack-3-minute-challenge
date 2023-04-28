@@ -68,6 +68,25 @@ function animationDealCard(DealerOrPlayer) {
 
 // Event Listeners and initial hiding of buttons:
 document.addEventListener('DOMContentLoaded', function () {
+    // Input Name Field:
+    const inputButton = document.getElementById('enter-name');
+    inputButton.addEventListener('pointerdown', function(event) {
+        event.preventDefault();
+
+        // Saves the players name on local storage.
+        const playerName = document.getElementById('input-name');
+        if (playerName.value.length >= 2) {
+            localStorage.setItem('playerName', playerName.value);
+            
+            // Closes the modal window.
+            const nameInputScreen = document.getElementById('name-input-screen');
+            nameInputScreen.classList.remove('modal-window');
+            nameInputScreen.children[0].classList.remove('modal-content');
+            nameInputScreen.classList.add('display-off');
+            nameInputScreen.children[0].classList.add('display-off');
+        }
+    })
+
     // Buttons:
     const startButton = document.getElementById('start');
     startButton.addEventListener('pointerdown', startGame);
