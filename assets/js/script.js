@@ -42,22 +42,22 @@ document.addEventListener('DOMContentLoaded', function () {
     // Input Name Field:
     const inputButton = document.getElementById('enter-name');
     inputButton.addEventListener('pointerdown', function (event) {
-            event.preventDefault();
-            
-            // Saves the players name on local storage. Minimum 2 letters.
-            const playerName = document.getElementById('input-name');
-            if (playerName.value.length >= 2) {
-                localStorage.setItem('playerName', playerName.value);
-                
-                // Closes the modal window.
-                nameInputScreen.classList.remove('modal-window');
-                nameInputScreen.children[0].classList.remove('modal-content');
-                nameInputScreen.classList.add('display-off');
-                nameInputScreen.children[0].classList.add('display-off');
-                
-                // Updates players name in the rules section.
-                playerNameSpan.innerHTML = `Hi ${localStorage.getItem('playerName')}.`;
-            }
+        event.preventDefault();
+
+        // Saves the players name on local storage. Minimum 2 letters.
+        const playerName = document.getElementById('input-name');
+        if (playerName.value.length >= 2) {
+            localStorage.setItem('playerName', playerName.value);
+
+            // Closes the modal window.
+            nameInputScreen.classList.remove('modal-window');
+            nameInputScreen.children[0].classList.remove('modal-content');
+            nameInputScreen.classList.add('display-off');
+            nameInputScreen.children[0].classList.add('display-off');
+
+            // Updates players name in the rules section.
+            playerNameSpan.innerHTML = `Hi ${localStorage.getItem('playerName')}.`;
+        }
     })
 
     // If localStorage for high scores don't already exist;
@@ -534,7 +534,7 @@ function decideWinner() {
     } else if (dealerSum > 21 && playerSum <= 21) {
         console.log('Player wins!');
 
-        cashSpan.innerHTML = cashValue + betValue;        
+        cashSpan.innerHTML = cashValue + betValue;
 
         winLossText.innerHTML = 'You won!';
         winLossText.setAttribute('class', 'green-font');
@@ -973,4 +973,25 @@ function submitScore() {
     htmlHighScore2.innerHTML = `$${localStorage.getItem('highScore2')}`;
     const htmlHighScore3 = document.getElementById('high-score-3');
     htmlHighScore3.innerHTML = `$${localStorage.getItem('highScore3')}`;
+
+    // Shows the score board.
+    const scoreScreen = document.getElementById('score-screen');
+
+    scoreScreen.classList.add('modal-window');
+    scoreScreen.children[0].classList.add('modal-content');
+    scoreScreen.classList.remove('display-off');
+    scoreScreen.children[0].classList.remove('display-off');
+
+    // Add event listener to 'Play Again' button in score screen.
+    const playAgain = document.getElementById('play-again');
+
+    playAgain.addEventListener('pointerdown', function () {
+        // Closes score screen.
+        nameInputScreen.classList.remove('modal-window');
+        nameInputScreen.children[0].classList.remove('modal-content');
+        nameInputScreen.classList.add('display-off');
+        nameInputScreen.children[0].classList.add('display-off');
+
+        startGame();
+    });
 }
