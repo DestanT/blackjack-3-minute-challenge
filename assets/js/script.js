@@ -630,6 +630,11 @@ function endOfRound() {
         }
     }
 
+    // Remove grayscale of 'hit' button (failsafe - grayscale is added to hit when 21 is reached).
+    const hitButton = document.getElementById('hit');
+    hitButton.addEventListener('pointerdown', hit);
+    hitButton.classList.remove('grayscale');
+
     const cashSpan = document.getElementById('cash');
     const betSpan = document.getElementById('bet-value');
     let cashValue = parseInt(cashSpan.innerHTML);
@@ -775,6 +780,10 @@ function updateHtml(DealerOrPlayer) {
 
     if (totalSum.value === 21) {
         showSum.classList.add('green-font');
+
+        const hitButton = document.getElementById('hit');
+        hitButton.removeEventListener('pointerdown', hit);
+        hitButton.classList.add('grayscale');
     } else {
         showSum.classList.remove('green-font');
     }
