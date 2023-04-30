@@ -510,6 +510,7 @@ function hit() {
  */
 function dealersTurn() {
     adjustButtonVisibility('hit', 'add', 'hidden');
+    adjustButtonVisibility('split', 'add', 'hidden');
     adjustButtonVisibility('stand', 'add', 'hidden');
 
     toggleGrayscale(); // Turns poker chips off - no betting after 'stand'
