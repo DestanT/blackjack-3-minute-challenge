@@ -658,6 +658,9 @@ function endOfRound() {
         setTimeout(function () {
             updateHtml('player');
             updateHtml('dealer');
+
+            // Re-adds side bet value (same as betValue) back to player cash.
+            cashSpan.innerHTML = cashValue + betValue;
         }, 100);
 
         adjustButtonVisibility('side-bet-span', 'add', 'hidden');
