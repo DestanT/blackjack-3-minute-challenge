@@ -772,6 +772,12 @@ function updateHtml(DealerOrPlayer) {
     let showSum = document.getElementById(`${DealerOrPlayer}-sum`);
     let totalSum = handValues(getImageAltData(`${DealerOrPlayer}-cards`));
     showSum.innerHTML = totalSum.value;
+
+    if (totalSum.value === 21) {
+        showSum.classList.add('green-font');
+    } else {
+        showSum.classList.remove('green-font');
+    }
 }
 
 /**

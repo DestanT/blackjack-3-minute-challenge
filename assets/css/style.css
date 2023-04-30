@@ -52,10 +52,14 @@ h3 {
 
 .green-font {
     color: darkgreen;
+    font-size: xx-large;
+    text-decoration: underline;
 }
 
 .red-font {
     color: red;
+    font-size: xx-large;
+    text-decoration: underline;
 }
 
 /* Pop-Up Modal Windows */
