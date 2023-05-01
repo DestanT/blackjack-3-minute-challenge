@@ -227,25 +227,25 @@ h3 {
 .stack-4-card-1 {
     position: absolute;
     top: 0;
-    left: 100px;
+    left: 10%;
 }
 
 .stack-4-card-2 {
     position: absolute;
     top: 0;
-    left: 250px;
+    left: 25%;
 }
 
 .stack-4-card-3 {
     position: absolute;
     top: 0;
-    left: 400px;
+    left: 40%;
 }
 
 .stack-4-card-4 {
     position: absolute;
     top: 0;
-    left: 550px;
+    left: 55%;
 }
 
 /* 5 Card Stack Effect */
@@ -454,23 +454,6 @@ h3 {
     }
 
     /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
-    /* 4 Card Stack Effect */
-    .stack-4-card-1 {
-        left: 75px;
-    }
-
-    .stack-4-card-2 {
-        left: 175px;
-    }
-
-    .stack-4-card-3 {
-        left: 275px;
-    }
-
-    .stack-4-card-4 {
-        left: 375px;
-    }
-
     /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 70px;
@@ -562,23 +545,6 @@ h3 {
     }
 
     /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
-    /* 4 Card Stack Effect */
-    .stack-4-card-1 {
-        left: 30px;
-    }
-
-    .stack-4-card-2 {
-        left: 110px;
-    }
-
-    .stack-4-card-3 {
-        left: 190px;
-    }
-
-    .stack-4-card-4 {
-        left: 270px;
-    }
-
     /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 10px;
@@ -686,23 +652,6 @@ h3 {
     }
 
     /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
-    /* 4 Card Stack Effect */
-    .stack-4-card-1 {
-        left: 40px;
-    }
-
-    .stack-4-card-2 {
-        left: 130px;
-    }
-
-    .stack-4-card-3 {
-        left: 220px;
-    }
-
-    .stack-4-card-4 {
-        left: 310px;
-    }
-
     /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 40px;
@@ -785,23 +734,6 @@ h3 {
     }
 
     /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
-    /* 4 Card Stack Effect */
-    .stack-4-card-1 {
-        left: 10px;
-    }
-
-    .stack-4-card-2 {
-        left: 70px;
-    }
-
-    .stack-4-card-3 {
-        left: 130px;
-    }
-
-    .stack-4-card-4 {
-        left: 190px;
-    }
-
     /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 10px;
@@ -883,23 +815,6 @@ h3 {
     }
 
     /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
-    /* 4 Card Stack Effect */
-    .stack-4-card-1 {
-        left: 5px;
-    }
-
-    .stack-4-card-2 {
-        left: 60px;
-    }
-
-    .stack-4-card-3 {
-        left: 115px;
-    }
-
-    .stack-4-card-4 {
-        left: 170px;
-    }
-
     /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 5px;
@@ -992,23 +907,6 @@ h3 {
     }
 
     /* script.js figures out how many cards are in hand and assigns the below values depending on how large the hand size is*/
-    /* 4 Card Stack Effect */
-    .stack-4-card-1 {
-        left: 10px;
-    }
-
-    .stack-4-card-2 {
-        left: 45px;
-    }
-
-    .stack-4-card-3 {
-        left: 80px;
-    }
-
-    .stack-4-card-4 {
-        left: 115px;
-    }
-
     /* 5 Card Stack Effect */
     .stack-5-card-1 {
         left: 1px;
