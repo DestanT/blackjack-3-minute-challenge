@@ -4,6 +4,7 @@ body {
     font-family: 'Maitree', serif;
     text-align: center;
     background-color: #14783a;
+    max-height: 100dvh;
 }
 
 body span {

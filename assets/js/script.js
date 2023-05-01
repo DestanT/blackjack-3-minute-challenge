@@ -991,7 +991,7 @@ function animationDealCard(DealerOrPlayer) {
 
 /**
  * Submits, sorts and saves player score to localStorage;
- * displays top 3 scores in modal-window.
+ * displays top 3 scores in modal-window.                                                       
  */
 function submitScore() {
     clearInterval(timeInterval); // Stops timer from counting down.
