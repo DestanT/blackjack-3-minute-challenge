@@ -1035,6 +1035,18 @@ function submitScore() {
     scoresArray.push(highScore3);
     scoresArray.push(recentScore);
 
+    // Displays different text in score screen depending on if an old high score was beaten or not.
+    const scoreTitle = document.getElementById('score-title');
+    const scoreText = document.getElementById('score-text');
+
+    if (scoresArray[3] > scoresArray[2]) {
+        scoreTitle.innerHTML = `Well done ${localStorage.getItem('playerName')}!`;
+        scoreText.innerHTML = 'You have beaten your old score!';
+    } else {
+        scoreTitle.innerHTML = 'Better luck next time!';
+        scoreText.innerHTML = `Can you beat your high score ${localStorage.getItem('playerName')}?`;
+    }
+
     // Sorts the array by order of value.
     // https://stackoverflow.com/questions/38807946/localstorage-sort-order-by-value
     scoresArray.sort(function (a, b) {
