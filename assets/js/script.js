@@ -1035,11 +1035,15 @@ function submitScore() {
     scoresArray.push(highScore3);
     scoresArray.push(recentScore);
 
-    // Displays different text in score screen depending on if an old high score was beaten or not.
+    // Displays different text in score screen depending if an old high score was beaten or not.
+    // Or if player ran out of money.
     const scoreTitle = document.getElementById('score-title');
     const scoreText = document.getElementById('score-text');
 
-    if (scoresArray[3] > scoresArray[2]) {
+    if (totalScore === 0) {
+        scoreTitle.innerHTML = "You're out of money!";
+        scoreText.innerHTML = `Better luck next time ${localStorage.getItem('playerName')}!`;
+    } else if (scoresArray[3] > scoresArray[2]) {
         scoreTitle.innerHTML = `Well done ${localStorage.getItem('playerName')}!`;
         scoreText.innerHTML = 'You have beaten your old score!';
     } else {
