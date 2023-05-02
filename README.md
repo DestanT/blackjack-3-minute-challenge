@@ -18,15 +18,74 @@
 
 ## Strategy: The Who and Why
 
-This card game is primarily intended for someone who is already quite familiar with the casino game "Blackjack". It does include a link to a set of rules for newer players who are potentially interested in learning to play the game.
+This card game is primarily intended for someone who is already quite familiar with the casino game "Blackjack". A summarised ruleset is present for new players and anyone wanting to familiarise themselves with the game. A link to the full ruleset can also be found.
 
-The idea of the game is for the player to reach the highest possible score in 5 minutes and compete with other players around the world for a spot on the leaderboard. The speed in which actions happen; such as cards being dealt and win/losses being shown is done to minimize the downtime and maximise speed of the game. Although mobile/tablet play is totally possible, the high-score freaks out there will favour playing on a laptop/desktop with a keyboard as keyboard shortcuts have also been added to help the speed agenda along.
+The idea of the game is for the player to reach the highest possible score in 3 minutes and to compete for a higher score each time. The quick 3 minute nature of the game rounds means players can spend a small amount of time as downtime, during commuting or while waiting for someone.
 
-As a player, I would seek to beat my own high score every time I play. I would also share the game with my friends to add to the competitive nature of the game. The high risk, high reward nature of any casino game drives this attention naturally.
+As a player, I would seek to beat my own high score every time I play. I would also share the game with my friends to add to the competitive nature of the game and let know what high scores I was able to achieve. The high risk, high reward nature of any casino game drives this attention naturally.
 
-You can view the deployed website by clicking [**here**](https://destant.github.io/blackjack-5-minute-challenge/).
+You can view the deployed website by clicking [**here**](https://destant.github.io/blackjack-3-minute-challenge/).
 
 ## Scope: What Features Are Required
+
+### The Draw Deck and Its Shuffle Function
+![Draw Deck](/documentation/draw-deck.png)
+* This function makes a fresh deck of cards:\
+![Make Deck Function](/documentation/function-make-deck.png)
+* This function shuffles that array and randomizes it:\
+![Shuffle Deck Function](/documentation/function-shuffle-deck.png)
+
+### The 'Hit', 'Split' and 'Stand' Functions
+
+#### __Hit__
+![Hit Function](/documentation/function-hit.png)
+![Player Sum](/documentation/player-sum.png)
+* As long as the player has a sum below 21 the 'Hit' function allows the player to draw another card.
+* Aces are automatically considered at their higher value of 11.
+  * When the player exceeds 21, one ace at a time is automatically recalculated to be worth 1 instead until a score of 21 or below is reached.
+* If the player exceeds 21; the round is automatically lost.
+  * The 'Deal' button is revealed to deal out the new round.\
+![Deal Button](/documentation/deal-button.png)
+
+![Blackjack, 21](/documentation/perfect-score.png)
+![Player Sum 21](/documentation/player-sum-21.png)
+* When the player has 21 points exactly, the 'Hit' button will grey out and stop functioning.
+  * This is to stop accidental clicks when you have the best score.
+
+#### __Split__
+![Split Function](/documentation/function-split.png)
+* If two identical cards are dealt at the beginning of a round, the 'Split' button will appear.
+  * Players can decide to split or continue playing as normal.
+
+![Split Function Pressed](/documentation/after-split.png)
+* If the player decides to split, the left card is put aside (as seen in image - bordered in red).
+  * A side bet, matching the original bet, is created (as seen in image - blue border).
+    * Split bets can only be initiated if the player has enough cash to match original bet.
+  * The 'Player Sum' is updated (green border).
+* Once the first card is played, the second card is put into play.
+
+#### __Stand__
+* Once the player is happy with their score, they can choose to 'Stand'
+  * This initiates the dealers turn:
+    * The dealer will automatically draw cards until their obligation to score at least 17 is met.
+  * Once the dealer has had their turn:
+    * If dealer is bust (score above 21); player wins and cashes out double their bet.
+    * Likewise; if the player has a higher score than the dealer.
+      * The winning 'chime' sound is played.
+      * The 'You Won!' text pops up for 1.5s below the 'Player Sum'.\
+      ![Win Text](/documentation/win-text.png)
+    * If dealer exceeds your score; you lose and lose your bet.
+      * The 'Awww' sound effect is played.
+      * The 'You Lose.' text pops up for 1.5s below the 'Player Sum'.\
+      ![Lose Text](/documentation/lose-text.png)
+    * In case of a draw; nobody wins, you retain your bet.
+      * The 'Draw!' text pops up for 1.5s below the 'Player Sum'.\
+      ![Draw Text](/documentation/draw-text.png)
+
+### The Poker Chips and Betting
+
+
+
 
 ## Structure: Shaping The Site
 

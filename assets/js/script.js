@@ -606,7 +606,7 @@ function decideWinner() {
     adjustButtonVisibility('win-loss-text', 'remove', 'hidden');
     setTimeout(function () {
         adjustButtonVisibility('win-loss-text', 'add', 'hidden');
-    }, 1000);
+    }, 1500);
 
     // Allows for some breathing time before player is expected to deal new hand.
     setTimeout(function () {
