@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 
-    // Score Screen - Play Again Button:
+    // Score Screen - Close Button:
     const playAgainButton = document.getElementById('close-button');
     playAgainButton.addEventListener('pointerdown', function () {
         // Closes score screen.

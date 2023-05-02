@@ -28,14 +28,22 @@ You can view the deployed website by clicking [**here**](https://destant.github.
 
 ## Scope: What Features Are Required
 
-### The Draw Deck and Its Shuffle Function
+### <u>First Visit</u>
+![Input Name Pop-Up](/documentation/input-name-screen.png)
+* On the first visit the player is greeted with this pop up modal window.
+  * Player must input their name (minimum 2 characters, maximum 15).
+  * The name is stored in localStorage.
+  * The 'Game Rules' will display the player's name.\
+  ![Greeting Player](/documentation/hi-player-name.png)
+
+### <u>The Draw Deck and Its Shuffle Function</u>
 ![Draw Deck](/documentation/draw-deck.png)
 * This function makes a fresh deck of cards:\
 ![Make Deck Function](/documentation/function-make-deck.png)
 * This function shuffles that array and randomizes it:\
 ![Shuffle Deck Function](/documentation/function-shuffle-deck.png)
 
-### The 'Hit', 'Split' and 'Stand' Functions
+### <u>The 'Hit', 'Split' and 'Stand' Functions</u>
 
 #### __Hit__
 ![Hit Function](/documentation/function-hit.png)
@@ -83,7 +91,13 @@ You can view the deployed website by clicking [**here**](https://destant.github.
       ![Draw Text](/documentation/draw-text.png)
 
 ### The Poker Chips and Betting
-
+![The Poker Chips](/documentation/poker-chips.png)
+* The player can click on the poker chips to add to or remove from their bet\
+![Total Bet Value](/documentation/total-bet.png)
+* Players can only remove a bet in multiples of $100 (as seen in the image; the white poker chip)
+  * It is still possible to remove bets below $100, however, as the game checks for this and adjusts accordingly.
+* Cash value and bet value is adjusted with every click.
+* Animations of chips moving to and from the bet value and hand are played.
 
 
 

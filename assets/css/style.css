@@ -97,6 +97,10 @@ h3 {
 }
 
 /* Game Rules Area */
+#name-span:hover {
+    font-size: 120%;
+}
+
 #game-rules-content {
     max-height: 100dvh;
     overflow: auto;
