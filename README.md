@@ -1,10 +1,17 @@
 # Blackjack: 5 Minute Challenge
 
 ## Table of Contents
-1. [Strategy: The Who and Why](#strategy-the-who-and-why)
-2. [Scope: What Features Are Required](#scope-what-features-are-required)
-3. [Structure: Shaping The Site](#structure-shaping-the-site)
-4. [Skeleton: The View For The User](#skeleton-the-view-for-the-user)
+1. [Introduction](#introduction)
+2. [Features:](#features)
+    1. [First Visit](#first-visit)
+    2. [The Draw Deck and Its Shuffle Function](#the-draw-deck-and-its-shuffle-function)
+    3. [The 'Hit', 'Split' and 'Stand' Functions](#the-hit-split-and-stand-functions)
+        - [Hit](#hit)
+        - [Split](#split)
+        - [Stand](#stand)
+    4. [The Poker Chips and Betting](#the-poker-chips-and-betting)
+
+
 5. [Testing, Struggles, and Future Features](#testing-struggles-and-future-features)
     1. [Testing](#testing)
     2. [Bugs/Challenges](#bugschallenges)
@@ -16,7 +23,7 @@
     1. [Content](#content)
     2. [Media](#media)
 
-## Strategy: The Who and Why
+## Introduction
 
 This card game is primarily intended for someone who is already quite familiar with the casino game "Blackjack". A summarised ruleset is present for new players and anyone wanting to familiarise themselves with the game. A link to the full ruleset can also be found.
 
@@ -26,7 +33,7 @@ As a player, I would seek to beat my own high score every time I play. I would a
 
 You can view the deployed website by clicking [**here**](https://destant.github.io/blackjack-3-minute-challenge/).
 
-## Scope: What Features Are Required
+## Features:
 
 ### <u>First Visit</u>
 ![Input Name Pop-Up](/documentation/input-name-screen.png)
@@ -95,15 +102,29 @@ You can view the deployed website by clicking [**here**](https://destant.github.
 * The player can click on the poker chips to add to or remove from their bet\
 ![Total Bet Value](/documentation/total-bet.png)
 * Players can only remove a bet in multiples of $100 (as seen in the image; the white poker chip)
-  * It is still possible to remove bets below $100, however, as the game checks for this and adjusts accordingly.
+  * It is still possible to remove bets below $100. The game checks for this and adjusts accordingly.
 * Cash value and bet value is adjusted with every click.
 * Animations of chips moving to and from the bet value and hand are played.
+* Poker chips will grey out when the player is not allowed to interact with them. And toggle back on when the player can again interact with them.\
+![Greyed Out Poker Chips](/documentation/grey-poker-chips.png)
+
+### Animations
+The animations were done using elements of all three; HTML, CSS and JavaScript.
+  * In HTML the same replicas of the poker chip images were placed; with a default of 'display-off':\
+  ![HTML Part Of Animations](/documentation/html-chip-animation.png)
+  * In CSS the animation was styled (notice the 0.5 second duration):\
+  ![CSS Part Of Animations](/documentation/css-chip-animation.png)
+  * And finally in JavaScript the 'class' to animate was called and attached to the poker chip colour that was pressed. The setTimeout function removed the class again in 0.5 seconds; once the animation was allowed to play through once:\
+  ![JavaScript Part Of Animations](/documentation/js-chip-animation.png)
+* Similar logic was applied to the 'card dealing' animations.
+* Example Animations:
+  * Cards being dealt\
+![Card Animations](/documentation/card-animations.png)
+  * Poker chips to and from bet:\
+![Poker Chip Animations](/documentation/chip-animations.png)
 
 
 
-## Structure: Shaping The Site
-
-## Skeleton: The View For The User
 
 ## Testing, Struggles, and Future Features
 

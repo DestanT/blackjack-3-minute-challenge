@@ -329,7 +329,6 @@ h3 {
 
     animation-name: poker-chip;
     animation-duration: 0.5s;
-    animation-direction: alternate;
     animation-timing-function: linear;
 }
 
@@ -357,7 +356,6 @@ h3 {
 
     animation-name: poker-chip-deduct;
     animation-duration: 0.5s;
-    animation-direction: alternate;
     animation-timing-function: linear;
 }
 
@@ -385,7 +383,6 @@ h3 {
 
     animation-name: deal-player;
     animation-duration: 0.5s;
-    animation-direction: alternate;
     animation-timing-function: linear;
 }
 
@@ -413,7 +410,6 @@ h3 {
 
     animation-name: deal-dealer;
     animation-duration: 0.5s;
-    animation-direction: alternate;
     animation-timing-function: linear;
 }
 
