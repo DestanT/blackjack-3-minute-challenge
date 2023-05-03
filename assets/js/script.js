@@ -1,6 +1,7 @@
 // Global Variables
 let gameDeck = [];
 let timeInterval;
+let storeFirstCard;
 
 // Sound Effects:
 const soundDealSingle = document.getElementById('deal-single');
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             nameInputScreen.children[0].classList.add('modal-content');
             nameInputScreen.classList.remove('display-off');
             nameInputScreen.children[0].classList.remove('display-off');
-        })
+        });
     }
     // If localStorage for 'playerName' does NOT exists:
     // Input Name Field:
@@ -59,10 +60,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // Updates players name in the rules section.
             playerNameSpan.innerHTML = `Hi ${localStorage.getItem('playerName')}.`;
         }
-    })
+    });
 
     // If localStorage for high scores don't already exist;
-    // set initial high scores to 0.
+    // set initial high scores to 0. Allows end game calculations to function properly first time.
     if (localStorage.getItem('highScore1') !== null) {
         localStorage.setItem('highScore1', 0);
     }
@@ -110,8 +111,8 @@ document.addEventListener('DOMContentLoaded', function () {
         closeButton.addEventListener('pointerdown', function () {
             gameRulesModal.classList.remove('pop-up-rules-modal');
             gameRulesContent.classList.remove('pop-up-rules-content');
-        })
-    })
+        });
+    });
 
     // Score Screen - Close Button:
     const playAgainButton = document.getElementById('close-button');
@@ -384,8 +385,8 @@ function dealCard(DealerOrPlayer) {
 function turnCardOver() {
     soundFlipCard.play();
 
-    let firstCard = document.getElementById('dealer-cards').children[0];
-    altText = firstCard.alt;
+    const firstCard = document.getElementById('dealer-cards').children[0];
+    const altText = firstCard.alt;
 
     if (altText === 'back-of-card') {
         firstCard.remove();

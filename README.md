@@ -10,6 +10,8 @@
         - [Split](#split)
         - [Stand](#stand)
     4. [The Poker Chips and Betting](#the-poker-chips-and-betting)
+    5. [Animations](#animations)
+    6. [Sound Effects](#sound-effects)
 
 
 5. [Testing, Struggles, and Future Features](#testing-struggles-and-future-features)
@@ -42,6 +44,8 @@ You can view the deployed website by clicking [**here**](https://destant.github.
   * The name is stored in localStorage.
   * The 'Game Rules' will display the player's name.\
   ![Greeting Player](/documentation/hi-player-name.png)
+* On subsequent visits (i.e. if localStorage already has name data), the game will welcome the player back.\
+![Welcome Back Player](/documentation/welcome-back-player-name.png)
 
 ### <u>The Draw Deck and Its Shuffle Function</u>
 ![Draw Deck](/documentation/draw-deck.png)
@@ -58,14 +62,14 @@ You can view the deployed website by clicking [**here**](https://destant.github.
 * As long as the player has a sum below 21 the 'Hit' function allows the player to draw another card.
 * Aces are automatically considered at their higher value of 11.
   * When the player exceeds 21, one ace at a time is automatically recalculated to be worth 1 instead until a score of 21 or below is reached.
-* If the player exceeds 21; the round is automatically lost.
+* If the player exceeds 21; the round is automatically lost and the 'awww' sound effect is played.
   * The 'Deal' button is revealed to deal out the new round.\
 ![Deal Button](/documentation/deal-button.png)
 
 ![Blackjack, 21](/documentation/perfect-score.png)
 ![Player Sum 21](/documentation/player-sum-21.png)
 * When the player has 21 points exactly, the 'Hit' button will grey out and stop functioning.
-  * This is to stop accidental clicks when you have the best score.
+  * This is to stop accidental clicks when the player has the best score.
 
 #### __Split__
 ![Split Function](/documentation/function-split.png)
@@ -86,14 +90,14 @@ You can view the deployed website by clicking [**here**](https://destant.github.
   * Once the dealer has had their turn:
     * If dealer is bust (score above 21); player wins and cashes out double their bet.
     * Likewise; if the player has a higher score than the dealer.
-      * The winning 'chime' sound is played.
+      * The winning 'ding' sound is played.
       * The 'You Won!' text pops up for 1.5s below the 'Player Sum'.\
       ![Win Text](/documentation/win-text.png)
-    * If dealer exceeds your score; you lose and lose your bet.
+    * If dealer exceeds the player score; the player loses and loses their bet.
       * The 'Awww' sound effect is played.
       * The 'You Lose.' text pops up for 1.5s below the 'Player Sum'.\
       ![Lose Text](/documentation/lose-text.png)
-    * In case of a draw; nobody wins, you retain your bet.
+    * In case of a draw; nobody wins, the player retains their bet.
       * The 'Draw!' text pops up for 1.5s below the 'Player Sum'.\
       ![Draw Text](/documentation/draw-text.png)
 
@@ -109,19 +113,34 @@ You can view the deployed website by clicking [**here**](https://destant.github.
 ![Greyed Out Poker Chips](/documentation/grey-poker-chips.png)
 
 ### Animations
-The animations were done using elements of all three; HTML, CSS and JavaScript.
+The animations were done using elements of all three; HTML, CSS and JavaScript. As an example:
   * In HTML the same replicas of the poker chip images were placed; with a default of 'display-off':\
   ![HTML Part Of Animations](/documentation/html-chip-animation.png)
   * In CSS the animation was styled (notice the 0.5 second duration):\
   ![CSS Part Of Animations](/documentation/css-chip-animation.png)
-  * And finally in JavaScript the 'class' to animate was called and attached to the poker chip colour that was pressed. The setTimeout function removed the class again in 0.5 seconds; once the animation was allowed to play through once:\
+  * And finally in JavaScript the 'class' to animate was attached the element ID. The setTimeout function removed the class again in 0.5 seconds, once the animation was allowed to play through once:\
   ![JavaScript Part Of Animations](/documentation/js-chip-animation.png)
 * Similar logic was applied to the 'card dealing' animations.
 * Example Animations:
-  * Cards being dealt\
+  * Cards being dealt:\
 ![Card Animations](/documentation/card-animations.png)
   * Poker chips to and from bet:\
 ![Poker Chip Animations](/documentation/chip-animations.png)
+
+### Sound Effects
+There are currently 10 different sound effects in the game, these are:
+ * For dealing a single card
+ * When the dealer flips their facedown card to face up
+ * A 'ding' for when the player wins a hand
+ * An 'awww' for when the player loses a hand
+ * Deck shuffle
+ * Two distinctive sounds for when placing a bet and when deducting from a bet
+ * Glass smashing - when the player 'busts' their hand (exceeds 21)
+ * A 'boing' sound for when the player does something they shouldn't
+ * And finally a sound of poker chips being pushed around for when the player collects their winnings.
+
+
+ ###
 
 
 
