@@ -126,6 +126,18 @@ The deck of cards is displayed on the side of the screen.
 ![Greyed Out Poker Chips](/documentation/grey-poker-chips.png)
 
 ### End Game Score Screen
+![Score Screen](/documentation/score-screen.png)
+* Once the 3 minute timer runs out at the top of the screen the game will stop and the player will be greeted with the 'Score Screen'
+  * The player's cash value, bet value and (if they have) their side bet value will be tallied up.
+  * The total will be stored on localStorage and compared to display only the top 3 scores.
+  * If the player has beaten their past high score they will be greeted with a 'Well Done' and an update of their scoreboard\
+  ![Beating The Highscore](/documentation/well-done-score-screen.png)
+  * If the player failed to beat any of their high scores, they will be greeted with a 'Better luck next time!':\
+  ![Better Luck Next Time](/documentation/next-time-score-screen.png)
+  * If the player runs out of money before the timer is finished, they will be greeted with this screen instead:\
+  ![No Money Score Screen](/documentation/no-money-score-screen.png)
+* If the player has had enough before the timer ends, or simply wishes to record their highscore without risking further losses, then the 'End Game' button can be pressed next to the timer at the top of the screen:\
+![End Game Button](/documentation/end-game-button.png)
 
 ### Animations
 The animations were done using elements of all three; HTML, CSS and JavaScript. There are currently animations for:
