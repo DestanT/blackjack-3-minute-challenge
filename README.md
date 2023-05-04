@@ -4,14 +4,15 @@
 1. [Introduction](#introduction)
 2. [Features:](#features)
     1. [First Visit](#first-visit)
-    2. [The Draw Deck and Its Shuffle Function](#the-draw-deck-and-its-shuffle-function)
+    2. [The Deck Of Cards](#the-deck-of-cards)
     3. [The 'Hit', 'Split' and 'Stand' Functions](#the-hit-split-and-stand-functions)
         - [Hit](#hit)
         - [Split](#split)
         - [Stand](#stand)
     4. [The Poker Chips and Betting](#the-poker-chips-and-betting)
-    5. [Animations](#animations)
-    6. [Sound Effects](#sound-effects)
+    5. [End Game Score Screen](#end-game-score-screen)
+    6. [Animations](#animations)
+    7. [Sound Effects](#sound-effects)
 
 
 5. [Testing, Struggles, and Future Features](#testing-struggles-and-future-features)
@@ -35,9 +36,21 @@ As a player, I would seek to beat my own high score every time I play. I would a
 
 You can view the deployed website by clicking [**here**](https://destant.github.io/blackjack-3-minute-challenge/).
 
+## User Stories
+
+As a user of the site I would:
+* Enjoy spending a few minutes every so often to play blackjack
+* Return to the site to beat my high score
+* Share the site with friends so that I could compete with them
+* Screenshot the end screen with my top 3 high scores on it to show off to my friends and colleagues
+
+As the developer of the site I would:
+* Listen to feedback from my users and add updates to include new features accorgindly
+* Fix bugs, as they are reported to me
+
 ## Features:
 
-### <u>First Visit</u>
+### First Visit
 ![Input Name Pop-Up](/documentation/input-name-screen.png)
 * On the first visit the player is greeted with this pop up modal window.
   * Player must input their name (minimum 2 characters, maximum 15).
@@ -47,14 +60,14 @@ You can view the deployed website by clicking [**here**](https://destant.github.
 * On subsequent visits (i.e. if localStorage already has name data), the game will welcome the player back.\
 ![Welcome Back Player](/documentation/welcome-back-player-name.png)
 
-### <u>The Draw Deck and Its Shuffle Function</u>
+### The Deck Of Cards
+The deck of cards is displayed on the side of the screen.
+* It has a 'remaining' cards counter
+* When the deck is below 15, it will reshuffle into a new deck
+* It isn't explicitly stated, but the choice behind having a remaining card counter and only using one deck of cards was primarily because I wanted to give observant players an edge when it comes to card counting.\
 ![Draw Deck](/documentation/draw-deck.png)
-* This function makes a fresh deck of cards:\
-![Make Deck Function](/documentation/function-make-deck.png)
-* This function shuffles that array and randomizes it:\
-![Shuffle Deck Function](/documentation/function-shuffle-deck.png)
 
-### <u>The 'Hit', 'Split' and 'Stand' Functions</u>
+### The 'Hit', 'Split' and 'Stand' Functions
 
 #### __Hit__
 ![Hit Function](/documentation/function-hit.png)
@@ -112,31 +125,31 @@ You can view the deployed website by clicking [**here**](https://destant.github.
 * Poker chips will grey out when the player is not allowed to interact with them. And toggle back on when the player can again interact with them.\
 ![Greyed Out Poker Chips](/documentation/grey-poker-chips.png)
 
+### End Game Score Screen
+
 ### Animations
-The animations were done using elements of all three; HTML, CSS and JavaScript. As an example:
-  * In HTML the same replicas of the poker chip images were placed; with a default of 'display-off':\
-  ![HTML Part Of Animations](/documentation/html-chip-animation.png)
-  * In CSS the animation was styled (notice the 0.5 second duration):\
-  ![CSS Part Of Animations](/documentation/css-chip-animation.png)
-  * And finally in JavaScript the 'class' to animate was attached the element ID. The setTimeout function removed the class again in 0.5 seconds, once the animation was allowed to play through once:\
-  ![JavaScript Part Of Animations](/documentation/js-chip-animation.png)
-* Similar logic was applied to the 'card dealing' animations.
-* Example Animations:
+The animations were done using elements of all three; HTML, CSS and JavaScript. There are currently animations for:
+* Poker chips being placed as bets, all in their individual colours.
+* Poker chips being deducted from the current bet (Two $50 chips can be seen being withdrawn).
+* Single cards being dealt to each the dealer and the player.
+ 
+Example Animations:
   * Cards being dealt:\
 ![Card Animations](/documentation/card-animations.png)
-  * Poker chips to and from bet:\
+  * Poker chips being withdrawn from the bet:\
 ![Poker Chip Animations](/documentation/chip-animations.png)
 
 ### Sound Effects
 There are currently 10 different sound effects in the game, these are:
- * For dealing a single card
- * When the dealer flips their facedown card to face up
- * A 'ding' for when the player wins a hand
- * An 'awww' for when the player loses a hand
- * Deck shuffle
- * Two distinctive sounds for when placing a bet and when deducting from a bet
- * Glass smashing - when the player 'busts' their hand (exceeds 21)
- * A 'boing' sound for when the player does something they shouldn't
+ * For dealing a single card.
+ * When the dealer flips their facedown card to face up.
+ * A 'ding' for when the player wins a hand.
+ * An 'awww' for when the player loses a hand.
+ * Deck shuffle.
+ * Two distinctive sounds for when placing a bet..
+ * ..and when deducting from a bet.
+ * Glass smashing - when the player 'busts' their hand (exceeds 21).
+ * A 'boing' sound for when the player does something they shouldn't.
  * And finally a sound of poker chips being pushed around for when the player collects their winnings.
 
 

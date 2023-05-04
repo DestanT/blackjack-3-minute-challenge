@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Maitree:wght@300&family=Mukta+Vaani&family=Righteous&display=swap');
 
+/* Reset and general layout */
 body {
     font-family: 'Maitree', serif;
     text-align: center;
@@ -24,17 +25,14 @@ body span {
 
 .display-on {
     display: inline-block;
-    /* .js controlled - button visibility */
 }
 
 .display-off {
     display: none;
-    /* .js controlled - button visibility */
 }
 
 .hidden {
     visibility: hidden;
-    /* .js controlled - button visibility */
 }
 
 h1 {

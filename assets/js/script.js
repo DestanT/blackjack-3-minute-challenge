@@ -64,13 +64,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // If localStorage for high scores don't already exist;
     // set initial high scores to 0. Allows end game calculations to function properly first time.
-    if (localStorage.getItem('highScore1') !== null) {
+    if (localStorage.getItem('highScore1') === null) {
         localStorage.setItem('highScore1', 0);
     }
-    if (localStorage.getItem('highScore2') !== null) {
+    if (localStorage.getItem('highScore2') === null) {
         localStorage.setItem('highScore2', 0);
     }
-    if (localStorage.getItem('highScore3') !== null) {
+    if (localStorage.getItem('highScore3') === null) {
         localStorage.setItem('highScore3', 0);
     }
 
@@ -311,7 +311,7 @@ function dealNewRound() {
         shuffleDeck(gameDeck);
     }
 
-    toggleGrayscale(); // Turns poker chips OFF.
+    grayscale('on'); // Turns poker chips OFF.
 
     turnCardOver(dealCard('dealer'));
     // Waits for animations to finish before dealing next cards.
@@ -496,7 +496,7 @@ function hit() {
             decideWinner(); // Immediately lose hand on 'bust'
             adjustButtonVisibility('hit', 'add', 'hidden');
             adjustButtonVisibility('stand', 'add', 'hidden');
-            toggleGrayscale();
+            grayscale('off');
         }
     } else if (playerSum === 21) {
         alert(
@@ -514,7 +514,7 @@ function dealersTurn() {
     adjustButtonVisibility('split', 'add', 'hidden');
     adjustButtonVisibility('stand', 'add', 'hidden');
 
-    toggleGrayscale(); // Turns poker chips off - no betting after 'stand'
+    grayscale('on'); // Turns poker chips off - no betting after 'stand'
     turnCardOver();
 
     let dealerSum = handValues(getImageAltData('dealer-cards')).value;
@@ -631,6 +631,8 @@ function endOfRound() {
         }
     }
 
+    grayscale('off'); // Re-activates poker chips
+
     // Remove grayscale of 'hit' button (failsafe - grayscale is added to hit when 21 is reached).
     const hitButton = document.getElementById('hit');
     hitButton.addEventListener('pointerdown', hit);
@@ -643,8 +645,6 @@ function endOfRound() {
 
     // If player has a split card on the side, puts that card into play after clearing table.
     if (checkIfSplit() === true) {
-        toggleGrayscale(); // Re-activates poker chips
-
         const splitCard = document.getElementById('split-hand').children[0];
         const altText = splitCard.alt;
 
@@ -907,33 +907,45 @@ function deductBet() {
 /**
  * Toggles the poker chips from coloured to grayscale and back.
  * Removes eventListeners and adds them back respectively.
+ * 
+ * @param {string} 'off' or 'on' 
  */
-function toggleGrayscale() {
+function grayscale(offOn) {
     const redChip = document.getElementById('red-chip');
     const blueChip = document.getElementById('blue-chip');
     const blackChip = document.getElementById('black-chip');
     const whiteChip = document.getElementById('minus-chip');
 
-    if (redChip.classList.contains('grayscale') === true) {
-        redChip.classList.remove('grayscale');
-        blueChip.classList.remove('grayscale');
-        blackChip.classList.remove('grayscale');
-        whiteChip.classList.remove('grayscale');
+    if (offOn === 'off') {
+        if (redChip.classList.contains('grayscale') === true) {
+            redChip.classList.remove('grayscale');
+            blueChip.classList.remove('grayscale');
+            blackChip.classList.remove('grayscale');
+            whiteChip.classList.remove('grayscale');
 
-        redChip.addEventListener('pointerdown', addBetRed);
-        blueChip.addEventListener('pointerdown', addBetBlue);
-        blackChip.addEventListener('pointerdown', addBetBlack);
-        whiteChip.addEventListener('pointerdown', deductBet);
+            redChip.addEventListener('pointerdown', addBetRed);
+            blueChip.addEventListener('pointerdown', addBetBlue);
+            blackChip.addEventListener('pointerdown', addBetBlack);
+            whiteChip.addEventListener('pointerdown', deductBet);
+        } else {
+            return;
+        }
+    } else if (offOn === 'on') {
+        if (redChip.classList.contains('grayscale') === true) {
+            return;
+        } else {
+            redChip.classList.add('grayscale');
+            blueChip.classList.add('grayscale');
+            blackChip.classList.add('grayscale');
+            whiteChip.classList.add('grayscale');
+
+            redChip.removeEventListener('pointerdown', addBetRed);
+            blueChip.removeEventListener('pointerdown', addBetBlue);
+            blackChip.removeEventListener('pointerdown', addBetBlack);
+            whiteChip.removeEventListener('pointerdown', deductBet);
+        }
     } else {
-        redChip.classList.add('grayscale');
-        blueChip.classList.add('grayscale');
-        blackChip.classList.add('grayscale');
-        whiteChip.classList.add('grayscale');
-
-        redChip.removeEventListener('pointerdown', addBetRed);
-        blueChip.removeEventListener('pointerdown', addBetBlue);
-        blackChip.removeEventListener('pointerdown', addBetBlack);
-        whiteChip.removeEventListener('pointerdown', deductBet);
+        throw new Error('Incorrect function parameters')
     }
 }
 
