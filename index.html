@@ -17,26 +17,26 @@
     <!-- This only displays on smaller screen sizes;
     Rules are displayed as separate clickable links here-->
     <div class="display-h1-small-screen">
-        <div>
+        <header>
             <h1>
                 Blackjack: 3 Minute Challenge
             </h1>
-        </div>
+        </header>
         <div>
             <span id="game-rules-span">Game Rules</span>
         </div>
     </div>
-    <div class="main-game-area grid">
+    <main class="main-game-area grid">
         <!-- Title -->
-        <div class="title-rules-display">
-            <div>
+        <section class="title-rules-display">
+            <header>
                 <h1>
                     Blackjack<br>-3 Minute-<br>Challenge
                 </h1>
-            </div>
-        </div>
+            </header>
+        </section>
         <!-- This is where the main game area is located -->
-        <div>
+        <section>
             <!-- Timer Area -->
             <div class="actions-div">
                 <span>Timer:</span>
@@ -128,9 +128,9 @@
                 <span>Cash $</span>
                 <span id="cash">500</span>
             </div>
-        </div>
+        </section>
         <!-- Game Rules -->
-        <div id="game-rules-modal" class="title-rules-display">
+        <section id="game-rules-modal" class="title-rules-display">
             <div id="game-rules-content">
                 <h3>Game Rules:</h3>
                 <i id="x-button" class="fa-solid fa-xmark"></i>
@@ -258,8 +258,8 @@
                     </li>
                 </ul>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <!-- Various Pop-Up Modal Windows -->
     <!-- Name Input Screen -->
@@ -268,7 +268,7 @@
             <p>
                 <strong>Please input your name to continue:</strong>
             </p>
-            <form action="">
+            <form>
                 <input type="text" id="input-name" minlength="2" maxlength="15" required>
                 <br>
                 <br>

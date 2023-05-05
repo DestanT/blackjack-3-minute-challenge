@@ -945,7 +945,7 @@ function grayscale(offOn) {
             whiteChip.removeEventListener('pointerdown', deductBet);
         }
     } else {
-        throw new Error('Incorrect function parameters')
+        throw new Error('Incorrect function parameters');
     }
 }
 

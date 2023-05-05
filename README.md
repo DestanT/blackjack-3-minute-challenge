@@ -2,7 +2,8 @@
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Features:](#features)
+2. [User Stories](#user-stories)
+3. [Features:](#features)
     1. [First Visit](#first-visit)
     2. [The Deck Of Cards](#the-deck-of-cards)
     3. [The 'Hit', 'Split' and 'Stand' Functions](#the-hit-split-and-stand-functions)
@@ -15,10 +16,10 @@
     7. [Sound Effects](#sound-effects)
 
 
-5. [Testing, Struggles, and Future Features](#testing-struggles-and-future-features)
+4. [Testing, Struggles, and Future Features](#testing-struggles-and-future-features)
     1. [Testing](#testing)
     2. [Bugs/Challenges](#bugschallenges)
-6. [Feature Ideas For The Future](#feature-ideas-for-the-future)
+5. [Feature Ideas For The Future](#feature-ideas-for-the-future)
 7. [Technologies Used](#technologies-used)
 8. [Deployment](#deployment)
 9. [Development](#development)
@@ -59,6 +60,7 @@ As the developer of the site I would:
   ![Greeting Player](/documentation/hi-player-name.png)
 * On subsequent visits (i.e. if localStorage already has name data), the game will welcome the player back.\
 ![Welcome Back Player](/documentation/welcome-back-player-name.png)
+* If the player wishes to change their name; they can click on their name in the 'Game Rules' section.
 
 ### The Deck Of Cards
 The deck of cards is displayed on the side of the screen.
@@ -74,7 +76,7 @@ The deck of cards is displayed on the side of the screen.
 ![Player Sum](/documentation/player-sum.png)
 * As long as the player has a sum below 21 the 'Hit' function allows the player to draw another card.
 * Aces are automatically considered at their higher value of 11.
-  * When the player exceeds 21, one ace at a time is automatically recalculated to be worth 1 instead until a score of 21 or below is reached.
+  * When the player exceeds 21 and holds an ace(s), one ace at a time is automatically recalculated to be worth 1 instead until a score of 21 or below is reached.
 * If the player exceeds 21; the round is automatically lost and the 'awww' sound effect is played.
   * The 'Deal' button is revealed to deal out the new round.\
 ![Deal Button](/documentation/deal-button.png)
@@ -129,7 +131,7 @@ The deck of cards is displayed on the side of the screen.
 ![Score Screen](/documentation/score-screen.png)
 * Once the 3 minute timer runs out at the top of the screen the game will stop and the player will be greeted with the 'Score Screen'
   * The player's cash value, bet value and (if they have) their side bet value will be tallied up.
-  * The total will be stored on localStorage and compared to display only the top 3 scores.
+  * The total will be stored on localStorage and compared. The top 3 scores will be shown on the scoreboard.
   * If the player has beaten their past high score they will be greeted with a 'Well Done' and an update of their scoreboard\
   ![Beating The Highscore](/documentation/well-done-score-screen.png)
   * If the player failed to beat any of their high scores, they will be greeted with a 'Better luck next time!':\
@@ -164,28 +166,22 @@ There are currently 10 different sound effects in the game, these are:
  * A 'boing' sound for when the player does something they shouldn't.
  * And finally a sound of poker chips being pushed around for when the player collects their winnings.
 
-
- ###
-
-
-
-
 ## Testing, Struggles, and Future Features
 
 ### __Testing__
 
 __Lighthouse Tests__
+* Desktop:\
+![Lighthouse Test Desktop](/documentation/lighthouse-desktop.png)
+* Mobile:\
+![Lighthouse Test Mobile](/documentation/lighthouse-mobile.png)
 
-* Pictures!
-
-The project was also tested via friends and family; using their native web browsers for responsiveness using these devices/tools:
-  * Monitor 25" screen
-  * Windows laptop 15" screen
-  * iPhone 12 Pro Max
-  * OnePlus 8
-  * iPad Pro 12.9" screen
-  * iPad Pro 11" screen
-  * Chrome dev tools for various other options
+__JSHint__
+* Configurations used:\
+![JSHint Configurations](/documentation/jshint-configuration.png)
+* Metrics:\
+![JSHint Metrics](/documentation/jshint-metrics.png)
+* No errors.
 
 __Validator Testing__
 
@@ -195,11 +191,29 @@ RECHECK THIS!
 - CSS - No errors found. Link to report [here](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdestant.github.io%2Fblackjack-5-minute-challenge%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en).
 - JavaScript - No errors found. ADD PICTURE HERE + TALK ABOUT CONFIGURATIONS OF TEST.
 
+__Friends and Family Testing__
+
+The project was also tested by friends and family; using their native web browsers for responsiveness using these devices/tools:
+  * Monitor 25" screen
+  * Windows laptop 15" screen
+  * iPhone 12 Pro Max
+  * OnePlus 8
+  * iPad Pro 12.9" screen
+  * iPad Pro 11" screen
+  * Chrome dev tools for various other options
+
 ### __Bugs/Challenges__
 
 __Challenges__
 
+The biggest challenge of this project was realising that a global leaderboard was not as simple as 'simply uploading data to the internet'. I learned a global leaderboard would require a server and a database of some sort (in this case a simple text/JSON file would have sufficed).
+
+I even went as far as purchasing a Raspberry Pi to serve this purpose and did a substantial amount of research on how to 'build' a server. After everything, the part at which I felt I needed to let go of this ambition (for now!), is when I realised that github pages would only communicate with a server over HTTPS. My server would have only been on HTTP, and that extra layer of complexity, and given the time I had to finish the project meant I had to unfortunately postpone my ambition to create a global leaderboard.
+
 __Unfixed Bugs__
+
+* I have found that even though the same browser and version (Chrome - 113.0.5672.63) were being used, that on some laptops the 'Game Rules' section's scroll feature was not functioning as intended, instead the entire section was on display and viewing the bottom of the game rules meant users that were affected had to 'scroll away' from the game. Image of proper function below:\
+![Scroll Bug](/documentation/bugs-rules-scroll.png)
 
 ### __Feature Ideas For The Future__
 
@@ -208,8 +222,8 @@ __Unfixed Bugs__
 * HTML
 * CSS
 * JavaScript
-* Node.js
-* Express
+* Procreate (iPad)
+* Endless Paper (iPad)
 
 ## Deployment
 
