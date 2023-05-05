@@ -3,7 +3,8 @@
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [User Stories](#user-stories)
-3. [Features:](#features)
+3. [Wireframe](#wireframe)
+4. [Features:](#features)
     1. [First Visit](#first-visit)
     2. [The Deck Of Cards](#the-deck-of-cards)
     3. [The 'Hit', 'Split' and 'Stand' Functions](#the-hit-split-and-stand-functions)
@@ -16,7 +17,7 @@
     7. [Sound Effects](#sound-effects)
 
 
-4. [Testing, Struggles, and Future Features](#testing-struggles-and-future-features)
+5. [Testing, Struggles, and Future Features](#testing-struggles-and-future-features)
     1. [Testing](#testing)
     2. [Bugs/Challenges](#bugschallenges)
 5. [Feature Ideas For The Future](#feature-ideas-for-the-future)
@@ -48,6 +49,10 @@ As a user of the site I would:
 As the developer of the site I would:
 * Listen to feedback from my users and add updates to include new features accorgindly
 * Fix bugs, as they are reported to me
+
+## Wireframe
+
+![Wireframe](/documentation/wireframe-pp2.png)
 
 ## Features:
 
@@ -253,6 +258,7 @@ Should anyone wish to copy and paste the project - you are also welcome to - ple
 * To help me find and visualize the font I used [Fontjoy](https://fontjoy.com/).
 * [W3Schools](https://www.w3schools.com/), [Stack Overflow](https://stackoverflow.com/), [Mozilla Dev Tools](https://developer.mozilla.org) was referred to a lot for general syntax and whenever I was stuck on a bug for a while - other similar experiences helped me build a better app.
 * [FontAwesome](https://fontawesome.com/) for the "X" mark in the pop-up modal.
+* [Favicon](https://favicon.io/emoji-favicons/game-die/) for the favicons.
 
 ### __Media__
 
