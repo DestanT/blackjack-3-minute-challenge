@@ -1,8 +1,8 @@
-# Blackjack: 3 Minute Challenge
+# Blackjack: 3-Minute Challenge
 ![Am I Responsive](/documentation/am-i-responsive.png)
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [User Stories](#user-stories)
+2. [Goals](#goals)
 3. [Wireframe](#wireframe)
 4. [Features:](#features)
     1. [First Visit](#first-visit)
@@ -35,21 +35,21 @@
 ## Introduction
 This card game is primarily intended for someone who is already quite familiar with the casino game "Blackjack". A summarised ruleset is present for new players and anyone wanting to familiarise themselves with the game. A link to the full ruleset can also be found.
 
-The idea of the game is for the player to reach the highest possible score in 3 minutes and to compete for a higher score each time. The quick 3 minute nature of the game rounds means players can spend a small amount of time as downtime, during commuting or while waiting for someone.
+The idea of the game is for the player to reach the highest possible score in 3 minutes and to compete for a higher score each time. The quick 3-minute nature of the game rounds means players can spend a small amount of time as downtime, during commuting, or while waiting for someone.
 
-As a player, I would seek to beat my own high score every time I play. I would also share the game with my friends to add to the competitive nature of the game and let know what high scores I was able to achieve. The high risk, high reward nature of any casino game drives this attention naturally.
+As a player, I would seek to beat my high score every time I play. I would also share the game with my friends to add to the competitive nature of the game and let them know what high scores I was able to achieve. The high-risk, high-reward nature of any casino game drives this attention naturally.
 
 You can view the deployed website by clicking [**here**](https://destant.github.io/blackjack-3-minute-challenge/).
 
-## User Stories
-As a user of the site I would:
+## Goals
+As a user of the site, I would:
 * Enjoy spending a few minutes every so often to play blackjack
 * Return to the site to beat my high score
 * Share the site with friends so that I could compete with them
 * Screenshot the end screen with my top 3 high scores on it to show off to my friends and colleagues
 
-As the developer of the site I would:
-* Listen to feedback from my users and add updates to include new features accorgindly
+As the owner of the site, I would:
+* Listen to feedback from my users and add updates to include new features accordingly
 * Fix bugs, as they are reported to me
 
 ## Wireframe
@@ -58,8 +58,8 @@ As the developer of the site I would:
 ## Features:
 ### First Visit
 ![Input Name Pop-Up](/documentation/input-name-screen.png)
-* On the first visit the player is greeted with this pop up modal window.
-  * Player must input their name (minimum 2 characters, maximum 15).
+* On the first visit, the player is greeted with this pop-up modal window.
+  * The player must input their name (minimum 2 characters, maximum 15).
   * The name is stored in localStorage.
   * The 'Game Rules' will display the player's name.\
   ![Greeting Player](/documentation/hi-player-name.png)
@@ -82,7 +82,7 @@ The deck of cards is displayed on the side of the screen.
 * As long as the player has a sum below 21 the 'Hit' function allows the player to draw another card.
 * Aces are automatically considered at their higher value of 11.
   * When the player exceeds 21 and holds an ace(s), one ace at a time is automatically recalculated to be worth 1 instead until a score of 21 or below is reached.
-* If the player exceeds 21; the round is automatically lost and the 'awww' sound effect is played.
+* If the player exceeds 21; the round is automatically lost and the 'aww' sound effect is played.
   * The 'Deal' button is revealed to deal out the new round.\
 ![Deal Button](/documentation/deal-button.png)
 
@@ -97,24 +97,24 @@ The deck of cards is displayed on the side of the screen.
   * Players can decide to split or continue playing as normal.
 
 ![Split Function Pressed](/documentation/after-split.png)
-* If the player decides to split, the left card is put aside (as seen in image - bordered in red).
-  * A side bet, matching the original bet, is created (as seen in image - blue border).
-    * Split bets can only be initiated if the player has enough cash to match original bet.
+* If the player decides to split, the left card is put aside (as seen in the image - bordered in red).
+  * A side bet, matching the original bet, is created (as seen in the image - blue border).
+    * Split bets can only be initiated if the player has enough cash to match the original bet.
   * The 'Player Sum' is updated (green border).
 * Once the first card is played, the second card is put into play.
 
 #### __Stand__
 * Once the player is happy with their score, they can choose to 'Stand'
-  * This initiates the dealers turn:
+  * This initiates the dealer's turn:
     * The dealer will automatically draw cards until their obligation to score at least 17 is met.
   * Once the dealer has had their turn:
-    * If dealer is bust (score above 21); player wins and cashes out double their bet.
+    * If the dealer is busted (score above 21); the player wins and cashes out double their bet.
     * Likewise; if the player has a higher score than the dealer.
       * The winning 'ding' sound is played.
       * The 'You Won!' text pops up for 1.5s below the 'Player Sum'.\
       ![Win Text](/documentation/win-text.png)
-    * If dealer exceeds the player score; the player loses and loses their bet.
-      * The 'Awww' sound effect is played.
+    * If the dealer exceeds the player's score; the player loses and loses their bet.
+      * The 'aww' sound effect is played.
       * The 'You Lose.' text pops up for 1.5s below the 'Player Sum'.\
       ![Lose Text](/documentation/lose-text.png)
     * In case of a draw; nobody wins, the player retains their bet.
@@ -127,15 +127,15 @@ The deck of cards is displayed on the side of the screen.
 ![Total Bet Value](/documentation/total-bet.png)
 * Players can only remove a bet in multiples of $100 (as seen in the image; the white poker chip)
   * It is still possible to remove bets below $100. The game checks for this and adjusts accordingly.
-* Cash value and bet value is adjusted with every click.
+* Cash value and bet value are adjusted with every click.
 * Animations of chips moving to and from the bet value and hand are played.
 * Poker chips will grey out when the player is not allowed to interact with them. And toggle back on when the player can again interact with them.\
 ![Greyed Out Poker Chips](/documentation/grey-poker-chips.png)
 
 ### End Game Score Screen
 ![Score Screen](/documentation/score-screen.png)
-* Once the 3 minute timer runs out at the top of the screen the game will stop and the player will be greeted with the 'Score Screen'
-  * The player's cash value, bet value and (if they have) their side bet value will be tallied up.
+* Once the 3-minute timer runs out at the top of the screen the game will stop and the player will be greeted with the 'Score Screen'
+  * The player's cash value, bet value, and (if they have) their side bet value will be tallied up.
   * The total will be stored on localStorage and compared. The top 3 scores will be shown on the scoreboard.
   * If the player has beaten their past high score they will be greeted with a 'Well Done' and an update of their scoreboard\
   ![Beating The Highscore](/documentation/well-done-score-screen.png)
@@ -143,14 +143,14 @@ The deck of cards is displayed on the side of the screen.
   ![Better Luck Next Time](/documentation/next-time-score-screen.png)
   * If the player runs out of money before the timer is finished, they will be greeted with this screen instead:\
   ![No Money Score Screen](/documentation/no-money-score-screen.png)
-* If the player has had enough before the timer ends, or simply wishes to record their highscore without risking further losses, then the 'End Game' button can be pressed next to the timer at the top of the screen:\
+* If the player has had enough before the timer ends or simply wishes to record their high score without risking further losses, then the 'End Game' button can be pressed next to the timer at the top of the screen:\
 ![End Game Button](/documentation/end-game-button.png)
 
 ### Animations
-The animations were done using elements of all three; HTML, CSS and JavaScript. There are currently animations for:
-* Poker chips being placed as bets, all in their individual colours.
+The animations were done using elements of all three; HTML, CSS, and JavaScript. There are currently animations for:
+* Poker chips being placed as bets, in their own colours.
 * Poker chips being deducted from the current bet (Two $50 chips can be seen being withdrawn).
-* Single cards being dealt to each the dealer and the player.
+* Single cards being dealt to each; the dealer and the player.
  
 Example Animations:
   * Cards being dealt:\
@@ -163,13 +163,13 @@ There are currently 10 different sound effects in the game, these are:
  * For dealing a single card.
  * When the dealer flips their facedown card to face up.
  * A 'ding' for when the player wins a hand.
- * An 'awww' for when the player loses a hand.
+ * An 'aww' for when the player loses a hand.
  * Deck shuffle.
  * Two distinctive sounds for when placing a bet..
  * ..and when deducting from a bet.
  * Glass smashing - when the player 'busts' their hand (exceeds 21).
  * A 'boing' sound for when the player does something they shouldn't.
- * And finally a sound of poker chips being pushed around for when the player collects their winnings.
+ * And finally the sound of poker chips being pushed around for when the player collects their winnings.
 
 ## Future Features/Roadmap
 
@@ -208,15 +208,15 @@ The project was also tested by friends and family; using their native web browse
 
 ### __Process__
 
-The game was played a total of 10+ hours across the board and these were the primary testing criterias used:
+The game was played for a total of 10+ hours across the board and these were the primary testing criteria used:
 
 | Test | Expected Outcome(s) | Outcome |
 | :--- | :--- | :---: |
 | First Visit | Triggers 'Name Input' screen. | &#9745;
 |||
- Clicking name in 'Game Rules' | Triggers 'Name Input' screen. | &#9745;
+ Clicking the name in 'Game Rules' | Triggers 'Name Input' screen. | &#9745;
 |||
-| `Start` Button | Plays card animations, | &#9745;
+| `Start` button | Plays card animations, | &#9745;
 ||deals 2 cards each to dealer and player, | &#9745;
 ||minimum bet of $50 is applied automatically, | &#9745;
 ||cash value is updated, | &#9745;
@@ -225,56 +225,56 @@ The game was played a total of 10+ hours across the board and these were the pri
 ||updates dealer/player sums and remaining cards, | &#9745;
 ||Hit, Split*, Stand buttons become visible. | &#9745;
 |||
-| `Hit` Button | Plays card animation, | &#9745;
-||deals 1 card to player, | &#9745;
+| `Hit` button | Plays card animation, | &#9745;
+||deals 1 card to the player, | &#9745;
 ||updates player sum and remaining cards. | &#9745;
 |||
-| `Stand` Button | Plays card animation, | &#9745;
-||dealer draws until at least 17 points are reached, | &#9745;
+| `Stand` button | Plays card animation, | &#9745;
+||the dealer draws until at least 17 points are reached, | &#9745;
 ||updates dealer sum and remaining cards, | &#9745;
 ||win/loss conditions are unlocked. | &#9745;
 |||
-| `Split`* Button | Only appears when 2 same value cards are drawn at the start of a round, | &#9745;
+| `Split`* button | Only appears when 2 same-value cards are drawn at the start of a round, | &#9745;
 ||sets aside one of those cards*, | &#9745;
 ||*(only if player has enough cash to match initial bet value), | &#9745;
 ||copies current bet value and updates 'Side Bet: $XX', | &#9745;
 ||updates player cash value accordingly, | &#9745;
 ||before starting a brand new round, puts the split card into play. | &#9745;
 |||
-| `Poker Chips` | Plays sound effect for a poker chip, | &#9745;
+| `Poker Chips` | Play sound effects for a poker chip, | &#9745;
 ||add/subtract correct amounts. | &#9745;
 |||
 | Win/Loss Conditions: ||
 |||
-| Player going over 21 | 'awww' sound effect played, | &#9745;
-||'You Lose' is displayed in red below player sum, | &#9745;
-||player loses current bet value, | &#9745;
+| The player going over 21 | 'aww' sound effect played, | &#9745;
+||'You Lose' is displayed in red below the player sum, | &#9745;
+||the player loses current bet value, | &#9745;
 ||table clears cards away, | &#9745;
 ||dealer *doesn't* unnecessarily take its turn, | &#9745;
-||'Deal' Button becomes visible, | &#9745;
+||The 'Deal' Button becomes visible, | &#9745;
 ||poker chips become usable again, | &#9745;
 ||previous bet value is automatically played, | &#9745;
 ||and player cash value is updated. | &#9745;
 |||
 | Player sum > dealer sum | 'ding' and 'poker chip winnings' sound effects played, | &#9745;
-| -OR- | 'You Won!' is displayed in green below player sum, | &#9745;
+| -OR- | 'You Won!' is displayed in green below the player sum, | &#9745;
 | dealer goes bust (above 21)| player doubles their bet, | &#9745;
 ||table clears cards away, | &#9745;
-||'Deal' Button becomes visible, | &#9745;
+||The 'Deal' Button becomes visible, | &#9745;
 ||poker chips become usable again, | &#9745;
 ||previous bet value is automatically played, | &#9745;
 ||and player cash value is updated. | &#9745;
 |||
-| Timer runs out | Game is stopped, | &#9745;
+| The timer runs out | Game is stopped, | &#9745;
 ||score screen pops up, | &#9745;
 ||correct score calculations (bet value + (side bet value)** + cash value) | &#9745;
-||correct .innerHTML depeding on which condition was met | &#9745;
-||correctly displaying top 3 scores. | &#9745;
+||correct .innerHTML depending on which condition was met | &#9745;
+||correctly displaying the top 3 scores. | &#9745;
 |||
-| Score Screen `Close` Button | Closes score screen, allows player to play new round. | &#9745;
+| The score screen `Close` button | Closes the score screen, and allows the player to play a new round. | &#9745;
 |||
 
-*Split button only available if *initial* two card are identical.\
+*Split button only available if *initial* two cards are identical.\
 **If currently active.
 
 ## __Challenges & Bugs__
@@ -283,24 +283,24 @@ The game was played a total of 10+ hours across the board and these were the pri
 
 The biggest challenge of this project was realising that a global leaderboard was not as simple as 'simply uploading data to the internet'. I learned a global leaderboard would require a server and a database of some sort (in this case a simple text/JSON file would have sufficed).
 
-I even went as far as purchasing a Raspberry Pi to serve this purpose and did a substantial amount of research on how to 'build' a server. After everything, the part at which I felt I needed to let go of this ambition (for now!), is when I realised that github pages would only communicate with a server over HTTPS. My server would have only been on HTTP, and that extra layer of complexity, and given the time I had to finish the project meant I had to unfortunately postpone my ambition to create a global leaderboard.
+I even went as far as purchasing a Raspberry Pi to serve this purpose and did a substantial amount of research on how to 'build' a server. After everything, the part at which I felt I needed to let go of this ambition (for now!), is when I realised that GitHub pages would only communicate with a server over HTTPS. My server would have only been on HTTP, and that extra layer of complexity, and given the time I had to finish the project meant I had to unfortunately postpone my ambition to create a global leaderboard.
 
 ### __Fixed Bugs__
 * Buttons correctly display and hide when they need to.
 * Poker chips:
-  * now correctly function even if player's hand is bust.
-    * previosuly would only function when player chose to 'stand'.
-  * the white 'deduct $100' poker chip now takes into account if player has below $100 in bet value.
+  * Now correctly function even if the player's hand is busted.
+    * Previously would only function when the player chose to 'stand'.
+  * The white 'deduct $100' poker chip now takes into account if the player has below $100 in bet value.
 * If the timer ran out while in the middle of a hand; game elements would not correctly display/function on reset.
 * Split button:
-  * now correctly hides if player chooses to stand.
-    * previously the player could stand and then split card anyway - breaking the game.
-  * when the split card comes into play, now correctly calculates win/loss cash values.
+  * Now correctly hides if the player chooses to stand.
+    * Previously the player could stand and then click 'Split' anyway - breaking the game.
+  * When the split card comes into play, now correctly calculates win/loss cash values.
 * Bet values are correctly calculated under all circumstances.
-  * previously bets over a certain amount would cause a bug in calculations.
+  * Previously bets over a certain amount would cause a bug in calculations.
 
 ### __Unfixed Bugs__
-* I have found that even though the same browser and version (Chrome - 113.0.5672.63) were being used, that on some laptops the 'Game Rules' section's scroll feature was not functioning as intended, instead the entire section was on display and viewing the bottom of the game rules meant users that were affected had to 'scroll away' from the game. Image of proper function below:\
+* I have found that even though the same browser and version (Chrome - 113.0.5672.63) were being used, on some laptops, the 'Game Rules' section's scroll feature was not functioning as intended, instead, the entire section was on display, and viewing the bottom of the game rules meant users that were affected had to 'scroll away' from the game. Image of proper function below:\
 ![Scroll Bug](/documentation/bugs-rules-scroll.png)
 
 ## Technologies Used
@@ -333,7 +333,7 @@ Should anyone wish to copy and paste the project - you are also welcome to - ple
 ### __Content__
 * The wireframe was made using the [Endless Paper App](https://endlesspaper.app/) on the iPad.
 * To help me find and visualize the font I used [Fontjoy](https://fontjoy.com/).
-* [W3Schools](https://www.w3schools.com/), [Stack Overflow](https://stackoverflow.com/), [Mozilla Dev Tools](https://developer.mozilla.org) was referred to a lot for general syntax and whenever I was stuck on a bug for a while - other similar experiences helped me build a better app.
+* [W3Schools](https://www.w3schools.com/), [Stack Overflow](https://stackoverflow.com/), and [Mozilla Dev Tools](https://developer.mozilla.org) were referred to a lot for general syntax and whenever I was stuck on a bug for a while - other similar experiences helped me build a better app.
 * [FontAwesome](https://fontawesome.com/) for the "X" mark in the pop-up modal.
 * [Favicon](https://favicon.io/emoji-favicons/game-die/) for the favicons.
 
