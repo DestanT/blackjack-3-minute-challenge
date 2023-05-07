@@ -734,7 +734,7 @@ function handValues(array) {
             value += 11;
             numberOfAces += 1;
 
-            // https://stackoverflow.com/questions/2363840/how-to-use-or-condition-in-a-javascript-if-statement
+            // CREDIT - https://stackoverflow.com/questions/2363840/how-to-use-or-condition-in-a-javascript-if-statement
             // quote: "Note that if you use string comparisons in the conditions, you need to perform a comparison for each condition..
             // ..otherwise if you only do it in the first one, then it will always return true" - this helped tremendously!
         } else if (
@@ -1065,7 +1065,7 @@ function submitScore() {
     }
 
     // Sorts the array by order of value.
-    // https://stackoverflow.com/questions/38807946/localstorage-sort-order-by-value
+    // CREDIT - https://stackoverflow.com/questions/38807946/localstorage-sort-order-by-value
     scoresArray.sort(function (a, b) {
         return a - b;
     });

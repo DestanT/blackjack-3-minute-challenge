@@ -1,5 +1,5 @@
-# Blackjack: 5 Minute Challenge
-
+# Blackjack: 3 Minute Challenge
+![Am I Responsive](/documentation/am-i-responsive.png)
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [User Stories](#user-stories)
@@ -15,21 +15,24 @@
     5. [End Game Score Screen](#end-game-score-screen)
     6. [Animations](#animations)
     7. [Sound Effects](#sound-effects)
-
-
-5. [Testing, Struggles, and Future Features](#testing-struggles-and-future-features)
-    1. [Testing](#testing)
-    2. [Bugs/Challenges](#bugschallenges)
-5. [Feature Ideas For The Future](#feature-ideas-for-the-future)
-7. [Technologies Used](#technologies-used)
-8. [Deployment](#deployment)
-9. [Development](#development)
-10. [Credits](#credits)
+5. [Future Features/Roadmap](#future-featuresroadmap)
+6. [Testing](#testing)
+    1. [Lighthouse Tests](#lighthouse-tests)
+    2. [Validator Testing](#validator-testing)
+    3. [Friends and Family Testing](#friends-and-family-testing)
+    4. [Process](#process)
+7. [Challenges & Bugs](#challenges--bugs)
+    1. [Challenges](#challenges)
+    2. [Fixed Bugs](#fixed-bugs)
+    3. [Unfixed Bugs](#unfixed-bugs)
+8. [Technologies Used](#technologies-used)
+9. [Deployment](#deployment)
+10. [Development](#development)
+11. [Credits](#credits)
     1. [Content](#content)
     2. [Media](#media)
 
 ## Introduction
-
 This card game is primarily intended for someone who is already quite familiar with the casino game "Blackjack". A summarised ruleset is present for new players and anyone wanting to familiarise themselves with the game. A link to the full ruleset can also be found.
 
 The idea of the game is for the player to reach the highest possible score in 3 minutes and to compete for a higher score each time. The quick 3 minute nature of the game rounds means players can spend a small amount of time as downtime, during commuting or while waiting for someone.
@@ -39,7 +42,6 @@ As a player, I would seek to beat my own high score every time I play. I would a
 You can view the deployed website by clicking [**here**](https://destant.github.io/blackjack-3-minute-challenge/).
 
 ## User Stories
-
 As a user of the site I would:
 * Enjoy spending a few minutes every so often to play blackjack
 * Return to the site to beat my high score
@@ -51,11 +53,9 @@ As the developer of the site I would:
 * Fix bugs, as they are reported to me
 
 ## Wireframe
-
 ![Wireframe](/documentation/wireframe-pp2.png)
 
 ## Features:
-
 ### First Visit
 ![Input Name Pop-Up](/documentation/input-name-screen.png)
 * On the first visit the player is greeted with this pop up modal window.
@@ -171,59 +171,139 @@ There are currently 10 different sound effects in the game, these are:
  * A 'boing' sound for when the player does something they shouldn't.
  * And finally a sound of poker chips being pushed around for when the player collects their winnings.
 
-## Testing, Struggles, and Future Features
+## Future Features/Roadmap
 
-### __Testing__
+* Implementation of some casino blackjack staple features:
+  * 'Double Down' bets
+  * 'Insurance' bets
+* A server and a database for global leaderboards
 
-__Lighthouse Tests__
+## Testing
+### __Lighthouse Tests__
 * Desktop:\
 ![Lighthouse Test Desktop](/documentation/lighthouse-desktop.png)
 * Mobile:\
 ![Lighthouse Test Mobile](/documentation/lighthouse-mobile.png)
 
-__JSHint__
-* Configurations used:\
-![JSHint Configurations](/documentation/jshint-configuration.png)
-* Metrics:\
-![JSHint Metrics](/documentation/jshint-metrics.png)
-* No errors.
+### __Validator Testing__
+- HTML - No errors or warnings to show. Link to report [here](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdestant.github.io%2Fblackjack-3-minute-challenge%2F).
+- CSS - No errors found. Link to report [here](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdestant.github.io%2Fblackjack-3-minute-challenge%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en).
+- JavaScript - JSHint: No errors found. 
+  * Configurations used:\
+  ![JSHint Configurations](/documentation/jshint-configuration.png)
+  * Metrics:\
+  ![JSHint Metrics](/documentation/jshint-metrics.png)
 
-__Validator Testing__
-
-RECHECK THIS!
-
-- HTML - No errors or warnings to show. Link to report [here](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdestant.github.io%2Fblackjack-5-minute-challenge%2F).
-- CSS - No errors found. Link to report [here](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdestant.github.io%2Fblackjack-5-minute-challenge%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en).
-- JavaScript - No errors found. ADD PICTURE HERE + TALK ABOUT CONFIGURATIONS OF TEST.
-
-__Friends and Family Testing__
+### __Friends and Family Testing__
 
 The project was also tested by friends and family; using their native web browsers for responsiveness using these devices/tools:
   * Monitor 25" screen
   * Windows laptop 15" screen
   * iPhone 12 Pro Max
   * OnePlus 8
+  * Samsung S22 Ultra
   * iPad Pro 12.9" screen
   * iPad Pro 11" screen
   * Chrome dev tools for various other options
 
-### __Bugs/Challenges__
+### __Process__
 
-__Challenges__
+The game was played a total of 10+ hours across the board and these were the primary testing criterias used:
+
+| Test | Expected Outcome(s) | Outcome |
+| :--- | :--- | :---: |
+| First Visit | Triggers 'Name Input' screen. | &#9745;
+|||
+ Clicking name in 'Game Rules' | Triggers 'Name Input' screen. | &#9745;
+|||
+| `Start` Button | Plays card animations, | &#9745;
+||deals 2 cards each to dealer and player, | &#9745;
+||minimum bet of $50 is applied automatically, | &#9745;
+||cash value is updated, | &#9745;
+||poker chips are grayed out, | &#9745;
+||starts the countdown timer, | &#9745;
+||updates dealer/player sums and remaining cards, | &#9745;
+||Hit, Split*, Stand buttons become visible. | &#9745;
+|||
+| `Hit` Button | Plays card animation, | &#9745;
+||deals 1 card to player, | &#9745;
+||updates player sum and remaining cards. | &#9745;
+|||
+| `Stand` Button | Plays card animation, | &#9745;
+||dealer draws until at least 17 points are reached, | &#9745;
+||updates dealer sum and remaining cards, | &#9745;
+||win/loss conditions are unlocked. | &#9745;
+|||
+| `Split`* Button | Only appears when 2 same value cards are drawn at the start of a round, | &#9745;
+||sets aside one of those cards*, | &#9745;
+||*(only if player has enough cash to match initial bet value), | &#9745;
+||copies current bet value and updates 'Side Bet: $XX', | &#9745;
+||updates player cash value accordingly, | &#9745;
+||before starting a brand new round, puts the split card into play. | &#9745;
+|||
+| `Poker Chips` | Plays sound effect for a poker chip, | &#9745;
+||add/subtract correct amounts. | &#9745;
+|||
+| Win/Loss Conditions: ||
+|||
+| Player going over 21 | 'awww' sound effect played, | &#9745;
+||'You Lose' is displayed in red below player sum, | &#9745;
+||player loses current bet value, | &#9745;
+||table clears cards away, | &#9745;
+||dealer *doesn't* unnecessarily take its turn, | &#9745;
+||'Deal' Button becomes visible, | &#9745;
+||poker chips become usable again, | &#9745;
+||previous bet value is automatically played, | &#9745;
+||and player cash value is updated. | &#9745;
+|||
+| Player sum > dealer sum | 'ding' and 'poker chip winnings' sound effects played, | &#9745;
+| -OR- | 'You Won!' is displayed in green below player sum, | &#9745;
+| dealer goes bust (above 21)| player doubles their bet, | &#9745;
+||table clears cards away, | &#9745;
+||'Deal' Button becomes visible, | &#9745;
+||poker chips become usable again, | &#9745;
+||previous bet value is automatically played, | &#9745;
+||and player cash value is updated. | &#9745;
+|||
+| Timer runs out | Game is stopped, | &#9745;
+||score screen pops up, | &#9745;
+||correct score calculations (bet value + (side bet value)** + cash value) | &#9745;
+||correct .innerHTML depeding on which condition was met | &#9745;
+||correctly displaying top 3 scores. | &#9745;
+|||
+| Score Screen `Close` Button | Closes score screen, allows player to play new round. | &#9745;
+|||
+
+*Split button only available if *initial* two card are identical.\
+**If currently active.
+
+## __Challenges & Bugs__
+
+### __Challenges__
 
 The biggest challenge of this project was realising that a global leaderboard was not as simple as 'simply uploading data to the internet'. I learned a global leaderboard would require a server and a database of some sort (in this case a simple text/JSON file would have sufficed).
 
 I even went as far as purchasing a Raspberry Pi to serve this purpose and did a substantial amount of research on how to 'build' a server. After everything, the part at which I felt I needed to let go of this ambition (for now!), is when I realised that github pages would only communicate with a server over HTTPS. My server would have only been on HTTP, and that extra layer of complexity, and given the time I had to finish the project meant I had to unfortunately postpone my ambition to create a global leaderboard.
 
-__Unfixed Bugs__
+### __Fixed Bugs__
+* Buttons correctly display and hide when they need to.
+* Poker chips:
+  * now correctly function even if player's hand is bust.
+    * previosuly would only function when player chose to 'stand'.
+  * the white 'deduct $100' poker chip now takes into account if player has below $100 in bet value.
+* If the timer ran out while in the middle of a hand; game elements would not correctly display/function on reset.
+* Split button:
+  * now correctly hides if player chooses to stand.
+    * previously the player could stand and then split card anyway - breaking the game.
+  * when the split card comes into play, now correctly calculates win/loss cash values.
+* Bet values are correctly calculated under all circumstances.
+  * previously bets over a certain amount would cause a bug in calculations.
 
+### __Unfixed Bugs__
 * I have found that even though the same browser and version (Chrome - 113.0.5672.63) were being used, that on some laptops the 'Game Rules' section's scroll feature was not functioning as intended, instead the entire section was on display and viewing the bottom of the game rules meant users that were affected had to 'scroll away' from the game. Image of proper function below:\
 ![Scroll Bug](/documentation/bugs-rules-scroll.png)
 
-### __Feature Ideas For The Future__
-
 ## Technologies Used
-
 * HTML
 * CSS
 * JavaScript
@@ -231,7 +311,6 @@ __Unfixed Bugs__
 * Endless Paper (iPad)
 
 ## Deployment
-
 The project was deployed on GitHub pages from the 'Main Branch Source Code' using the following steps:
 * 'git add .', 'git commit" and 'git push' commands were issued one final time when the project was ready and finished.
 * On Github the repository for the project was selected.
@@ -242,10 +321,9 @@ The project was deployed on GitHub pages from the 'Main Branch Source Code' usin
 
 GitHub may take a few minutes to deploy the website so be patient.
 
-The live link to my project can be found [**here**](https://destant.github.io/blackjack-5-minute-challenge/).
+The live link to my project can be found [**here**](https://destant.github.io/blackjack-3-minute-challenge/).
 
 ## Development
-
 Should anyone wish to add to the project, please feel free to open a new workspace within its current state; then commit and push any changes to the main branch. I will review and add them to the main branch as soon as possible. Thank you!
 
 Should anyone wish to copy and paste the project - you are also welcome to - please remember to give me some credit!
@@ -253,7 +331,6 @@ Should anyone wish to copy and paste the project - you are also welcome to - ple
 ## Credits 
 
 ### __Content__
-
 * The wireframe was made using the [Endless Paper App](https://endlesspaper.app/) on the iPad.
 * To help me find and visualize the font I used [Fontjoy](https://fontjoy.com/).
 * [W3Schools](https://www.w3schools.com/), [Stack Overflow](https://stackoverflow.com/), [Mozilla Dev Tools](https://developer.mozilla.org) was referred to a lot for general syntax and whenever I was stuck on a bug for a while - other similar experiences helped me build a better app.
@@ -261,7 +338,6 @@ Should anyone wish to copy and paste the project - you are also welcome to - ple
 * [Favicon](https://favicon.io/emoji-favicons/game-die/) for the favicons.
 
 ### __Media__
-
 * The poker chip images are from [PngAAA](https://www.pngaaa.com/).
 * The playing cards .png are from [Super Dev Resources](https://superdevresources.com/free-playing-cards-set/).
 * The sound effects are from [Epidemic Sound](https://www.epidemicsound.com/).
