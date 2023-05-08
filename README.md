@@ -3,7 +3,7 @@
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Goals](#goals)
-3. [Wireframe](#wireframe)
+3. [Wireframe & Planning](#wireframe--planning)
 4. [Features:](#features)
     1. [First Visit](#first-visit)
     2. [The Deck Of Cards](#the-deck-of-cards)
@@ -52,8 +52,18 @@ As the owner of the site, I would:
 * Listen to feedback from my users and add updates to include new features accordingly
 * Fix bugs, as they are reported to me
 
-## Wireframe
+## Wireframe & Planning
+The wireframe:
+  * The choice behind the design was to mimic a casino blackjack table and have everything in view for the player.\
 ![Wireframe](/documentation/wireframe-pp2.png)
+
+The colours:
+  * I wanted to include the typical green seen in all casinos, so opted to use that as the background. However, I did not want to overpower the viewing field either and so chose to also include a much lighter shade in the foreground.\
+![Colours Used](/documentation/colour-choice.png)
+
+The typography:
+  * The typography was chosen for its simplicity and elegance.\
+![Typography](/documentation/typography.png)
 
 ## Features:
 ### First Visit
