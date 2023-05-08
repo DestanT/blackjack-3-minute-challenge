@@ -248,7 +248,7 @@ The game was played for a total of 10+ hours across the board and these were the
 |||
 | The player going over 21 | 'aww' sound effect played, | &#9745;
 ||'You Lose' is displayed in red below the player sum, | &#9745;
-||the player loses current bet value, | &#9745;
+||the player loses the current bet value, | &#9745;
 ||table clears cards away, | &#9745;
 ||dealer *doesn't* unnecessarily take its turn, | &#9745;
 ||The 'Deal' Button becomes visible, | &#9745;
@@ -271,7 +271,7 @@ The game was played for a total of 10+ hours across the board and these were the
 ||correct .innerHTML depending on which condition was met | &#9745;
 ||correctly displaying the top 3 scores. | &#9745;
 |||
-| The score screen `Close` button | Closes the score screen, and allows the player to play a new round. | &#9745;
+| The score screen `Close` button | Closes the score screen and allows the player to play a new round. | &#9745;
 |||
 
 *Split button only available if *initial* two cards are identical.\
@@ -284,6 +284,9 @@ The game was played for a total of 10+ hours across the board and these were the
 The biggest challenge of this project was realising that a global leaderboard was not as simple as 'simply uploading data to the internet'. I learned a global leaderboard would require a server and a database of some sort (in this case a simple text/JSON file would have sufficed).
 
 I even went as far as purchasing a Raspberry Pi to serve this purpose and did a substantial amount of research on how to 'build' a server. After everything, the part at which I felt I needed to let go of this ambition (for now!), is when I realised that GitHub pages would only communicate with a server over HTTPS. My server would have only been on HTTP, and that extra layer of complexity, and given the time I had to finish the project meant I had to unfortunately postpone my ambition to create a global leaderboard.
+
+Another notable challenge was W3C validation:
+  * The 'main game area' section in index.html did not have an h1-h6 element in it, which the validator did not like. I was too far into development to make a fundamental change to this, so I simply opted to change it to a div.
 
 ### __Fixed Bugs__
 * Buttons correctly display and hide when they need to.
@@ -324,7 +327,7 @@ GitHub may take a few minutes to deploy the website so be patient.
 The live link to my project can be found [**here**](https://destant.github.io/blackjack-3-minute-challenge/).
 
 ## Development
-Should anyone wish to add to the project, please feel free to develop on a separate branch; then create a pull request and I will review and merge it. Thank you!
+Should anyone wish to add to the project, please feel free to develop it on a separate branch; then create a pull request and I will review and merge it. Thank you!
 
 Should anyone wish to copy and paste the project - you are also welcome to - please remember to give me some credit!
 
