@@ -300,7 +300,7 @@ I even went as far as purchasing a Raspberry Pi to serve this purpose and did a 
   * Previously bets over a certain amount would cause a bug in calculations.
 
 ### __Unfixed Bugs__
-* I have found that even though the same browser and version (Chrome - 113.0.5672.63) were being used, on some laptops, the 'Game Rules' section's scroll feature was not functioning as intended, instead, the entire section was on display, and viewing the bottom of the game rules meant users that were affected had to 'scroll away' from the game. Image of proper function below:\
+* I have found that on 'Chromium' (Version 1.39.120, 102.0.5005.99 Official Build) the 'Game Rules' section's scroll feature was not functioning as intended, instead, the entire section was on display, and viewing the bottom of the game rules meant users that were affected had to 'scroll away' from the game. Image of proper function below:\
 ![Scroll Bug](/documentation/bugs-rules-scroll.png)
 
 ## Technologies Used

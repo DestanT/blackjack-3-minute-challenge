@@ -479,7 +479,6 @@ function splitHand() {
 
 /**
  * Deals a card to the player if hand value is < 21.
- * Otherwise alerts player of 'bust' hand.
  */
 function hit() {
     // When 'split' is an option but player chooses to 'hit', hides 'split' button.
@@ -498,10 +497,6 @@ function hit() {
             adjustButtonVisibility('stand', 'add', 'hidden');
             grayscale('off');
         }
-    } else if (playerSum === 21) {
-        alert(
-            'You have 21, the best score you can get! Press "Stand" to continue!'
-        );
     }
 }
 
@@ -821,7 +816,6 @@ function addBetRed() {
         animationPlayPokerChip('red');
     } else {
         soundBoing.play();
-        alert('You do not have enough money!');
     }
 }
 
@@ -845,7 +839,6 @@ function addBetBlue() {
         animationPlayPokerChip('blue');
     } else {
         soundBoing.play();
-        alert('You do not have enough money!');
     }
 }
 
@@ -869,7 +862,6 @@ function addBetBlack() {
         animationPlayPokerChip('black');
     } else {
         soundBoing.play();
-        alert('You do not have enough money!');
     }
 }
 
