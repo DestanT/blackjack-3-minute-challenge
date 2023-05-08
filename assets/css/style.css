@@ -38,6 +38,11 @@ body span {
 h1 {
     font-size: 2em;
     font-family: 'Righteous', cursive;
+    letter-spacing: 2px;
+}
+
+#game-rules-span {
+    font-size: large;
 }
 
 h2 {
