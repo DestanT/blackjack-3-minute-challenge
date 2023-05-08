@@ -40,6 +40,11 @@ h1 {
     font-family: 'Righteous', cursive;
 }
 
+h2 {
+    font-size: 2em;
+    font-family: 'Righteous', cursive;
+}
+
 .display-h1-small-screen {
     display: none;
     /* Toggles depending on screen size */

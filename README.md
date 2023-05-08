@@ -324,7 +324,7 @@ GitHub may take a few minutes to deploy the website so be patient.
 The live link to my project can be found [**here**](https://destant.github.io/blackjack-3-minute-challenge/).
 
 ## Development
-Should anyone wish to add to the project, please feel free to open a new workspace within its current state; then commit and push any changes to the main branch. I will review and add them to the main branch as soon as possible. Thank you!
+Should anyone wish to add to the project, please feel free to develop on a separate branch; then create a pull request and I will review and merge it. Thank you!
 
 Should anyone wish to copy and paste the project - you are also welcome to - please remember to give me some credit!
 
